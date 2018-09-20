@@ -21,6 +21,70 @@ if ($result->num_rows > 0) {
        $db_year_level = $row["year_level"];
        $db_program = $row["program"];
        $db_department = $row["department"];
+       $db_address = $row["address"];
+       $db_phone = $row["phone"];
+       $db_mobile = $row["mobile"];
+       $db_email = $row["email"];
+       $db_status = $row["civilstatus"];
+       $db_religion = $row["religion"];
+       $db_bday = $row["bday"];
+       $db_age = $row["age"];
+       $db_gender = $row["gender"];
+       $db_spouse = $row["spouse"];
+       $db_fname = $row["fathername"];
+       $db_mname = $row["mothername"];
+       $db_fage = $row["fatherage"];
+       $db_mage = $row["motherage"];
+       $db_fmobile = $row["fathermobile"];
+       $db_mmobile = $row["mothermobile"];
+       $db_feduc = $row["fathereducation"];
+       $db_meduc = $row["mothereducation"];
+       $db_foccupation = $row["fatheroccupation"];
+       $db_moccupation = $row["motheroccupation"];
+       $db_gname = $row["guardiansname"];
+       $db_gaddress = $row["guardainsaddress"];
+       $db_gmobile = $row["guardiansmobilenumber"];
+       $db_grelationship = $row["guardainsrelationship"];
+       $db_siblingage = $row["siblingage"];
+       $db_siblingcontact = $row["siblingcontact"];
+       $db_siblingname = $row["siblingname"];
+       $db_siblingschool = $row["siblingschool"];
+       $db_siblingage1 = $row["siblingage1"];
+       $db_siblingcontact1 = $row["siblingcontact1"];
+       $db_siblingname1 = $row["siblingname1"];
+       $db_siblingschool1 = $row["siblingschool1"];
+       $db_siblingage2 = $row["siblingage2"];
+       $db_siblingcontact2 = $row["siblingcontact2"];
+       $db_siblingname2 = $row["siblingname2"];
+       $db_siblingschool2 = $row["siblingschool2"];
+       $db_siblingage3 = $row["siblingage3"];
+       $db_siblingcontact3 = $row["siblingcontact3"];
+       $db_siblingname3 = $row["siblingname3"];
+       $db_siblingschool3 = $row["siblingschool3"];
+       $db_siblingage4 = $row["siblingage4"];
+       $db_siblingcontact4 = $row["siblingcontact4"];
+       $db_siblingname4 = $row["siblingname4"];
+       $db_siblingschool4 = $row["siblingschool4"];
+       $db_siblingage5 = $row["siblingage5"];
+       $db_siblingcontact5 = $row["siblingcontact5"];
+       $db_siblingname5 = $row["siblingname5"];
+       $db_siblingschool5 = $row["siblingschool5"];
+       $db_siblingage6 = $row["siblingage6"];
+       $db_siblingcontact6 = $row["siblingcontact6"];
+       $db_siblingname6 = $row["siblingname6"];
+       $db_siblingschool6 = $row["siblingschool6"];
+       $db_elemgraduated = $row["elemyeargraduated"];
+       $db_elemhonor = $row["elemhonor"];
+       $db_elemschool = $row["elemschool"];
+       $db_hshonor = $row["hshonor"];
+       $db_hsschool = $row["hsschool"];
+      $db_hsyeargraduated = $row["hsyeargraduated"];
+      $db_collegegraduated = $row["collegeyeargraduated"];
+      $db_collegehonor = $row["collegehonor"];
+      $db_collegeschool = $row["collegeschool"];
+      $db_otherhonor = $row["otherhonor"];
+      $db_otherschool = $row["otherschool"];
+      $db_otheryeargraduated = $row["otheryeargraduated"];
     }
 }        
 ?>
@@ -132,17 +196,17 @@ th,td{font-size: 18px;
                         <div class="form-group">
                         <div class="form-row">
                              <label for="address" class="col-form-label col-2"><b>Home Address:</b></label>
-                             <input type="text" name="address" class="form-control col-10" id="address" placeholder="Enter your Address" required>
+                             <input type="text" name="address" class="form-control col-10" id="address" value="<?php echo $db_address; ?>" readonly>
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
                               
                                <label for="phone-number" class="col-form-label col-2"><b>Phone Number:</b></label>
-                                <input type="text" name="phone" class="form-control col-3" placeholder="Home Phone Number:" id="phone-number" >
+                                <input type="text" name="phone" class="form-control col-3"  id="phone-number" value="<?php echo $db_phone; ?>" readonly >
                               
                               <label for="birthdate" class="col-form-label col-4"><b style="margin-left:60%;">Date of Birth:</b></label>
-                                <input type="date" name="bday" class="form-control col-3" required>
+                                <input type="date" name="bday" class="form-control col-3" value="<?php echo $db_bday; ?>" readonly >
                            
                             </div>
                         </div>
@@ -151,10 +215,10 @@ th,td{font-size: 18px;
                             <div class="form-row">
                               
                                <label for="mobile-number" class="col-form-label col-2"><b>Mobile Number:</b></label>
-                                <input type="text" name="mobile" class="form-control col-3" placeholder="Mobile Number" id="mobile-number" required>
+                                <input type="text" name="mobile" class="form-control col-3"  id="mobile-number" value="<?php echo $db_mobile; ?>" readonly >
                               
                               <label for="age" class="col-form-label col-4"><b style="margin-left:80%;">Age:</b></label>
-                                <input type="number" name="age" class="form-control col-3" id="age" placeholder="Age" required>
+                                <input type="number" name="age" class="form-control col-3" id="age" value="<?php echo $db_age; ?>" readonly >
                            
                             </div>
                         </div>
@@ -163,12 +227,10 @@ th,td{font-size: 18px;
                             <div class="form-row">
                               
                                <label for="email" class="col-form-label col-2"><b>Email Address:</b></label>
-                                <input type="email" name="email" class="form-control col-3" placeholder="example@email.com" id="email" required >
+                                <input type="email" name="email" class="form-control col-3"  id="email" value="<?php echo $db_email; ?>" readonly >
                               
                               <label for="sex" class="col-form-label col-4"><b style="margin-left:80%;">Sex:</b></label>
-                                  <select id="sex" name="gender" class="form-control col-3" required>
-                                      <option value="male">Male</option>
-                                      <option value="female">Female</option></select>
+                              <input type="text" name="gender" class="form-control col-3"   value="<?php echo $db_gender; ?>" readonly >
                            
                             </div>
                         </div>
@@ -177,10 +239,10 @@ th,td{font-size: 18px;
                             <div class="form-row">
                               
                                <label for="civil-status" class="col-form-label col-2"><b>Civil Status:</b></label>
-                                <input type="text" name="civilstatus" class="form-control col-3" placeholder="Civil Status" id="Civil Status" required>
+                                <input type="text" name="civilstatus" class="form-control col-3"  id="Civil Status" value="<?php echo $db_status; ?>" readonly >
                               
                               <label for="spouse" class="col-form-label col-4"><b style="margin-left:30%;">Spouse's Name (if married):</b></label>
-                                <input type="text" name="spouse" class="form-control col-3" placeholder="Spouse Name (if married)" id="spouse">
+                                <input type="text" name="spouse" class="form-control col-3"  id="spouse" value="<?php echo $db_spouse; ?>" readonly >
                            
                             </div>
                         </div>
@@ -189,7 +251,7 @@ th,td{font-size: 18px;
                         <div class="form-group">
                          <div class="form-row">
                              <label for="religion" class="col-form-label col-2"><b>Religion:</b></label>
-                             <input type="text" name="religion" class="form-control col-3" id="religion" placeholder="Religion" required>
+                             <input type="text" name="religion" class="form-control col-3" id="religion" value="<?php echo $db_religion; ?>" readonly >
                           </div>
                         </div>
 
@@ -210,10 +272,10 @@ th,td{font-size: 18px;
                               <div class="form-row">
                               
                                <label for="father" class="col-form-label col-3"><b>Name of Father:</b></label>
-                                <input type="text" name="fathername" class="form-control col-3" placeholder="Father's Name" id="father" required>
+                                <input type="text" name="fathername" class="form-control col-3"  id="father" value="<?php echo $db_fname; ?>" readonly >
                               
                               <label for="mother" class="col-form-label col-3"><b style="margin-left:40%;">Name of Mother:</b></label>
-                                <input type="text" name="mothername" class="form-control col-3" placeholder="Mother's Name"  id="mother" required>
+                                <input type="text" name="mothername" class="form-control col-3"   id="mother" value="<?php echo $db_mname; ?>" readonly >
                            
                             </div>
                         </div>
@@ -222,10 +284,10 @@ th,td{font-size: 18px;
                             <div class="form-row">
                               
                                 <label for="father-age" class="col-form-label col-3"><b>Age:</b></label>
-                                <input type="number" name="fatherage" class="form-control col-1" id="father-age" placeholder="Age" required>
+                                <input type="number" name="fatherage" class="form-control col-1" id="father-age" value="<?php echo $db_fage; ?>" readonly >
                               
                               <label for="mother-age" class="col-form-label col-5"><b style="margin-left:80%;">Age:</b></label>
-                                <input type="number" name="motherage" class="form-control col-1" id="mother-age" placeholder="Age" required>
+                                <input type="number" name="motherage" class="form-control col-1" id="mother-age" value="<?php echo $db_mage; ?>" readonly >
                            
                             </div>
                         </div>
@@ -234,10 +296,10 @@ th,td{font-size: 18px;
                               <div class="form-row">
                               
                                <label for="father-number" class="col-form-label col-3"><b>Mobile Number:</b></label>
-                                <input type="text" name="fathermobile" class="form-control col-3" placeholder="Mobile Number" id="father-number" required>
+                                <input type="text" name="fathermobile" class="form-control col-3"  id="father-number" value="<?php echo $db_fmobile; ?>" readonly>
                               
                               <label for="mother-number" class="col-form-label col-3"><b style="margin-left:40%;">Mobile Number:</b></label>
-                                <input type="text" name="mothermobile" class="form-control col-3" placeholder="Mobile Number" id="mother-number" required>
+                                <input type="text" name="mothermobile" class="form-control col-3"  id="mother-number" value="<?php echo $db_mmobile; ?>" readonly>
                            
                             </div>
                         </div>
@@ -246,10 +308,10 @@ th,td{font-size: 18px;
                               <div class="form-row">
                               
                                <label for="father-education" class="col-form-label col-3"><b>Educational Attainment:</b></label>
-                                <input  type="text" name="fathereducation" class="form-control col-3" placeholder="Educational Attainment" id="father-education" required>
+                                <input  type="text" name="fathereducation" class="form-control col-3"  id="father-education" value="<?php echo $db_feduc; ?>" readonly>
                               
                               <label for="mother-education" class="col-form-label col-3"><b style="margin-left:20%;">Educational Attainment:</b></label>
-                                <input type="text" name="mothereducation" class="form-control col-3" placeholder="Educational Attainment" id="mother-education" required>
+                                <input type="text" name="mothereducation" class="form-control col-3"  id="mother-education" value="<?php echo $db_meduc; ?>" readonly>
                            
                             </div>
                         </div>
@@ -258,10 +320,10 @@ th,td{font-size: 18px;
                               <div class="form-row">
                               
                                <label for="father-occupation" class="col-form-label col-3"><b>Occupation:</b></label>
-                                <input type="text" name="fatheroccupation" class="form-control col-3" placeholder="Occupation" id="father-occupation" required>
+                                <input type="text" name="fatheroccupation" class="form-control col-3"  id="father-occupation" value="<?php echo $db_foccupation; ?>" readonly>
                               
                               <label for="mother-occupation" class="col-form-label col-3"><b style="margin-left:40%;">Occupation:</b></label>
-                                <input type="text" name="motheroccupation" class="form-control col-3" placeholder="Occupation" id="mother-occupation" required>
+                                <input type="text" name="motheroccupation" class="form-control col-3"  id="mother-occupation" value="<?php echo $db_moccupation; ?>" readonly>
                            
                             </div>
                         </div>
@@ -277,10 +339,10 @@ th,td{font-size: 18px;
                                         <div class="form-row">
                                         
                                          <label for="guardian" class="col-form-label col-3"><b>Guardian's Name:</b></label>
-                                          <input type="text" name="guardiansname" class="form-control col-3" placeholder="Guardian's Name" id="guardian" required>
+                                          <input type="text" name="guardiansname" class="form-control col-3"  id="guardian" value="<?php echo $db_gname; ?>" readonly>
                                         
                                         <label for="relation" class="col-form-label col-3"><b style="margin-left:40%;">Relationship:</b></label>
-                                          <input type="text" name="guardiansrelationship" class="form-control col-3" placeholder="Relationship"  id="relation" required>
+                                          <input type="text" name="guardiansrelationship" class="form-control col-3"   id="relation" value="<?php echo $db_grelationship; ?>" readonly>
                                      
                                       </div>
                                   </div>
@@ -289,7 +351,7 @@ th,td{font-size: 18px;
                                       <div class="form-row">
                                         
                                           <label for="guardian-home" class="col-form-label col-3"><b>Guardian's Home Address:</b></label>
-                                          <input type="text" name="guardiansaddress" class="form-control col-9"placeholder="Guardian's Home Address" id="guardian-home" required>
+                                          <input type="text" name="guardiansaddress" class="form-control col-9" id="guardian-home" value="<?php echo $db_gaddress; ?>" readonly>
                                      
                                       </div>
                                   </div>
@@ -298,7 +360,7 @@ th,td{font-size: 18px;
                                         <div class="form-row">
                                         
                                          <label for="guardian-number" class="col-form-label col-3"><b> Guardian's Mobile Number:</b></label>
-                                          <input type="text" name="guardiansmobilenumber" class="form-control col-3" placeholder="Guardian's Number" id="guardian-number" required>
+                                          <input type="text" name="guardiansmobilenumber" class="form-control col-3"  id="guardian-number" value="<?php echo $db_gmobile; ?>" readonly>
                                         
                                        
                                      
@@ -321,47 +383,47 @@ th,td{font-size: 18px;
               </thead>
               <tbody>
                 <tr>
-                  <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;"></td>
+                  <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact; ?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="siblingname1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact1" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname1; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool1; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage1; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact1; ?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="siblingname2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact2" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname2; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool2; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage2; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact2; ?>" readonly></td>
                 </tr>
 
                 <tr>
-                <td><input type="text" name="siblingname3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact3" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname3; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool3; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage3; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact3; ?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="siblingname4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact4" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname4; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool4; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage4; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact4; ?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="siblingname5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact5" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname5; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool5; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage5; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact5; ?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="siblingname6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact6" style=" border:0;outline:0;background:transparent;"></td>
+                <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingname6; ?>" readonly></td>
+                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingschool6; ?>" readonly></td>
+                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingage6; ?>" readonly></td>
+                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_siblingcontact6; ?>" readonly></td>
                 </tr>
               </tbody>
             </table>
@@ -380,28 +442,28 @@ th,td{font-size: 18px;
                       <tbody>
                         <tr>
                           <td><b>Elementary</b></td>
-                          <td><input type="text"  name="elemschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="elemyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;"></td>
+                          <td><input type="text"  name="elemschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_elemschool; ?>" readonly></td>
+                          <td><input type="text" name="elemyeargraduated" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_elemgraduated; ?>" readonly></td>
+                          <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_elemhonor; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><b>High School</b></td>
-                          <td><input type="text" name="hsschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="hshonor" style=" border:0;outline:0;background:transparent;"></td>
+                          <td><input type="text" name="hsschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_hsschool; ?>" readonly></td>
+                          <td><input type="text" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_hsyeargraduated; ?>" readonly></td>
+                          <td><input type="text" name="hshonor" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_hshonor; ?>" readonly></td>
                         </tr>
                         <tr>
                           <td><b>College</b></td>
-                          <td><input type="text" name="collegeschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="collegehonor" style=" border:0;outline:0;background:transparent;"></td>
+                          <td><input type="text" name="collegeschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_collegeschool; ?>" readonly></td>
+                          <td><input type="text" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_collegegraduated; ?>" readonly></td>
+                          <td><input type="text" name="collegehonor" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_collegehonor; ?>" readonly></td>
                         </tr>
 
                         <tr>
                           <td><b>Others (please specify)</b></td>
-                          <td><input type="text" name="otherschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="otherhonor" style=" border:0;outline:0;background:transparent;"></td>
+                          <td><input type="text" name="otherschool" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_otherschool; ?>" readonly></td>
+                          <td><input type="text" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_otheryeargraduated; ?>" readonly></td>
+                          <td><input type="text" name="otherhonor" style=" border:0;outline:0;background:transparent;" value="<?php echo $db_otherhonor; ?>" readonly></td>
                         </tr>
                        
                       </tbody>
