@@ -46,7 +46,7 @@
 <!-- table -->
 
 <div class="container">      
-  <table class="table table-bordered col-11" >
+  <table class="table table-bordered col-11" style="text-align:center;">
     <thead>
       <tr>
         <th>SR-Code</th>
@@ -54,25 +54,41 @@
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
+         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr onclick="window.location='student-record.php';">
-        <td>15-02031</td>
-        <td>Datinguinoo,Marie Lois P.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
+    <?php
+      include '../connections/conn.php';
 
-      </tr>
+            $sql = "SELECT * FROM guidance_log";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["sr_code"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["year_level"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["program"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["department"]."</a></td>
+                        <td><div class='container' >
+                        <div class='col-1'><a href='student-record-view.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'><button type='button' class='btn btn-primary'>View Student Information</button></a></div>
+                            
+                         </div></td>
+                      </tr>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
     </tbody>
   </table>
 </div>
 
-<div class="container" >
-     <div class="col-1 float-right" style="margin-left:10%; margin-top:-5.25%;"> <a href="student-record-view.php"><button type="button" class="btn btn-primary">View</button></a></div>
-         
-      </div>
+
 
 
       

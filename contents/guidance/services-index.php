@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/navbar.css">
+   <style>
+   .rc{
+    font-size:18px;text-align:center;width:100%;border-top:none;border-left:none;border-right:none;color:gray;
+   }
+   </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
@@ -84,6 +89,8 @@
 
       <!-- Modal body -->
       <div class="modal-body">
+      <a href="student-information-sheet-form.php"><button  class="btn btn-success col-md-12">Student Information Sheet Form</button></a><br><br>
+      <a href="student-information-updating-form.php"><button  class="btn btn-success col-md-12">Student Information Updating Form</button></a>
       </div>
 
       <!-- Modal footer -->
@@ -109,19 +116,23 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-  <a style="font-size:18px;"> Marie Lois P. Datinguinoo 4th</a><br>
-   <a style="font-size:18px;">15-02031</a><br>
-   <a style="font-size:18px;">Information Technology, CICS</a><br><br><br>
-   <a style="font-size:18px;">Date: <input type="date" style="font-size:14px;"></a><br>
-    <a style="font-size:18px;">Reason: <input type="text" style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
+      <form action='../connections/rc-services-insert.php' method="post">
+      <input class='rc' type="text" name="rcName" placeholder="Full Name"><br>
+      <input class='rc' type="text" name="rcsrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="rcyearlevel" placeholder="Year Level"><br>
+      <input class='rc' type="text" name="rcprogram" placeholder="Program"><br>
+      <input class='rc' type="text" name="rcdepartment" placeholder="Department">
+<br><br><br>
+   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='rcdate' style="font-size:14px;"></a><br>
+    <a style="font-size:18px;">Reason: <input type="text"name='rcreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
 
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Add</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-         
+      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
     </div>
@@ -141,19 +152,23 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-  <a style="font-size:18px;"> Marie Lois P. Datinguinoo 4th</a><br>
-   <a style="font-size:18px;">15-02031</a><br>
-   <a style="font-size:18px;">Information Technology, CICS</a><br><br><br>
-   <a style="font-size:18px;">Date: <input type="date" style="font-size:14px;"></a><br>
-    <a style="font-size:18px;">Reason: <input type="text" style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
+      <form action='../connections/rgm-services-insert.php' method="post">
+      <input class='rc' type="text" name="rgmName" placeholder="Full Name"><br>
+      <input class='rc' type="text" name="rgmsrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="rgmyearlevel" placeholder="Year Level"><br>
+      <input class='rc' type="text" name="rgmprogram" placeholder="Program"><br>
+      <input class='rc' type="text" name="rgmdepartment" placeholder="Department">
+<br><br><br>
+   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='rgmdate' style="font-size:14px;"></a><br>
+    <a style="font-size:18px;">Reason: <input type="text"name='rgmreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
 
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Add</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-         
+      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
     </div>
@@ -173,14 +188,23 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <a style="font-size:22px;">Services: &nbsp; <input type="text" style=" border:0;outline:0;background:transparent; border-bottom:1px solid black;"></a><br>
+      <form action='../connections/other-services-insert.php' method="post">
+      <input class='rc' type="text" name="otherName" placeholder="Full Name"><br>
+      <input class='rc' type="text" name="othersrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="otheryearlevel" placeholder="Year Level"><br>
+      <input class='rc' type="text" name="otherprogram" placeholder="Program"><br>
+      <input class='rc' type="text" name="otherdepartment" placeholder="Department">
+<br><br><br>
+   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;"></a><br>
+    <a style="font-size:18px;">Other Services: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
+
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-services" >Add</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-         
+      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
     </div>

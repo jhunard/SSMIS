@@ -26,7 +26,7 @@
 <div class="container">
 
 <div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#guidance"> <img src="images/user.png" alt="logo" width="50px;">Guidance</img></button></div> 
+<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#guidance"> <img src="images/user.png" alt="logo" width="50px;">Guidance</button></div> 
 </div>
 </div>
 
@@ -35,7 +35,7 @@
 <div class="container">
 
 <div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">OSD</img></button></div> 
+<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">OSD</button></div> 
 </div>
 </div>
 
@@ -43,7 +43,7 @@
 <!-- SOA -->
 <div class="container">
 <div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#soa"> <img src="images/user.png" alt="logo" width="50px;">SOA</img></button></div> 
+<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#soa"> <img src="images/user.png" alt="logo" width="50px;">SOA</button></div> 
 </div>
 </div>
 
@@ -55,10 +55,11 @@
           <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
           <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>Guidance Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
             <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form>
-               <div class="form-group"><input type="email" class="form-control" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
-                 <a href="contents/guidance-index.php"><button type="button" class="btn btn-success">Login</button></a></form><!-- button type= "submit" button instead of "button" -->
+             <form action="contents/connections/login_con.php" method="post">
+               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
+               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
+               <input type="submit" class="btn btn-success" name="Login" value="Login">
+              </form>
              </form>
             </div>
              <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
@@ -77,10 +78,10 @@
           <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
           <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>OSD Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
             <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form>
-               <div class="form-group"><input type="email" class="form-control" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
-               <a href="index.php"><button type="button" class="btn btn-success">Login</button></a></form><!-- button type= "submit" button instead of "button" -->
+             <form action="contents/connections/login_con.php" method="post">
+               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
+               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
+               <input type="submit" class="btn btn-success" name="Login" value="Login">
              </form>
             </div>
              <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
@@ -98,11 +99,10 @@
           <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
           <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>SOA Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
             <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form>
-               <div class="form-group"><input type="email" class="form-control" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" placeholder="Password"></div>
-
-               <a href="index.php"><button type="button" class="btn btn-success">Login</button></a></form><!-- button type= "submit" button instead of "button" -->
+             <form action="contents/connections/login_con.php" method="post">
+               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
+               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
+               <input type="submit" class="btn btn-success" name="Login" value="Login">
             </div>
              <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
        </div>

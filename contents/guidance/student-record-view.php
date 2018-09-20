@@ -1,3 +1,29 @@
+<?php
+$sr_code=$_GET["sr-code"];
+$id  = $_GET["id"];
+
+if (empty($sr_code)&&empty($id)){
+  echo "<script type='text/javascript'>
+  alert ('Please select student first before viewing the information!'); 
+  window.location.href='guidance-index.php';</script>";
+} 
+
+include '../connections/conn.php';
+$sql = "SELECT * FROM student_record WHERE sr_code='$sr_code' && id='$id' ";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+       $db_id = $row["id"];
+       $db_sr_code = $row["sr_code"];
+       $db_name = $row["name"];
+       $db_year_level = $row["year_level"];
+       $db_program = $row["program"];
+       $db_department = $row["department"];
+    }
+}        
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,30 +75,32 @@
 
 
 <!-- table -->
-
+<form action="../connections/student-record-view-update.php" method="post">
 <div class="container">   
 <div class="row" style="font-size:22px;">
-  <div class="col-8">Marie Lois P. Datinguinoo</div>
-  <div class="col-4">4th Year</div>
+  <div class="col-8"><input type="text" name="name" placeholder="<?php echo $db_name; ?>" value="<?php echo $db_name; ?>"></div>
+  <div class="col-4"><input type="text" name="year_level" placeholder="<?php echo $db_year_level; ?>" value="<?php echo $db_year_level; ?>"></div>
 </div>   
 </div>
 
  <div class="container">   
 <div class="row" style="font-size:22px;">
-  <div class="col-8">15-02031</div>
-  <div class="col-4">CICS</div>
+  <div class="col-8"><input type="text" name="sr_code" placeholder="<?php echo $db_sr_code;?>" value="<?php echo $db_sr_code;?>"></div>
+  <div class="col-4"><input type="text" name="department" placeholder="<?php echo $db_department; ?>" value="<?php echo $db_department; ?>"></div>
 </div>   
 </div>
 
 <div class="container">   
 <div class="row " style="font-size:22px;">
-  <div class="col-12">Information Technology</div>
+  <div class="col-12"><input type="text" name="program" placeholder="<?php echo $db_program; ?>" value="<?php echo $db_program; ?>"></div>
+  <input type="text" name="id"  value="<?php echo $db_id; ?>" hidden>
 </div>   
 </div>
 
     <div class="container" style="margin-left:15%; margin-top:2%;">
-       <a href="#"> <button type="button" class="btn btn-success float-right">Update</button></a></div>
-
+      <input type="submit" class="btn btn-success float-right" name="submit" value="Update">
+    </div>
+</form>
 <script>
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";

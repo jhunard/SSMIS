@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Guidance</title>
+  <title>Student Offenses</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -20,6 +20,7 @@
   
 </nav>
 <!-- ENd NAV -->
+
 
 <!-- SideNav slide-out button -->
 <div id="mySidebar" class="sidebar">
@@ -40,11 +41,10 @@
 
 <div class="container">
    <div class="form-row text-center">
-      <div class="col-12"><h1>Guidance Log Book?</h1></div>
+      <div class="col-12"><h1>Student Offenses</h1></div>
    </div>
 </div>
-
-
+<br>
 <!-- table -->
 
 <div class="container">      
@@ -56,43 +56,42 @@
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
+         <th>Date</th>
+         <th>Type of Violation</th>
+         <th>Violation</th>
+         <th>Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr onclick="window.location='student-record.php';">
-        <td>15-02031</td>
-        <td>Datinguinoo,Marie Lois P.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
+    <?php
+      include '../connections/conn.php';
 
-      </tr>
-     <tr onclick="window.location='#';">
-         <td>15-01234</td>
-        <td>Doe, John F.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
-      </tr>
-      <tr onclick="window.location='#';">
-        <td>15-99999</td>
-        <td>Dooley, July R.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
-      </tr>
+            $sql = "SELECT * FROM student_record";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
+                      </tr>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
     </tbody>
   </table>
 </div>
-
-<div class="container ">
-       <div class="float-right"><a href="services-index.php"> <button type="button" class="btn btn-success">Add</button></a>
-       <a href="#"><button type="button" class="btn btn-primary">Update</button></a>
-      </div>   
-      </div>
-
-
-      
 
 <script>
 function openNav() {
