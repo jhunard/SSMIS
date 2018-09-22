@@ -8,6 +8,9 @@ $program=$_POST["rgmprogram"];
 $department=$_POST["rgmdepartment"];
 $date=$_POST["rgmdate"];
 $reason=$_POST["rgmreason"];
+$month = date("F");
+$year = date("Y");
+$services = "rgm";
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";
 $result = $conn->query($sql);
@@ -19,9 +22,17 @@ if ($result->num_rows > 0) {
         $sql2 = "UPDATE student_record SET RGM_date_filled='$date', RGM_reason='$reason' WHERE sr_code='$srcode' && name='$name'";
 
         if ($conn->query($sql2) === TRUE) {
-            echo "<script type='text/javascript'>
-            alert ('Data Updated Sucessfully!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+
+            if ($conn->query($sql6) === TRUE) {
+                echo "<script type='text/javascript'>
+                alert ('Data Insert Sucessfully!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            } else {
+                echo "<script type='text/javascript'>
+                alert ('Eror Inserting Data!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            }
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Updating Data!'); 
@@ -36,9 +47,18 @@ if ($result->num_rows > 0) {
         $sql4 = "INSERT INTO guidance_log (name,sr_code,year_level,program,department) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department')";
 
         if ($conn->query($sql4) === TRUE) {
-            echo "<script type='text/javascript'>
-            alert ('Data Insert Sucessfully!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            
+            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+
+            if ($conn->query($sql5) === TRUE) {
+                echo "<script type='text/javascript'>
+                alert ('Data Insert Sucessfully!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            } else {
+                echo "<script type='text/javascript'>
+                alert ('Eror Inserting Data!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            }
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Inserting Data!'); 

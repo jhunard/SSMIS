@@ -56,7 +56,8 @@
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
-         <th>Date</th>
+         <th>Date Started</th>
+         <th>Date Ended</th>
          <th>Type of Violation</th>
          <th>Violation</th>
          <th>Status</th>
@@ -66,7 +67,7 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_record";
+            $sql = "SELECT * FROM student_record WHERE offense_index = '1' ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -79,6 +80,7 @@
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense_ended"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
