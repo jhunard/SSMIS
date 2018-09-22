@@ -1,3 +1,88 @@
+<?php
+$sr_code=$_GET["sr-code"];
+
+
+if (empty($sr_code)){
+  echo "<script type='text/javascript'>
+  alert ('Please select student first before viewing the information!'); 
+  window.location.href='guidance-index.php';</script>";
+} 
+
+include '../connections/conn.php';
+$sql = "SELECT * FROM student_record WHERE sr_code='$sr_code'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+
+        if(empty($row["sr_code"])){
+            $db_sr_code = "NO DATA FOUND";
+        }else{
+            $db_sr_code = $row["sr_code"];
+        }
+        if(empty($row["name"])){
+            $db_name = "NO DATA FOUND";
+        }else{
+            $db_name = $row["name"];
+        }
+        if(empty($row["year_level"])){
+            $db_year_level= "NO DATA FOUND";
+        }else{
+            $db_year_level = $row["year_level"];
+        }
+        if(empty($row["program"])){
+            $db_program = "NO DATA FOUND";
+        }else{
+            $db_program = $row["program"];
+        }
+        if(empty($row["department"])){
+            $db_department = "NO DATA FOUND";
+        }else{
+            $db_department = $row["department"];
+        }
+        if(empty($row["email"])){
+            $db_email = "NO DATA FOUND";
+        }else{
+            $db_email = $row["email"];
+        }
+        if(empty($row["address"])){
+            $db_address = "NO DATA FOUND";
+        }else{
+            $db_address = $row["address"];
+        }
+        if(empty($row["mobile"])){
+            $db_mobile = "NO DATA FOUND";
+        }else{
+            $db_mobile = $row["mobile"];
+        }
+        if(empty($row["spouse"])){
+            $db_spouse = "NO DATA FOUND";
+        }else{
+            $db_spouse = $row["spouse"];
+        }
+        if(empty($row["civilstatus"])){
+            $db_status = "NO DATA FOUND";
+        }else{
+            $db_status = $row["civilstatus"];
+        }
+      
+    }
+}else{
+
+    $db_sr_code = "NO DATA FOUND";
+    $db_name = "NO DATA FOUND";
+    $db_year_level = "NO DATA FOUND";
+    $db_program = "NO DATA FOUND";
+    $db_department = "NO DATA FOUND";
+    $db_email = "NO DATA FOUND";
+    $db_address = "NO DATA FOUND";
+    $db_mobile = "NO DATA FOUND";
+    $db_spouse = "NO DATA FOUND";
+    $db_status = "NO DATA FOUND";
+ 
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +134,7 @@ h6{
 <!-- SideNav slide-out button -->
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
- <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;"><a href="guidance-index.php"> <img src="images/userlogin.png" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;">Guidance</img></a></div> 
+ <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;"><a href="guidance-index.php"> <img src="images/userlogin.png" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;">Guidance</a></div> 
 
   <a href="student-information.php">Student Information Sheet</a>
   <a href="offenses-index.php">Student's Offense</a>
@@ -64,7 +149,7 @@ h6{
 
 <div class="container">
    <div class="form-row text-center">
-      <div class="col-12"><h1>Student Information Updating Form</h1></div><br>
+      <div class="col-12"><h1>Student Information</h1></div><br>
    </div>
 </div>
 
@@ -78,8 +163,8 @@ h6{
             <div class="card-body" style="margin-left:2%;">
               
                 <!-- First row (on medium screen) -->
-                <div class="row "><h6><b>Name:</b>&nbsp;<input type="text" class="form-control col-md-12" name="name" placeholder="First Name  Middle Name Last Name"></h6><br> </div>
-                <div class="row "><h6><b>Sr-Code:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" placeholder="Sr-Code"></h6><br></div>
+                <div class="row "><h6><b>Name:</b>&nbsp;<input type="text" class="form-control col-md-12" name="name" value="<?php echo $db_name;?>"></h6><br> </div>
+                <div class="row "><h6><b>Sr-Code:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" value="<?php echo $db_sr_code;?>"></h6><br></div>
             </div> 
         </div>
         
@@ -91,12 +176,13 @@ h6{
 
                         <div class="form-group">
                             <label for="program" class="col-form-label"><b>Program:</b></label>
-                            <input type="text" class="form-control" name="program" id="program" placeholder="BS Information Technology" required>
+                            <input type="text" class="form-control" name="program" id="program" value="<?php echo $db_program;?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="input_year-level" class="col-form-label"><b>Year Level:</b></label>
                             <select id="input_year-level" name="yearlevel" class="form-control">
+                            <option value="<?php echo $db_year_level;?>"><?php echo $db_year_level;?></option>
                             <option value="1st Year">1st Year</option>
                             <option value="2nd Year">2nd Year</option>
                             <option value="3rd Year">3rd Year</option>
@@ -108,6 +194,7 @@ h6{
                          <div class="form-group">
                             <label for="input_dept" class="col-form-label"><b>Department:</b></label>
                             <select id="input_dept" name="department" class="form-control">
+                            <option value="<?php echo $db_department;?>"><?php echo $db_department;?></option>
                             <option value="CICS">CICS</option>
                             <option value="CIT">CIT</option>
                             <option value="CEAFA">CEAFA</option>
@@ -119,7 +206,7 @@ h6{
 
                         <div class="form-group">
                              <label for="email" class="col-form-label"><b>Email Address:</b></label>
-                             <input type="email" name="email"  class="form-control" id="email" placeholder="example@email.com" required>
+                             <input type="email" name="email"  class="form-control" id="email" value="<?php echo $db_email;?>" required>
                         </div>
 
                     </div>
@@ -137,22 +224,22 @@ h6{
 
                         <div class="form-group">
                              <label for="address" class="col-form-label"><b>Present Address:</b></label>
-                             <input type="text" name="address" class="form-control" id="address" placeholder="Enter your Present Address" required>
+                             <input type="text" name="address" class="form-control" id="address" value="<?php echo $db_address;?>" required>
                         </div>
 
                        <div class="form-group">
                              <label for="contact" class="col-form-label"><b>Contact Number:</b></label>
-                             <input type="text"  name="phone" class="form-control" id="contact" placeholder="+xxx - xxxx - xxx" required>
+                             <input type="text"  name="phone" class="form-control" id="contact" value="<?php echo $db_mobile;?>" required>
                         </div>
 
                         <div class="form-group">
                              <label for="civil-status" class="col-form-label"><b>Civil Status:</b></label> 
-                             <input type="text"  name="status" class="form-control" id="civil-status" placeholder="Single" required>
+                             <input type="text"  name="status" class="form-control" id="civil-status" value="<?php echo $db_status;?>" required>
                         </div>
 
                          <div class="form-group">
                              <label for="name-spouse" class="col-form-label"><b>If Married, Name of Spouse:</b></label>
-                             <input type="text"  name="spouse" class="form-control" id="name-spouse" placeholder="Name of Spouse">
+                             <input type="text"  name="spouse" class="form-control" id="name-spouse" value="<?php echo $db_spouse;?>">
                         </div>
 
                       </div>

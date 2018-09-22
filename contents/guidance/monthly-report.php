@@ -1,3 +1,66 @@
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql="SELECT * FROM graph_data WHERE services='sis' ORDER BY id ASC";
+
+if ($result=mysqli_query($conn,$sql))
+  {
+  // Return the number of rows in result set
+  $rowcount=mysqli_num_rows($result);
+  $sis = $rowcount;
+  // Free result set
+  mysqli_free_result($result);
+  }
+?>
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql1="SELECT * FROM graph_data WHERE services='rc' ORDER BY id ASC";
+
+if ($result1=mysqli_query($conn,$sql1))
+  {
+  // Return the number of rows in result set
+  $rowcount1=mysqli_num_rows($result1);
+  $rc = $rowcount1;
+  // Free result set
+  mysqli_free_result($result1);
+  }
+?>
+
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql2="SELECT * FROM graph_data WHERE services='rgm' ORDER BY id ASC";
+
+if ($result2=mysqli_query($conn,$sql2))
+  {
+  // Return the number of rows in result set
+  $rowcount2=mysqli_num_rows($result2);
+  $rgm = $rowcount2;
+  // Free result set
+  mysqli_free_result($result2);
+  }
+?>
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql3="SELECT * FROM graph_data WHERE services='other' ORDER BY id ASC";
+
+if ($result3=mysqli_query($conn,$sql3))
+  {
+  // Return the number of rows in result set
+  $rowcount3=mysqli_num_rows($result3);
+  $others = $rowcount3;
+  // Free result set
+  mysqli_free_result($result3);
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,22 +101,23 @@
   <button class="openbtn" onclick="openNav()"style="color:black;">☰</button>  
 </div>
 <!-- ENd sideNAV -->
-
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <div class="container">
    <div class="form-row">
       <div class="col-4"><h1>Monthly Report</h1></div>
       <div class="col-3"><h4>Services</h4>
-      <select style="width:80%;"><option value="services">Services</option>
-  
+      <select name="services" style="width:80%;">  
       <option value="sis">Student Informartion Sheet</option>
-      <option value="counseling">Referral Counseling</option>
-      <option value="good-moral">Request for Good Moral</option></select>
+      <option value="rc">Referral Counseling</option>
+      <option value="rgm">Request for Good Moral</option>
+      <option value="other">Others</option>
+      </select>
       
     </div>
 
 
       <div class="col-2"><h4>Month</h4>
-      <span><select name="birth_month">
+      <span><select name="month">
         <?php for( $m=1; $m<=12; ++$m ) { 
           $month_label = date('F', mktime(0, 0, 0, $m, 1));?>
           <option value="<?php echo $month_label; ?>"><?php echo $month_label; ?></option>
@@ -65,7 +129,7 @@
 
       <div class="col-2"><h4>Year</h4>
         <span>
-      <select name="birth_year">
+      <select name="year">
         <?php 
           $year = date('Y');
           $min = $year - 10;
@@ -76,10 +140,10 @@
         ?>
       </select>
     </span></div>
-    <div class="col-1" style="margin-top:2.3%; margin-left:-8%;"><button type="button" class="btn btn-success ">Show</button></div>
+    <div class="col-1" style="margin-top:2.3%; margin-left:-8%;"><button type="submit" class="btn btn-success ">Show</button></div>
    </div>
       
-
+</form>
 
 <!-- table -->
 
@@ -97,25 +161,51 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>15-02031</td>
-        <td>Datinguinoo,Marie Lois P.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
-        <td>August 5</td>
-        <td>Wearing Flat Shoes</td>
+    <?php
+      include '../connections/conn.php';
 
-      </tr>
-     <tr onclick="window.location='#';">
-         <td>15-01234</td>
-        <td>Doe, John F.</td>
-        <td>4th</td>
-        <td>Information Technology</td>
-        <td>CICS</td>
-        <td>August 21</td>
-        <td>Haircut</td>
-      </tr>
+      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
+       $querryhere = "SELECT * FROM graph_data";
+      }else{
+        $graph_month=$_POST["month"];
+        $graph_year=$_POST["year"];
+        $graph_services=$_POST["services"];
+        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services'";
+      }
+     
+      
+      
+
+
+            $sql=$querryhere;
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
+                        </tr>";
+                      }
+                    } else {
+                      echo "<tr>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      </tr>";
+                    }
+$conn->close();
+?>
      
     </tbody>
   </table>
@@ -191,10 +281,10 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Not Wearing Proper Uniform", "Wearing Flat Shoes", "For OJT", "Not Wearing ID" ],
+        labels: ["Student Information Sheet", "Referral Counseling", "Request for Good Moral", "Other Services" ],
         datasets: [{
-            label: ' (August) ',
-            data: [121, 90, 236, 45,],
+            label: ' ',
+            data: [<?php echo $sis; ?>, <?php echo $rc; ?>,<?php echo $rgm; ?>, <?php echo $others; ?>,],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -209,7 +299,7 @@ var myChart = new Chart(ctx, {
                 'rgba(75, 192, 192, 1)',
                 
             ],
-            borderWidth: 1
+            borderWidth: 3
         }]
     },
     options: {

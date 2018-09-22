@@ -68,13 +68,13 @@
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["name"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'>".$row["department"]."</a></td>
+                        <td><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
+                        <td><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
+                        <td><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
+                        <td><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
                         <td><div class='container' >
-                        <div class='col-1'><a href='student-record-view.php?sr-code=".$row["sr_code"]."&id=".$row["id"]."'><button type='button' class='btn btn-primary'>View Student Information</button></a></div>
+                        <div class='col-1'><a href='student-information-sheet-form-view-updated.php?sr-code=".$row["sr_code"]."'><button type='button' class='btn btn-primary'>View Student Information</button></a></div>
                             
                          </div></td>
                       </tr>";

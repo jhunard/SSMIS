@@ -12,9 +12,10 @@ $phone=$_POST["phone"];
 $status=$_POST["status"];
 $spouse=$_POST["spouse"];
 $date = date("Y-m-d");
-
-
-
+$month = date("F");
+$year = date("Y");
+$reason = "Update Student Information Sheet";
+$services = "sis";
 
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";
@@ -27,14 +28,24 @@ if ($result->num_rows > 0) {
         $sql2 = "UPDATE student_record SET sr_code='$srcode',name='$name',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',email='$email',civilstatus='$status',spouse='$spouse', SIS_date_updated='$date' WHERE sr_code='$srcode' && name='$name'";
 
         if ($conn->query($sql2) === TRUE) {
-            echo "<script type='text/javascript'>
-            alert ('Data Updated Sucessfully!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+           
+            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+
+            if ($conn->query($sql5) === TRUE) {
+                echo "<script type='text/javascript'>
+                alert ('Data Insert Sucessfully!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            } else {
+                echo "<script type='text/javascript'>
+                alert ('Eror Inserting Data!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            }
+
         } else {
-            echo "<script type='text/javascript'>
-            alert ('Eror Updating Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+
         }
+
+        
     }
 } else {
     $sql3 = "INSERT INTO student_record (sr_code, name, year_level, program, department, address, phone, email, civilstatus, spouse , SIS_date_filled ) VALUES ('$srcode', '$name', '$yearlevel', '$program', '$department', '$address', '$phone','$email','$status', '$spouse', '$date')";
@@ -44,13 +55,20 @@ if ($result->num_rows > 0) {
         $sql4 = "INSERT INTO guidance_log (name,sr_code,year_level,program,department) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department')";
 
         if ($conn->query($sql4) === TRUE) {
-            echo "<script type='text/javascript'>
-            alert ('Data Insert Sucessfully!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+
+            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+
+            if ($conn->query($sql6) === TRUE) {
+                echo "<script type='text/javascript'>
+                alert ('Data Insert Sucessfully!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            } else {
+                echo "<script type='text/javascript'>
+                alert ('Eror Inserting Data!'); 
+                window.location.href='../guidance/services-index.php';</script>";
+            }
+    
         } else {
-            echo "<script type='text/javascript'>
-            alert ('Eror Inserting Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
         }
 
     } else {
