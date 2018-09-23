@@ -1,8 +1,8 @@
 <?php
 include 'conn.php';
-
+session_start();
 $user=$_POST["username"];
-$pass=$_POST["password"];
+$pass=md5($_POST["password"]);
 
 
 $sql = "SELECT * FROM user_info WHERE username='$user' && password='$pass'";
@@ -23,16 +23,19 @@ if ($result->num_rows > 0) {
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were so happy to see you!'); 
                     window.location.href='../guidance/guidance-index.php';</script>";
+                    $_SESSION["user"]=$user;
                 break;
                 case "OSD":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were glad to serve you!'); 
                     window.location.href='../osd-index.php';</script>";
+                    $_SESSION["user"]=$user;
                 break;
                 case "SOA":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were so happy to see you!'); 
                     window.location.href='../soa-index.php';</script>";
+                    $_SESSION["user"]=$user;
                  break;
             default:
                 echo "<script type='text/javascript'>

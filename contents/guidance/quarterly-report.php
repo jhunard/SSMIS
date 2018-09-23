@@ -1,84 +1,48 @@
 <?php
-//for getting Student information Sheet number of student
+ session_start();
+ $user = $_SESSION["user"];
+ if (empty($user)){
+   session_destroy();
+   session_unset();
+   echo "<script type='text/javascript'>
+       alert ('Please Login First Before You Access our Dashboard! -Administration'); 
+       window.location.href='../../index.php';</script>";
+     }else{
       include '../connections/conn.php';
 
-  $sql="SELECT * FROM graph_data WHERE services='sis' ORDER BY id ASC";
+      $sql = "SELECT * FROM user_info";
+      $result = $conn->query($sql);
 
-if ($result=mysqli_query($conn,$sql))
-  {
-  // Return the number of rows in result set
-  $rowcount=mysqli_num_rows($result);
-  $sis = $rowcount;
-  // Free result set
-  mysqli_free_result($result);
-  }
+          if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                  $img = $row["img"];
+                }
+              } else {
+                  echo "0 results";
+              }
+       
+   }
 ?>
-<?php
-//for getting Student information Sheet number of student
-      include '../connections/conn.php';
-
-  $sql1="SELECT * FROM graph_data WHERE services='rc' ORDER BY id ASC";
-
-if ($result1=mysqli_query($conn,$sql1))
-  {
-  // Return the number of rows in result set
-  $rowcount1=mysqli_num_rows($result1);
-  $rc = $rowcount1;
-  // Free result set
-  mysqli_free_result($result1);
-  }
-?>
-
-<?php
-//for getting Student information Sheet number of student
-      include '../connections/conn.php';
-
-  $sql2="SELECT * FROM graph_data WHERE services='rgm' ORDER BY id ASC";
-
-if ($result2=mysqli_query($conn,$sql2))
-  {
-  // Return the number of rows in result set
-  $rowcount2=mysqli_num_rows($result2);
-  $rgm = $rowcount2;
-  // Free result set
-  mysqli_free_result($result2);
-  }
-?>
-<?php
-//for getting Student information Sheet number of student
-      include '../connections/conn.php';
-
-  $sql3="SELECT * FROM graph_data WHERE services='other' ORDER BY id ASC";
-
-if ($result3=mysqli_query($conn,$sql3))
-  {
-  // Return the number of rows in result set
-  $rowcount3=mysqli_num_rows($result3);
-  $others = $rowcount3;
-  // Free result set
-  mysqli_free_result($result3);
-  }
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Monthly Report</title>
+  <title>Quarterly Report</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/navbar.css">
+   <script src="js/search.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="guidance-index.php">
     <img src="images/logo.png" alt="logo" style="width:50px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
 </nav>
@@ -87,14 +51,16 @@ if ($result3=mysqli_query($conn,$sql3))
 <!-- SideNav slide-out button -->
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
- <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;"><a href="guidance-index.php"> <img src="images/userlogin.png" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;">Guidance</img></a></div> 
-
+ <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
+ <a href="guidance-index.php"> 
+ <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+ <?php echo $user;?></a></div> 
 
   <a href="student-information.php">Student Information Sheet</a>
   <a href="offenses-index.php">Student's Offense</a>
   <a href="reports-index.php">Report</a>
   <a href="settings-index.php">Settings</a>
-  <a href="../index.php">Log Out</a>
+  <a href="../connections/logout.php">Log Out</a>
 </div>
 
 <div id="main">
@@ -104,20 +70,32 @@ if ($result3=mysqli_query($conn,$sql3))
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <div class="container">
    <div class="form-row">
-      <div class="col-4"><h1>Monthly Report</h1></div>
+      <div class="col-4"><h1>Quarterly Report</h1></div>
       <div class="col-3"><h4>Services</h4>
       <select name="services" style="width:80%;">  
-      <option value="sis">Student Informartion Sheet</option>
-      <option value="rc">Referral Counseling</option>
-      <option value="rgm">Request for Good Moral</option>
-      <option value="other">Others</option>
-      </select>
+      <?php
+      include '../connections/conn.php';
+
+            $sql = "SELECT * FROM services";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
+  </select>
       
     </div>
 
 
       <div class="col-2"><h4>Quarter/Sem</h4>
-       <select name='year' style="width:80%;">
+       <select name='month' style="width:80%;">
       <option value="first">First</option>
       <option value="second">Second</option>
       <option value="summer">Summer</option>
@@ -149,12 +127,13 @@ if ($result3=mysqli_query($conn,$sql3))
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>SR-Code</th>
+      <th>SR-Code</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
           <th>Date</th>
+          <th>Service Type</th>
          <th>Reason</th>
       </tr>
     </thead>
@@ -163,12 +142,15 @@ if ($result3=mysqli_query($conn,$sql3))
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-       $querryhere = "SELECT * FROM graph_data";
+       $querryhere = "SELECT * FROM graph_data Order By name";
+       $graph_month='first';
+        $graph_year= date("Y");
+        $graph_services= 'Student Informartion Sheet';
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services'";
+        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By name";
       }
      
       
@@ -178,30 +160,32 @@ if ($result3=mysqli_query($conn,$sql3))
             $sql=$querryhere;
             $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                  echo "<tr>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
+                  </tr>";
+                }
+              } else {
+                echo "<tr>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                </tr>";
+              }
 $conn->close();
 ?>
      
@@ -221,7 +205,7 @@ $conn->close();
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">Monthly Reports</h4>
+        <h4 class="col-11 modal-title text-center"><?php echo ucfirst($graph_month); ?> Quarter Reports</h4>
         <button type="button" class="close" data-dismiss="modal" >&times;</button>
       </div>
 
@@ -242,7 +226,68 @@ $conn->close();
 </div>
 
 
-  
+ <?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql="SELECT * FROM graph_data WHERE services='Student Informartion Sheet' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+
+if ($result=mysqli_query($conn,$sql))
+  {
+  // Return the number of rows in result set
+  $rowcount=mysqli_num_rows($result);
+  $sis = $rowcount;
+  // Free result set
+  mysqli_free_result($result);
+  }
+?>
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql1="SELECT * FROM graph_data WHERE services='Referral Counseling' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+
+if ($result1=mysqli_query($conn,$sql1))
+  {
+  // Return the number of rows in result set
+  $rowcount1=mysqli_num_rows($result1);
+  $rc = $rowcount1;
+  // Free result set
+  mysqli_free_result($result1);
+  }
+?>
+
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql2="SELECT * FROM graph_data WHERE services='Request for Good Moral' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+
+if ($result2=mysqli_query($conn,$sql2))
+  {
+  // Return the number of rows in result set
+  $rowcount2=mysqli_num_rows($result2);
+  $rgm = $rowcount2;
+  // Free result set
+  mysqli_free_result($result2);
+  }
+?>
+<?php
+//for getting Student information Sheet number of student
+      include '../connections/conn.php';
+
+  $sql3="SELECT * FROM graph_data WHERE other_index = '1' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+
+if ($result3=mysqli_query($conn,$sql3))
+  {
+  // Return the number of rows in result set
+  $rowcount3=mysqli_num_rows($result3);
+  $others = $rowcount3;
+  // Free result set
+  mysqli_free_result($result3);
+  }
+?>
+
 
 
 
