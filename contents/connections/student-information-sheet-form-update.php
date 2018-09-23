@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 
         if ($conn->query($sql2) === TRUE) {
            
-            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','0')";
 
             if ($conn->query($sql5) === TRUE) {
                 echo "<script type='text/javascript'>
@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
 
         if ($conn->query($sql4) === TRUE) {
 
-            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year')";
+            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','0')";
 
             if ($conn->query($sql6) === TRUE) {
                 echo "<script type='text/javascript'>

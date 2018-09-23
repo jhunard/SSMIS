@@ -89,13 +89,57 @@ if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
 
-        $sql2 = "UPDATE student_record SET sr_code='$srcode',name='$name',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingage',siblingname1='$siblingage1',siblingname2='$siblingage2',siblingname3='$siblingage3',siblingname4='$siblingage4',siblingname5='$siblingage5',siblingname6='$siblingage6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && name='$name'";
+        $sql2 = "UPDATE student_record SET sr_code='$srcode',name='$name',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingname',siblingname1='$siblingname1',siblingname2='$siblingname2',siblingname3='$siblingname3',siblingname4='$siblingname4',siblingname5='$siblingname5',siblingname6='$siblingname6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && name='$name'";
 
         if ($conn->query($sql2) === TRUE) {
-            
-            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year')";
+            $reason1 = "Update Student Information Sheet";
+
+            $lastyear= date("y") + 1;
+            $school_year= date("y")."-".$lastyear;
+
+            $now_month = date("F");
+            $month_list = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+            if($now_month == $month_list[0]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[1]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[2]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[3]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[4]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[5]){
+                $quarter="summer";
+            }
+            if($now_month == $month_list[6]){
+                $quarter="summer";
+            }
+            if($now_month == $month_list[7]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[8]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[9]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[10]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[11]){
+                $quarter="first";
+            }
+
+            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason1', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql5) === TRUE) {
+                include 'save-xml-data.php';
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
                 window.location.href='../guidance/services-index.php';</script>";
@@ -120,9 +164,54 @@ if ($result->num_rows > 0) {
 
         if ($conn->query($sql4) === TRUE) {
 
-            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year')";
+            $reason1 = "Update Student Information Sheet";
+            
+            $lastyear= date("y") + 1;
+            $school_year= date("y")."-".$lastyear;
+
+            $now_month = date("F");
+            $month_list = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+            if($now_month == $month_list[0]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[1]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[2]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[3]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[4]){
+                $quarter="second";
+            }
+            if($now_month == $month_list[5]){
+                $quarter="summer";
+            }
+            if($now_month == $month_list[6]){
+                $quarter="summer";
+            }
+            if($now_month == $month_list[7]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[8]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[9]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[10]){
+                $quarter="first";
+            }
+            if($now_month == $month_list[11]){
+                $quarter="first";
+            }
+
+            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql6) === TRUE) {
+                include 'save-xml-data.php';
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
                 window.location.href='../guidance/services-index.php';</script>";
