@@ -10,7 +10,7 @@ if ($result7->num_rows > 0) {
 
         $students [] = array( 
         'title' => $row7["sr_code"] ,
-        'url' => "student-information-sheet-form-view.php?sr-code=".  $row7["sr_code"]
+        'url' => "student-record.php?sr-code=".  $row7["sr_code"]
         ); 
       
     }

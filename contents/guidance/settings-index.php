@@ -11,7 +11,7 @@
     
       include '../connections/conn.php';
 
-      $sql = "SELECT * FROM user_info";
+      $sql = "SELECT * FROM user_info WHERE username ='$user'";
       $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
@@ -131,7 +131,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">All Services Services</h4>
+        <h4 class="col-11 modal-title text-center">All Services</h4>
       </div>
 
       <!-- Modal body -->
