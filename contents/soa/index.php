@@ -38,7 +38,7 @@
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
   <a class="navbar-brand" href="guidance-index.php">
-    <img src="images/logo.png" alt="logo" style="width:50px;">
+    <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
@@ -57,7 +57,9 @@
  <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
+  <a href="student-information.php">Student Information Sheet</a>
   <a href="offenses-index.php">Student's Offense</a>
+  <a href="reports-index.php">Report</a>
   <a href="settings-index.php">Settings</a>
   <a href="../connections/logout.php">Log Out</a>
 </div>
@@ -115,7 +117,7 @@ $conn->close();
 </div>
 
 <div class="container ">
-       <div class="float-right"><a href="services-index.php"> <button type="button" class="btn btn-success" hidden  disabled>Add</button></a>
+       <div class="float-right"><a href="services-index.php"> <button type="button" class="btn btn-success">Add</button></a>
       </div>   
       </div>
 

@@ -130,7 +130,7 @@ if ($result2->num_rows > 0) {
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
   <a class="navbar-brand" href="guidance-index.php">
-    <img src="images/logo.png" alt="logo" style="width:50px;">
+    <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
