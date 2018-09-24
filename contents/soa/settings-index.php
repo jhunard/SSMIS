@@ -38,7 +38,7 @@
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
   <a class="navbar-brand" href="guidance-index.php">
-    <img src="images/logo.png" alt="logo" style="width:50px;">
+    <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
@@ -131,7 +131,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">All Services Services</h4>
+        <h4 class="col-11 modal-title text-center">All Services</h4>
       </div>
 
       <!-- Modal body -->

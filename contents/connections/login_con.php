@@ -22,19 +22,19 @@ if ($result->num_rows > 0) {
                 case "guidance":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were so happy to see you!'); 
-                    window.location.href='../guidance/guidance-index.php';</script>";
+                    window.location.href='../guidance/index.php';</script>";
                     $_SESSION["user"]=$user;
                 break;
                 case "osd":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were glad to serve you!'); 
-                    window.location.href='../osd/osd-index.php';</script>";
+                    window.location.href='../osd/index.php';</script>";
                     $_SESSION["user"]=$user;
                 break;
                 case "soa":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were so happy to see you!'); 
-                    window.location.href='../soa/soa-index.php';</script>";
+                    window.location.href='../soa/index.php';</script>";
                     $_SESSION["user"]=$user;
                  break;
             default:
