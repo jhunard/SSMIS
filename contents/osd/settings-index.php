@@ -37,12 +37,12 @@
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="guidance-index.php">
+  <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
-    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
+    <div style="position:absolute;top:75%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
 </nav>
@@ -52,15 +52,19 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
- <a href="guidance-index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+ <a href="index.php"> 
+ <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
-  <a href="student-information.php">Student Information Sheet</a>
-  <a href="offenses-index.php">Student's Offense</a>
-  <a href="reports-index.php">Report</a>
+  <a href="index.php">Student's Offense</a>
+  <a href="#modal" data-toggle="modal" data-target="#add" >Add Offense</a>
+  <a href="reports.php">Reports</a>
   <a href="settings-index.php">Settings</a>
   <a href="../connections/logout.php">Log Out</a>
+
+   </div>
+</div> 
+
 </div>
 
 <div id="main">
@@ -83,16 +87,8 @@
    </div>
 </div>  
         
-<div class="container" style="margin-top:10px;">
-   <div class="form-row text-left">
-      <div class="col-12"><a href="#modal" data-toggle="modal" data-target="#services" style="font-size:22px; color:#000 !important;text-decoration: none;">Services</div><br>
-   </div>
-</div> 
-<div class="container" style="margin-top:10px;">
-   <div class="form-row text-left">
-      <div class="col-12"><a href="#modal" data-toggle="modal" data-target="#register" style="font-size:22px; color:#000 !important;text-decoration: none;">Register</div><br>
-   </div>
-</div> 
+
+
 
 <!-- Modal -->
 <!-- User Account -->
@@ -124,119 +120,35 @@
 </div>
 
 
-<!-- Services-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="services">
-  <div class="modal-dialog" style="position: absolute;top:5%;right:0;bottom:0;left:0;">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">All Services</h4>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <?php
-      include '../connections/conn.php';
-
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<a style='font-size:18px;'> ".$row["services"]."</a><br>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?><br><br>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-services" >Add</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-         
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<!-- Register -->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="register">
-  <div class="modal-dialog">
-    <div class="modal-content">
-  <form  action="../connections/register.php" method="POST" enctype="multipart/form-data">
-      <!-- Modal Header -->
-      <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">Create Account</h4>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <div class="offset-md-2 col-md-8">
-      <input type="radio" value="guidance" id="radioOne" name="position" checked/>
-      <label for="radioOne" class="radio">Guidance</label> &nbsp;&nbsp;
-      <input type="radio" value="osd" id="radioTwo" name="position" />
-      <label for="radioTwo" class="radio">OSD</label> &nbsp;&nbsp;
-      <input type="radio" value="soa" id="radioThree" name="position" />
-      <label for="radioThree" class="radio">SOA</label> &nbsp;&nbsp;
-    </div>
-  <hr>
-
-  <input class="offset-md-2 col-md-8" type="text" name="name"  placeholder="Username" required/><br><br>
-
-  <input class="offset-md-2 col-md-8" type="password" name="password"  placeholder="Password" required/><br><br>
-  
-  <input class="offset-md-2 col-md-8" type="password" name="re-type"  placeholder="Re-type Password" required/><br><br>
-
-  <div class="offset-md-2 col-md-8">
-    <input type="file" name="fileToUpload" id="fileToUpload">
-  </div> 
-  <br><br>
-   <p class="offset-md-2 col-md-8">By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
-   </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-       <button type="submit" name="submit" class="btn btn-success">Register</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-      </div>
-  </form>
-    </div>
-  </div>
-</div>
-
-<!-- Add Services-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add-services">
+<!-- add-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
   <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
     <div class="modal-content" >
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">Add Services</h4>
+        <h4 class="col-11 modal-title text-center">Insert SR-Code</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-        <form action="../connections/services-add.php" method="POST" >
+
       <!-- Modal body -->
       <div class="modal-body">
-        <a style="font-size:22px;">Services: &nbsp; 
-        <input type="text" name="service" style=" border:0;outline:0;background:transparent; border-bottom:1px solid black;"></a><br>
-      </div>
+      <form action='verify.php' method="post">
+      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" >Add</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
-        </form>
+
     </div>
   </div>
 </div>
+
+
+
 
 
 

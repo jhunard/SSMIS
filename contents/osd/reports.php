@@ -53,7 +53,7 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
  <a href="index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" height="50px" width="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+  <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
   <a href="index.php">Student's Offense</a>
@@ -61,165 +61,30 @@
   <a href="reports.php">Reports</a>
   <a href="settings-index.php">Settings</a>
   <a href="../connections/logout.php">Log Out</a>
+
 </div>
-<div id="main">
-  <button class="openbtn" onclick="openNav()"style="color:black;">☰</button>  
-</div>
-<!-- ENd sideNAV -->
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <div class="container">
-   <div class="form-row">
-      <div class="col-4"><h1>Monthly Report</h1></div>
-      <div class="col-3"><h4>Services</h4>
-      <select name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select>
-      
-    </div>
-
-
-      <div class="col-2"><h4>Month</h4>
-      <span><select name="month">
-        <?php for( $m=1; $m<=12; ++$m ) { 
-          $month_label = date('F', mktime(0, 0, 0, $m, 1));?>
-          <option value="<?php echo $month_label; ?>"><?php echo $month_label; ?></option>
-        <?php } ?>
-      </select> 
-    </span>
-    </div>
-
-
-      <div class="col-2"><h4>Year</h4>
-        <span>
-      <select name="year">
-        <?php 
-          $year = date('Y');
-          $min = $year - 10;
-          $max = $year;
-          for( $i=$max; $i>=$min; $i-- ) {
-            echo '<option value='.$i.'>'.$i.'</option>';
-          }
-        ?>
-      </select>
-    </span></div>
-    <div class="col-1" style="margin-top:2.3%; margin-left:-8%;"><button type="submit" class="btn btn-success ">Show</button></div>
-   </div>
-      
-</form>
-
-<!-- table -->
-
-<div class="container" style="margin-top:2%;">      
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>SR-Code</th>
-        <th>Name</th>
-        <th>Year Level</th>
-         <th>Program</th>
-         <th>Department</th>
-          <th>Date</th>
-          <th>Service Type</th>
-         <th>Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      include '../connections/conn.php';
-
-      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
-        $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By name";
-      }else{
-        $graph_month=$_POST["month"];
-        $graph_year=$_POST["year"];
-        $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By name ";
-      }
-     
-            $sql=$querryhere;
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
-$conn->close();
-?>
-     
-    </tbody>
-  </table>
+<div class="form-row text-center">
+<div class="col-12"><a href="monthly-report.php"><button type="button" class="btn btn-danger custom">Monthly Report</button></a></div>
+</div>
 </div>
 
-<!-- Graph Button -->
-<div class="container" >
-       <a href="#"> <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#graph ">Graph</button></a></div>
+
+<!-- OSD -->
+<div class="container">
+
+<div class="form-row text-center">
+<div class="col-12"><a href="quarterly-report.php"><button type="button" class="btn btn-danger custom">Quarterly Report</button></a></div>
+</div>
+</div>
 
 
-<!-- Modal graph -->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="graph">
-   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">Month of <?php echo $graph_month; ?> Year <?php echo $graph_year; ?>  Reports</h4>
-        <button type="button" class="close" data-dismiss="modal" >&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-       <div class="col-md-12">
-    <canvas id="myChart" ></canvas>
-    </div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
+<!-- SOA -->
+<div class="container">
+<div class="form-row text-center">
+<div class="col-12"><a href="annual-report.php"><button type="button" class="btn btn-danger custom">Annual Report</button></a></div>
+</div>
 </div>
 
 

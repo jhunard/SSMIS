@@ -37,11 +37,11 @@
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="guidance-index.php">
+  <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID No." onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
  
@@ -53,8 +53,8 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
- <a href="guidance-index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+ <a href="index.php"> 
+ <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
   <a href="student-information.php">Student Information Sheet</a>
@@ -82,7 +82,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>SR-Code</th>
+        <th>ID No.</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>

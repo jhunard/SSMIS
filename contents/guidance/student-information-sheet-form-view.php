@@ -161,7 +161,7 @@ th,td{font-size: 18px;
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="guidance-index.php">
+  <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
@@ -176,8 +176,8 @@ th,td{font-size: 18px;
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
- <a href="guidance-index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+ <a href="index.php"> 
+ <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
   <a href="student-information.php">Student Information Sheet</a>
