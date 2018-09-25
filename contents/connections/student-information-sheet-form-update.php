@@ -15,7 +15,7 @@ $date = date("Y-m-d");
 $month = date("F");
 $year = date("Y");
 $reason = "Update Student Information Sheet";
-$services = "sis";
+$services = "Student Information Sheet";
 
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";

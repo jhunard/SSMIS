@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID No." onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
  
@@ -54,10 +54,12 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
  <a href="index.php"> 
-  <img src="images/<?php echo $img; ?>" alt="logo" height="50px" width="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+  <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
- 
+  <a href="index.php">Student's Offense</a>
+  <a href="#modal" data-toggle="modal" data-target="#add" >Add Offense</a>
+  <a href="reports.php">Reports</a>
   <a href="settings-index.php">Settings</a>
   <a href="../connections/logout.php">Log Out</a>
 
@@ -81,13 +83,15 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>ID No.</th>
+        <th>SR-Code</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
          <th>Date Started</th>
+         <th>Date Ended</th>
          <th>Type of Violation</th>
+         <th>Violation</th>
          <th>Status</th>
       </tr>
     </thead>
@@ -108,12 +112,16 @@
                         <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
                         <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
+                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense_ended"]."</a></td>
                         <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
+                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
                         <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
                       </tr>";
                       }
                     } else {
                         echo "<td style='text-align:center;'>-</td>
+                              <td style='text-align:center;'>-</td>
+                              <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
@@ -133,11 +141,73 @@ $conn->close();
 
       </div>
 
-
-
+<div class="container" >
+       <input type='submit' class="btn btn-success float-right " name='Add' value='Add' data-toggle="modal" data-target="#add">
+        <input type='submit' class="btn btn-primary float-right" name='Add' value='Update' style="margin-right:1em;">
+      </form>
       
+      </div>
 
-      
+
+
+<!-- Modal -->
+<!-- Student Information Sheet Modal -->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Offense</h4>
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <div class="form-group">
+      <input type="text" class="form-control" id="add" name="username" placeholder="Add Offense">
+            </div>
+           <div class="form-group">
+      <input type="text" class="form-control" id="add" name="username" placeholder="Type of Offense">
+            </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- add-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
+    <div class="modal-content" >
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Insert SR-Code</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <form action='verify.php' method="post">
+      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <script>
 function openNav() {

@@ -37,12 +37,12 @@
 <body>
 <nav class="navbar navbar-expand-sm justify-content-between" >
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="guidance-index.php">
+  <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
-    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
+    <div style="position:absolute;top:75%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
 </nav>
@@ -52,15 +52,16 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
  <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
- <a href="guidance-index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" width="50px;" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
+ <a href="index.php"> 
+  <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
  <?php echo $user;?></a></div> 
 
-  <a href="student-information.php">Student Information Sheet</a>
-  <a href="offenses-index.php">Student's Offense</a>
-  <a href="reports-index.php">Report</a>
+  <a href="index.php">Student's Offense</a>
+  <a href="#modal" data-toggle="modal" data-target="#add" >Add Offense</a>
+  <a href="reports.php">Reports</a>
   <a href="settings-index.php">Settings</a>
   <a href="../connections/logout.php">Log Out</a>
+
 </div>
 
 <div id="main">
@@ -133,6 +134,33 @@ $conn->close();
 ?>
     </tbody>
   </table>
+</div>
+
+<!-- add-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
+    <div class="modal-content" >
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Insert SR-Code</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <form action='verify.php' method="post">
+      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script>

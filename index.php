@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/index.css">
 </head>
-<body style="background: rgba(245,245,245,1);">
+<body>
 
 <nav class="navbar navbar-expand-sm" >
   <!-- Brand/logo -->
@@ -16,36 +16,30 @@
   </a>
   
 </nav>
-<div class="container" style="position:absolute; margin: -1% 0 0 5%">
-<img src="images/logo.png" style="width:400px; height:~400px;">
+<div class="container">
+<div class="text-center" style="margin-top:-10%;">
+<img src="images/logo.jpg" style="width:300px;">
 </div>
-
+</div>
 <!-- Buttons Menu -->
 
 <!-- Guidance -->
 <div class="container">
-
-<div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#guidance"> <img src="images/user.png" alt="logo" width="50px;">Guidance</button></div> 
+  <div class="col-12"><hr></div>
 </div>
-</div>
-
-
-<!-- OSD -->
 <div class="container">
 
 <div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">OSD</button></div> 
+<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#guidance"> <img src="images/user.png" alt="logo" width="50px;">Guidance</button></div>
+<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">OSD</button></div>  
+<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#soa"> <img src="images/user.png" alt="logo" width="50px;">SOA</button></div> 
+
 </div>
 </div>
 
 
-<!-- SOA -->
-<div class="container">
-<div class="form-row text-center">
-<div class="col-12"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#soa"> <img src="images/user.png" alt="logo" width="50px;">SOA</button></div> 
-</div>
-</div>
+
+
 
 <!-- Modal -->
  <div id="guidance" class="modal fade text-center">

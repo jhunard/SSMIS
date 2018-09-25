@@ -10,7 +10,7 @@ $date=$_POST["rgmdate"];
 $reason=$_POST["rgmreason"];
 $month = date("F");
 $year = date("Y");
-$services = "rgm";
+$services = "Request for Good Moral";
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";
 $result = $conn->query($sql);
