@@ -75,7 +75,7 @@ th,td{font-size: 18px;
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -117,9 +117,13 @@ th,td{font-size: 18px;
             <div class="card-body" style="margin-left:2%;">
               
                 <!-- First row (on medium screen) -->
-                <div class="row "><h6 class="col-6"><b>Name:</b>&nbsp;<input type="text" name="name"  class="form-control col-7" placeholder="First Name  Middle Name Last Name" required></h6>
+                <div class="row "><h6 class="col-6"><b>Full Name:</b>&nbsp;
+                <input type="text" name="fname"  class="form-control col-7" placeholder="First Name" required> <br>
+                <input type="text" name="mname"  class="form-control col-7" placeholder="Middle Name" required> <br>
+                 <input type="text" name="lname"  class="form-control col-7" placeholder="Last Name" required> <br>
+                 </h6>
                                   <h6 class="col-6"><b>Year Level:</b>&nbsp;<input type="text" name="yearlevel"  class="form-control col-7" placeholder="Year Level" required></h6><br> </div>
-                <div class="row "><h6 class="col-6"><b>Sr-Code:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" placeholder="SR-Code" required></h6>
+                <div class="row "><h6 class="col-6"><b>ID Number:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" placeholder="ID Number" required></h6>
                                   <h6 class="col-6"><b>Department:</b>&nbsp;<input type="text" name="department"  class="form-control col-7" placeholder="Department" required></h6> </div>
                <div class="row "> <h6 class="col-6"><b>Program:</b>&nbsp;<input type="text" name="program"  class="form-control col-7" placeholder="Program" required></h6><br> </div>                 
             </div> 

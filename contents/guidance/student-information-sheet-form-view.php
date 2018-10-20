@@ -43,7 +43,11 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
        $db_id = $row["id"];
        $db_sr_code = $row["sr_code"];
-       $db_name = $row["name"];
+       $fname=$row["fname"];
+       $mname=$row["mname"];
+       $lname=$row["lname"];
+       $name = $lname.", ". $fname ." ". $mname[0].".";
+       $db_name = $name;
        $db_year_level = $row["year_level"];
        $db_program = $row["program"];
        $db_department = $row["department"];
@@ -165,7 +169,7 @@ th,td{font-size: 18px;
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -209,7 +213,7 @@ th,td{font-size: 18px;
                 <!-- First row (on medium screen) -->
                 <div class="row "><h6 class="col-6"><b>Name:</b>&nbsp;<input type="text" name="name"  class="form-control col-7" value="<?php echo $db_name; ?>" readonly></h6>
                                   <h6 class="col-6"><b>Year Level:</b>&nbsp;<input type="text" name="yearlevel"  class="form-control col-7" value="<?php echo $db_year_level; ?>" readonly></h6><br> </div>
-                <div class="row "><h6 class="col-6"><b>Sr-Code:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" value="<?php echo $db_sr_code; ?>" readonly></h6>
+                <div class="row "><h6 class="col-6"><b>ID Number:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" value="<?php echo $db_sr_code; ?>" readonly></h6>
                                   <h6 class="col-6"><b>Department:</b>&nbsp;<input type="text" name="department"  class="form-control col-7" value="<?php echo $db_department; ?>" readonly></h6> </div>
                <div class="row "> <h6 class="col-6"><b>Program:</b>&nbsp;<input type="text" name="program"  class="form-control col-7" value="<?php echo $db_program; ?>" readonly></h6><br> </div>                 
             </div> 

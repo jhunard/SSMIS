@@ -16,15 +16,20 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
+        $fname=$row["fname"];
+        $mname=$row["mname"];
+        $lname=$row["lname"];
+        $name = $lname.", ". $fname ." ". $mname[0].".";
+
         if(empty($row["sr_code"])){
             $db_sr_code = "NO DATA FOUND";
         }else{
             $db_sr_code = $row["sr_code"];
         }
-        if(empty($row["name"])){
+        if(empty($name)){
             $db_name = "NO DATA FOUND";
         }else{
-            $db_name = $row["name"];
+            $db_name = $name;
         }
         if(empty($row["year_level"])){
             $db_year_level= "NO DATA FOUND";
@@ -152,7 +157,7 @@ h6{
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -194,8 +199,8 @@ h6{
             <div class="card-body" style="margin-left:2%;">
               
                 <!-- First row (on medium screen) -->
-                <div class="row "><h6><b>Name:</b>&nbsp;<input type="text" class="form-control col-md-12" name="name" value="<?php echo $db_name;?>"></h6><br> </div>
-                <div class="row "><h6><b>Sr-Code:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" value="<?php echo $db_sr_code;?>"></h6><br></div>
+                <div><h6><b>Name:</b>&nbsp;<input type="text"  class="form-control col-md-4" name="name" value="<?php echo $db_name;?>"></h6><br> </div>
+                <div><h6><b>ID Number:</b>&nbsp;<input type="text" class="form-control col-md-3" name="srcode" value="<?php echo $db_sr_code;?>"></h6><br></div>
             </div> 
         </div>
         
@@ -224,15 +229,7 @@ h6{
 
                          <div class="form-group">
                             <label for="input_dept" class="col-form-label"><b>Department:</b></label>
-                            <select id="input_dept" name="department" class="form-control">
-                            <option value="<?php echo $db_department;?>"><?php echo $db_department;?></option>
-                            <option value="CICS">CICS</option>
-                            <option value="CIT">CIT</option>
-                            <option value="CEAFA">CEAFA</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CTE">CTE</option>
-                            <option value="CABEIHM">CABEIHM</option>
-                        </select>
+                            <input type="text" class="form-control" name="department" id="input_dept" value="<?php echo $db_department;?>" required>
                         </div>
 
                         <div class="form-group">

@@ -71,25 +71,11 @@
 <div class="container">
    <div class="form-row">
       <div class="col-4"><h1>Quarterly Report</h1></div>
-      <div class="col-3"><h4>Services</h4>
+      <div class="col-3"><h4>Offense Type</h4>
       <select name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
-
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select>
+      <option value='Minor'>Minor Offenses</option>
+      <option value='Major'>Major Offenses</option>
+      </select>
       
     </div>
 
@@ -127,14 +113,16 @@ $conn->close();
   <table class="table table-bordered">
     <thead>
       <tr>
-      <th>SR-Code</th>
+      <th>ID No.</th>
+        <th>SR-Code</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
-          <th>Date</th>
-          <th>Service Type</th>
-         <th>Reason</th>
+          <th>Date Started</th>
+          <th>Violation</th>
+          <th>Type of Violation</th>
+         <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -142,40 +130,45 @@ $conn->close();
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-       $querryhere = "SELECT * FROM graph_data Order By name";
+       $querryhere = "SELECT * FROM student_offenses Order By lname";
        $graph_month='first';
         $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
+        $graph_services= 'Minor';
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By name";
+        $querryhere = "SELECT * FROM student_offenses WHERE quarter='$graph_month' && year='$graph_year' && type_of_violation='$graph_services' Order By lname";
       }
      
       
-      
+      $sql=$querryhere;
+      $result = $conn->query($sql);
 
-
-            $sql=$querryhere;
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
+          if ($result->num_rows > 0) {
               // output data of each row
               while($row = $result->fetch_assoc()) {
+                $mname = $row["mname"];
+                $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                  $x = 0;
+                  $y += $x + 1;
                   echo "<tr>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
-                  <td><a  style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
+                  <td>".$y."</td>
+                  <td>".$row["sr_code"]."</td>
+                  <td>".$name."</td>
+                  <td>".$row["year_level"]."</td>
+                  <td>".$row["program"]."</td>
+                  <td>".$row["department"]."</td>
+                  <td>".$row["date_started"]."</td>
+                  <td>".$row["violation"]."</td>
+                  <td>".$row["type_of_violation"]."</td>
+                  <td>".$row["status"]."</td>
                   </tr>";
                 }
               } else {
                 echo "<tr>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
@@ -225,8 +218,8 @@ $conn->close();
   </div>
 </div>
 
-<!-- add-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+ <!-- add-->
+ <div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
   <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
     <div class="modal-content" >
 
@@ -238,12 +231,12 @@ $conn->close();
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='verify.php' method="post">
-      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+      <form action='verify.php' method="GET">
+      <input class='rc col-12 text-center' type="text" name="code" placeholder="Insert ID Number" style="margin-bottom:1em;"><br>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      <input type='submit' class="btn btn-success">
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
@@ -253,11 +246,12 @@ $conn->close();
 </div>
 
 
- <?php
+   
+   <?php
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql="SELECT * FROM graph_data WHERE services='Student Informartion Sheet' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql="SELECT * FROM student_offenses WHERE type_of_violation='Minor' && quarter='$graph_month' && year='$graph_year' ORDER BY id ASC";
 
 if ($result=mysqli_query($conn,$sql))
   {
@@ -272,7 +266,7 @@ if ($result=mysqli_query($conn,$sql))
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql1="SELECT * FROM graph_data WHERE services='Referral Counseling' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql1="SELECT * FROM student_offenses WHERE type_of_violation='Major' && quarter='$graph_month' && year='$graph_year' ORDER BY id ASC";
 
 if ($result1=mysqli_query($conn,$sql1))
   {
@@ -283,39 +277,6 @@ if ($result1=mysqli_query($conn,$sql1))
   mysqli_free_result($result1);
   }
 ?>
-
-<?php
-//for getting Student information Sheet number of student
-      include '../connections/conn.php';
-
-  $sql2="SELECT * FROM graph_data WHERE services='Request for Good Moral' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
-
-if ($result2=mysqli_query($conn,$sql2))
-  {
-  // Return the number of rows in result set
-  $rowcount2=mysqli_num_rows($result2);
-  $rgm = $rowcount2;
-  // Free result set
-  mysqli_free_result($result2);
-  }
-?>
-<?php
-//for getting Student information Sheet number of student
-      include '../connections/conn.php';
-
-  $sql3="SELECT * FROM graph_data WHERE other_index = '1' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
-
-if ($result3=mysqli_query($conn,$sql3))
-  {
-  // Return the number of rows in result set
-  $rowcount3=mysqli_num_rows($result3);
-  $others = $rowcount3;
-  // Free result set
-  mysqli_free_result($result3);
-  }
-?>
-
-
 
 
 
@@ -351,23 +312,18 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Student Information Sheet", "Referral Counseling", "Request for Good Moral", "Other Services" ],
+        labels: ["Minor Offense", "Major Offense" ],
         datasets: [{
             label: ' ',
-            data: [<?php echo $sis; ?>, <?php echo $rc; ?>,<?php echo $rgm; ?>, <?php echo $others; ?>,],
+            data: [<?php echo $sis; ?>, <?php echo $rc; ?>,],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
            
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                
             ],
             borderWidth: 3
         }]

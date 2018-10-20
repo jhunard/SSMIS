@@ -40,10 +40,7 @@
   <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
-    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
-  </form>
+  
   
 </nav>
 <!-- ENd NAV -->

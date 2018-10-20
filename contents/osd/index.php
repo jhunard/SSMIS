@@ -72,7 +72,7 @@
 
 <div class="container">
    <div class="form-row text-center">
-      <div class="col-12"><h1>List of Student Offenses</h1></div>
+      <div class="col-12"><h1>List of On Going Offenses</h1></div>
    </div>
 </div>
 
@@ -100,26 +100,28 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_record WHERE offense_index = '1' ";
+            $sql = "SELECT * FROM student_offenses WHERE status='On Going' ORDER BY lname ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      $mname = $row["mname"];
+                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
                         $x = 0;
                         $y += $x + 1;
                         echo "<tr>
                         <td>".$y."</td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense_ended"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
-                        <td><a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
+                        <td>".$row["sr_code"]."</td>
+                        <td>".$name."</td>
+                        <td>".$row["year_level"]."</td>
+                        <td>".$row["program"]."</td>
+                        <td>".$row["department"]."</td>
+                        <td>".$row["date_started"]."</td>
+                        <td>".$row["date_ended"]."</td>
+                        <td>".$row["type_of_violation"]."</td>
+                        <td>".$row["violation"]."</td>
+                        <td>".$row["status"]."</td>
                       </tr>";
                       }
                     } else {
@@ -161,12 +163,12 @@ $conn->close();
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='verify.php' method="post">
-      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+      <form action='verify.php' method="GET">
+      <input class='rc col-12 text-center' type="text" name="code" placeholder="Insert ID Number" style="margin-bottom:1em;"><br>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      <input type='submit' class="btn btn-success">
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>

@@ -40,10 +40,7 @@
   <a class="navbar-brand" href="index.php">
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
-    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
-  </form>
+  
   
 </nav>
 <!-- ENd NAV -->
@@ -118,7 +115,8 @@ $conn->close();
   <table class="table table-bordered">
     <thead>
       <tr>
-      <th>SR-Code</th>
+      <th>No.</th>
+      <th>ID Number</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
@@ -133,14 +131,14 @@ $conn->close();
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["services"])){
-       $querryhere = "SELECT * FROM graph_data Order By name";
+       $querryhere = "SELECT * FROM graph_data Order By lname";
        $lastyear= date("y") + 1;
        $graph_year= date("y")."-".$lastyear;
        $graph_services= 'Student Informartion Sheet';
       }else{
          $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE school_year='$graph_year' && services='$graph_services' Order By name";
+        $querryhere = "SELECT * FROM graph_data WHERE school_year='$graph_year' && services='$graph_services' Order By lname";
       }
      
       
@@ -153,9 +151,13 @@ $conn->close();
             if ($result->num_rows > 0) {
               // output data of each row
               while($row = $result->fetch_assoc()) {
+                $mname = $row["mname"];
+                $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                $count += 1;
                   echo "<tr>
+                  <td>".$count."</td>
                   <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                  <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
                   <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
                   <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                   <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
@@ -166,6 +168,7 @@ $conn->close();
                 }
               } else {
                 echo "<tr>
+                <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
                 <td style='text-align:center;'>-</td>
@@ -218,7 +221,7 @@ $conn->close();
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql="SELECT * FROM graph_data WHERE services='Student Information Sheet' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql="SELECT * FROM graph_data WHERE services='Student Information Sheet' && school_year='$graph_year' ORDER BY id ASC";
 
 if ($result=mysqli_query($conn,$sql))
   {
@@ -233,7 +236,7 @@ if ($result=mysqli_query($conn,$sql))
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql1="SELECT * FROM graph_data WHERE services='Referral Counseling' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql1="SELECT * FROM graph_data WHERE services='Referral Counseling' && school_year='$graph_year' ORDER BY id ASC";
 
 if ($result1=mysqli_query($conn,$sql1))
   {
@@ -249,7 +252,7 @@ if ($result1=mysqli_query($conn,$sql1))
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql2="SELECT * FROM graph_data WHERE services='Request for Good Moral' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql2="SELECT * FROM graph_data WHERE services='Request for Good Moral' && school_year='$graph_year' ORDER BY id ASC";
 
 if ($result2=mysqli_query($conn,$sql2))
   {
@@ -264,7 +267,7 @@ if ($result2=mysqli_query($conn,$sql2))
 //for getting Student information Sheet number of student
       include '../connections/conn.php';
 
-  $sql3="SELECT * FROM graph_data WHERE other_index = '1' && graph_month='$graph_month' && graph_year='$graph_year' ORDER BY id ASC";
+  $sql3="SELECT * FROM graph_data WHERE other_index = '1' && school_year='$graph_year' ORDER BY id ASC";
 
 if ($result3=mysqli_query($conn,$sql3))
   {

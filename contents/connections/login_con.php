@@ -1,8 +1,8 @@
 <?php
 include 'conn.php';
 session_start();
-$user=$_POST["username"];
-$pass=md5($_POST["password"]);
+$user = ucfirst($_POST["username"]);
+$pass = md5($_POST["password"]);
 
 
 $sql = "SELECT * FROM user_info WHERE username='$user' && password='$pass'";

@@ -83,6 +83,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>No.</th>
         <th>SR-Code</th>
         <th>Name</th>
         <th>Year Level</th>
@@ -97,25 +98,48 @@
     </thead>
     <tbody>
     <?php
+    $code=$_GET["code"];
+
+    if (empty($code)){
+      echo "<script type='text/javascript'>
+      alert ('Please enter ID No. first before viewing the information!'); 
+      window.location.href='index.php';</script>";
+    } 
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_record WHERE offense_index = '1' ";
+            $sql = "SELECT * FROM student_offenses WHERE sr_code='$code' ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      $mname = $row["mname"];
+                      $lname = $row["lname"];
+                      $fname=$row["fname"];
+                      $yearlevel = $row["year_level"];
+                      $program = $row["program"];
+                      $department = $row["department"];
+                      $started = $row["date_started"];
+                      $ended = $row["date_ended"];
+                      $typeofviolation = $row["type_of_violation"];
+                      $violation = $row["violation"];
+                      $status = $row["status"];
+                      $name = $lname . ", " . $fname ." ". $mname[0] .".";
+                      $srcode = $row["sr_code"];
+                        $x = 0;
+                        $y += $x + 1;
                         echo "<tr>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense_ended"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
+                        <td>".$y."</td>
+                        <td>".$srcode."</td>
+                        <td>".$name."</td>
+                        <td>".$yearlevel."</td>
+                        <td>".$program."</td>
+                        <td>".$department."</td>
+                        <td>".$started."</td>
+                        <td>".$ended."</td>
+                        <td>".$typeofviolation."</td>
+                        <td>".$violation."</td>
+                        <td>".$status."</td>
                       </tr>";
                       }
                     } else {
@@ -142,8 +166,8 @@ $conn->close();
       </div>
 
 <div class="container" >
-       <input type='submit' class="btn btn-success float-right " name='Add' value='Add' data-toggle="modal" data-target="#add">
-        <input type='submit' class="btn btn-primary float-right" name='Add' value='Update' style="margin-right:1em;">
+       <input type='submit' class="btn btn-success float-right " name='Add' value='Add' data-toggle="modal" data-target="#addoffense">
+        <input type='submit' class="btn btn-primary float-right" name='Add' value='Update' data-toggle="modal" data-target="#update" style="margin-right:1em;">
       </form>
       
       </div>
@@ -152,7 +176,7 @@ $conn->close();
 
 <!-- Modal -->
 <!-- Student Information Sheet Modal -->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="addoffense">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -163,44 +187,107 @@ $conn->close();
       </div>
 
       <!-- Modal body -->
+      <form action="../connections/offenseupload.php" method="POST">
       <div class="modal-body">
       <div class="form-group">
-      <input type="text" class="form-control" id="add" name="username" placeholder="Add Offense">
+      <input type="text" name="srcode" value="<?php echo $srcode; ?>" hidden>
+      <input type="text" name="fname" value="<?php echo $fname; ?>" hidden>
+      <input type="text" name="mname" value="<?php echo $mname; ?>" hidden>
+      <input type="text" name="lname" value="<?php echo $lname; ?>" hidden>
+      <input type="text" name="yearlevel" value="<?php echo $yearlevel; ?>" hidden>
+      <input type="text" name="program" value="<?php echo $program; ?>" hidden>
+      <input type="text" name="department" value="<?php echo $department; ?>" hidden>
+      <input type="text" name="status" value="On Going" hidden>
+      <input type="text" class="form-control" id="add" name="offense" placeholder="Add Offense" required>
             </div>
            <div class="form-group">
-      <input type="text" class="form-control" id="add" name="username" placeholder="Type of Offense">
+      <select name="offensetype" required>
+        <option>Select Type of Offense</option>
+        <option value="Minor">Minor</option>
+        <option value="Major">Major</option>
+       </select>
             </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
+      <button type="submit" class="btn btn-success" >Add</button>
+        </form>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- add-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+<!-- Update -->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="update">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Update Offenses</h4>
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form action="../connections/offenseupdate.php" method="POST">
+      <div class="modal-body">
+      <div class="form-group">
+      <p>Check if the case resolved!</p>
+      <input type="text" name="srcode" value="<?php echo $srcode; ?>" hidden>
+      <?php
+ 
+      include '../connections/conn.php';
+
+      $sql = "SELECT * FROM student_offenses WHERE status = 'On Going'";
+      $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                echo "<input type='radio' name='offense' value='".$row["id"]."' required> ".$row["violation"]."<br>";
+                }
+              } else {
+                  echo "0 results";
+              }
+
+?>
+     
+      
+            </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-success" >Update</button>
+        </form>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+ <!-- add-->
+ <div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
   <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
     <div class="modal-content" >
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#dc3545; color:white;">
-        <h4 class="col-11 modal-title text-center">Insert SR-Code</h4>
+        <h4 class="col-11 modal-title text-center">Insert ID Number</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='verify.php' method="post">
-      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+      <form action='verify.php' method="GET">
+      <input class='rc col-12 text-center' type="text" name="code" placeholder="Insert ID Number" style="margin-bottom:1em;"><br>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      <input type='submit' class="btn btn-success">
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
@@ -208,6 +295,7 @@ $conn->close();
     </div>
   </div>
 </div>
+
 
 <script>
 function openNav() {

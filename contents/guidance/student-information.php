@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -79,7 +79,7 @@
   <table class="table table-bordered col-11" style="text-align:center;">
     <thead>
       <tr>
-        <th>SR-Code</th>
+        <th>ID Number</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
@@ -97,9 +97,14 @@
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      
+        $fname=$row["fname"];
+        $mname=$row["mname"];
+        $lname=$row["lname"];
+        $name = $lname.", ". $fname ." ". $mname[0].".";
                         echo "<tr>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
