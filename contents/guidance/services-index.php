@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -143,7 +143,7 @@
       <div class="modal-body">
       <form action='../connections/rc-services-insert.php' method="post">
       <input class='rc' type="text" name="rcName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="rcsrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="rcsrCode" placeholder="ID Number"><br>
       <input class='rc' type="text" name="rcyearlevel" placeholder="Year Level"><br>
       <input class='rc' type="text" name="rcprogram" placeholder="Program"><br>
       <input class='rc' type="text" name="rcdepartment" placeholder="Department">
@@ -179,7 +179,7 @@
       <div class="modal-body">
       <form action='../connections/rgm-services-insert.php' method="post">
       <input class='rc' type="text" name="rgmName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="rgmsrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="rgmsrCode" placeholder="ID Number"><br>
       <input class='rc' type="text" name="rgmyearlevel" placeholder="Year Level"><br>
       <input class='rc' type="text" name="rgmprogram" placeholder="Program"><br>
       <input class='rc' type="text" name="rgmdepartment" placeholder="Department">
@@ -215,7 +215,7 @@
       <div class="modal-body">
       <form action='../connections/other-services-insert.php' method="post">
       <input class='rc' type="text" name="otherName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="othersrCode" placeholder="SR Code"><br>
+      <input class='rc' type="text" name="othersrCode" placeholder="ID Number"><br>
       <input class='rc' type="text" name="otheryearlevel" placeholder="Year Level"><br>
       <input class='rc' type="text" name="otherprogram" placeholder="Program"><br>
       <input class='rc' type="text" name="otherdepartment" placeholder="Department">
@@ -231,7 +231,12 @@
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                        echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
+                        if (empty($row['status'])){
+                          $status = '';
+                        }else{
+                          $status = 'disabled';
+                        }
+                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
                       }
                     } else {
                         echo "0 results";

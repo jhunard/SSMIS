@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID No." onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID Number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
  
@@ -82,7 +82,8 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>ID No.</th>
+      <th>No.</th>
+        <th>ID Number</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
@@ -93,22 +94,33 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM guidance_log";
+            $sql = "SELECT * FROM guidance_log ORDER BY lname ASC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      $mname = $row["mname"];
+                        $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                        $count += 1;
                         echo "<tr>
+                        <td>".$count."</td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
                       </tr>";
                       }
                     } else {
-                        echo "0 results";
+                      echo "<tr>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      </tr>";
                     }
 $conn->close();
 ?>

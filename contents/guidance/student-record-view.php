@@ -17,12 +17,15 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
        $db_id = $row["id"];
        $db_sr_code = $row["sr_code"];
-       $db_name = $row["name"];
+       $mname = $row["mname"];
+       $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+       $db_name = $name;
        $db_year_level = $row["year_level"];
        $db_program = $row["program"];
        $db_department = $row["department"];
     }
 }        
+
 ?>
 <?php
  session_start();
@@ -76,7 +79,7 @@ if ($result->num_rows > 0) {
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   

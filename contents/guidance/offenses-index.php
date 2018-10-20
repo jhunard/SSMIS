@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -80,7 +80,8 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>SR-Code</th>
+        <th>No.</th>
+        <th>ID Number</th>
         <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
@@ -96,23 +97,32 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_record WHERE offense_index = '1' ";
+            $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY lname ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      $mname = $row["mname"];
+                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                      $count += 1;
+                        if(empty($row["date_ended"])){
+                          $ended = "-";
+                        }else{
+                          $ended= $row["date_ended"];
+                        }
                         echo "<tr>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense_ended"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violation"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
+                        <td>".$count."</td>
+                        <td>".$row["sr_code"]."</a></td>
+                        <td>".$name."</a></td>
+                        <td>".$row["year_level"]."</a></td>
+                        <td>".$row["program"]."</a></td>
+                        <td>".$row["department"]."</a></td>
+                        <td>".$row["date_started"]."</a></td>
+                        <td>".$ended."</a></td>
+                        <td>".$row["type_of_violation"]."</a></td>
+                        <td>".$row["violation"]."</a></td>
+                        <td>".$row["status"]."</a></td>
                       </tr>";
                       }
                     } else {

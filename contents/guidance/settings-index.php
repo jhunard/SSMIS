@@ -41,7 +41,7 @@
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -133,32 +133,64 @@
       <div class="modal-header" style="background-color:#dc3545; color:white;">
         <h4 class="col-11 modal-title text-center">All Services</h4>
       </div>
-
-      <!-- Modal body -->
+           <!-- Modal body -->
       <div class="modal-body">
+      <h4>List of Enabled Services</h4>
       <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services";
+            $sql = "SELECT * FROM services WHERE status = '0'";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                        echo "<a style='font-size:18px;'> ".$row["services"]."</a><br>";
+                        if(empty($row["status"])){
+                          $status = " ";
+                        }else{
+                          $status = "checked";
+                        }
+                        $count += 1;
+                        echo $count.". &nbsp;".$row["services"]."<br>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
+<br><br>
+<h4>List of Disabled Services</h4>
+      <?php
+      include '../connections/conn.php';
+
+            $sql = "SELECT * FROM services WHERE status = '1'";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        if(empty($row["status"])){
+                          $status = " ";
+                        }else{
+                          $status = "checked";
+                        }
+                        $count1 += 1;
+                        echo $count1.". &nbsp;".$row["services"]."<br>";
                       }
                     } else {
                         echo "0 results";
                     }
 $conn->close();
 ?><br><br>
+
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-services" >Add</button>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#enable" >Enable</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#disable" >Disable</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-         
       </div>
 
     </div>
@@ -210,6 +242,103 @@ $conn->close();
     </div>
   </div>
 </div>
+
+
+<!--Enable -->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="enable">
+  <div class="modal-dialog">
+    <div class="modal-content">
+  <form  action="../connections/enable.php" method="POST" enctype="multipart/form-data">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Enable Services</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <h4>List of Disabled Services</h4>
+      <?php
+      include '../connections/conn.php';
+
+            $sql = "SELECT * FROM services WHERE status = '1'";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        if(empty($row["status"])){
+                          $status = " ";
+                        }else{
+                          $status = "checked";
+                        }
+                        $count += 1;
+                        echo "<input type='radio' name='disable' value='".$row["services"]."'>&nbsp;".$row["services"]."<br>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
+   </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+       <button type="submit" name="submit" class="btn btn-dark">Enable</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+
+
+<!--Enable -->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="disable">
+  <div class="modal-dialog">
+    <div class="modal-content">
+  <form  action="../connections/disable.php" method="POST" enctype="multipart/form-data">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#dc3545; color:white;">
+        <h4 class="col-11 modal-title text-center">Disable Services</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <h4>List of Disabled Services</h4>
+      <?php
+      include '../connections/conn.php';
+
+            $sql = "SELECT * FROM services WHERE status = '0'";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        if(empty($row["status"])){
+                          $status = " ";
+                        }else{
+                          $status = "checked";
+                        }
+                        $count += 1;
+                        echo "<input type='radio' name='disable' value='".$row["services"]."'>&nbsp;".$row["services"]."<br>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
+   </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+       <button type="submit" name="submit" class="btn btn-warning">Disable</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+
 
 <!-- Add Services-->
 <div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add-services">

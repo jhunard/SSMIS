@@ -81,6 +81,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th>No.</th>
         <th>ID No.</th>
         <th>Name</th>
         <th>Year Level</th>
@@ -95,25 +96,31 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_record WHERE offense_index = '1' ";
+            $sql = "SELECT * FROM student_offenses WHERE status = 'On Going' ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
+                      $mname = $row["mname"];
+                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                        $x = 0;
+                        $y += $x + 1;
                         echo "<tr>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["name"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["date_offense"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationType"]."</a></td>
-                        <td><a <a style='color:#1d1d1d !important;' href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["violationstatus"]."</a></td>
+                        <td>".$y."</td>
+                        <td>".$row["sr_code"]."</td>
+                        <td>".$name."</td>
+                        <td>".$row["year_level"]."</td>
+                        <td>".$row["program"]."</td>
+                        <td>".$row["department"]."</td>
+                        <td>".$row["date_started"]."</td>
+                        <td>".$row["type_of_violation"]."</td>
+                        <td>".$row["status"]."</td>
                       </tr>";
                       }
                     } else {
                         echo "<td style='text-align:center;'>-</td>
+                              <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>

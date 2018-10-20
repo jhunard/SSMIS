@@ -1,7 +1,9 @@
 <?php
 include 'conn.php';
 //School Info
-$name=$_POST["name"];
+$fname=$_POST["fname"];
+$mname=$_POST["mname"];
+$lname=$_POST["lname"];
 $yearlevel=$_POST["yearlevel"];
 $srcode=$_POST["srcode"];
 $department=$_POST["department"];
@@ -82,14 +84,14 @@ $services = "Student Information Sheet";
 
 
 
-$sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";
+$sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && lname='$lname'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
 
-        $sql2 = "UPDATE student_record SET sr_code='$srcode',name='$name',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingname',siblingname1='$siblingname1',siblingname2='$siblingname2',siblingname3='$siblingname3',siblingname4='$siblingname4',siblingname5='$siblingname5',siblingname6='$siblingname6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && name='$name'";
+        $sql2 = "UPDATE student_record SET sr_code='$srcode',fname='$fname',mname='$mname',lname='$lname',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingname',siblingname1='$siblingname1',siblingname2='$siblingname2',siblingname3='$siblingname3',siblingname4='$siblingname4',siblingname5='$siblingname5',siblingname6='$siblingname6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && lname='$lname'";
 
         if ($conn->query($sql2) === TRUE) {
             $reason1 = "Update Student Information Sheet";
@@ -135,8 +137,8 @@ if ($result->num_rows > 0) {
             if($now_month == $month_list[11]){
                 $quarter="first";
             }
-
-            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason1', '$services', '$month', '$year','$quarter','$school_year','0')";
+//edit here
+            $sql5 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason1', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql5) === TRUE) {
                 include 'save-xml-data.php';
@@ -156,11 +158,11 @@ if ($result->num_rows > 0) {
         }
     }
 } else {
-    $sql3 = "INSERT INTO student_record (sr_code, name, year_level, program, department, address, phone, bday, mobile, age, email, gender, civilstatus, spouse, religion, fathername, mothername, fatherage, motherage, fathermobile, mothermobile, fathereducation, mothereducation, guardiansname, guardainsrelationship, guardainsaddress, guardiansmobilenumber, siblingname, siblingname1, siblingname2, siblingname3, siblingname4, siblingname5, siblingname6, siblingschool, siblingschool1, siblingschool2, siblingschool3, siblingschool4, siblingschool5, siblingschool6, siblingage, siblingage1, siblingage2, siblingage3, siblingage4, siblingage5, siblingage6, siblingcontact, siblingcontact1, siblingcontact2, siblingcontact3, siblingcontact4, siblingcontact5, siblingcontact6, elemschool, elemyeargraduated, elemhonor, hsschool, hsyeargraduated, hshonor, collegeschool, collegeyeargraduated, collegehonor, otherschool, otheryeargraduated, otherhonor, fatheroccupation, motheroccupation, SIS_date_filled) VALUES ('$srcode', '$name', '$yearlevel', '$program', '$department', '$address', '$phone', '$bday', '$mobile', '$age', '$email', '$gender', '$civilstatus', '$spouse', '$religion', '$fathername', '$mothername', '$fatherage', '$motherage', '$fathermobile', '$mothermobile', '$fathereducation', '$mothereducation', '$guardiansname', '$guardiansrelationship', '$guardiansaddress', '$guardiansmobilenumber', '$siblingname', '$siblingname1', '$siblingname2', '$siblingname3', '$siblingname4', '$siblingname5', '$siblingname6', '$siblingschool', '$siblingschool1', '$siblingschool2', '$siblingschool3', '$siblingschool4', '$siblingschool5', '$siblingschool6', '$siblingage', '$siblingage1', '$siblingage2', '$siblingage3', '$siblingage4', '$siblingage5', '$siblingage6', '$siblingcontact', '$siblingcontact1', '$siblingcontact2', '$siblingcontact3', '$siblingcontact4', '$siblingcontact5', '$siblingcontact6', '$elemschool', '$elemyeargraduated', '$elemhonor', '$hsschool', '$hsyeargraduated', '$hshonor', '$collegeschool', '$collegeyeargraduated', '$collegehonor', '$otherschool', '$otheryeargraduated', '$otherhonor', '$fatheroccupation', '$motheroccupation',  '$dateToday')";
+    $sql3 = "INSERT INTO student_record (sr_code, fname,mname,lname, year_level, program, department, address, phone, bday, mobile, age, email, gender, civilstatus, spouse, religion, fathername, mothername, fatherage, motherage, fathermobile, mothermobile, fathereducation, mothereducation, guardiansname, guardainsrelationship, guardainsaddress, guardiansmobilenumber, siblingname, siblingname1, siblingname2, siblingname3, siblingname4, siblingname5, siblingname6, siblingschool, siblingschool1, siblingschool2, siblingschool3, siblingschool4, siblingschool5, siblingschool6, siblingage, siblingage1, siblingage2, siblingage3, siblingage4, siblingage5, siblingage6, siblingcontact, siblingcontact1, siblingcontact2, siblingcontact3, siblingcontact4, siblingcontact5, siblingcontact6, elemschool, elemyeargraduated, elemhonor, hsschool, hsyeargraduated, hshonor, collegeschool, collegeyeargraduated, collegehonor, otherschool, otheryeargraduated, otherhonor, fatheroccupation, motheroccupation, SIS_date_filled) VALUES ('$srcode','$fname','$mname','$lname', '$yearlevel', '$program', '$department', '$address', '$phone', '$bday', '$mobile', '$age', '$email', '$gender', '$civilstatus', '$spouse', '$religion', '$fathername', '$mothername', '$fatherage', '$motherage', '$fathermobile', '$mothermobile', '$fathereducation', '$mothereducation', '$guardiansname', '$guardiansrelationship', '$guardiansaddress', '$guardiansmobilenumber', '$siblingname', '$siblingname1', '$siblingname2', '$siblingname3', '$siblingname4', '$siblingname5', '$siblingname6', '$siblingschool', '$siblingschool1', '$siblingschool2', '$siblingschool3', '$siblingschool4', '$siblingschool5', '$siblingschool6', '$siblingage', '$siblingage1', '$siblingage2', '$siblingage3', '$siblingage4', '$siblingage5', '$siblingage6', '$siblingcontact', '$siblingcontact1', '$siblingcontact2', '$siblingcontact3', '$siblingcontact4', '$siblingcontact5', '$siblingcontact6', '$elemschool', '$elemyeargraduated', '$elemhonor', '$hsschool', '$hsyeargraduated', '$hshonor', '$collegeschool', '$collegeyeargraduated', '$collegehonor', '$otherschool', '$otheryeargraduated', '$otherhonor', '$fatheroccupation', '$motheroccupation',  '$dateToday')";
 
     if ($conn->query($sql3) === TRUE) {
         
-        $sql4 = "INSERT INTO guidance_log (name,sr_code,year_level,program,department) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department')";
+        $sql4 = "INSERT INTO guidance_log (fname,mname,lname,sr_code,year_level,program,department) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department')";
 
         if ($conn->query($sql4) === TRUE) {
 
@@ -208,7 +210,7 @@ if ($result->num_rows > 0) {
                 $quarter="first";
             }
 
-            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
+            $sql6 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql6) === TRUE) {
                 include 'save-xml-data.php';

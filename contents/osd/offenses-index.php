@@ -136,8 +136,8 @@ $conn->close();
   </table>
 </div>
 
-<!-- add-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
+ <!-- add-->
+ <div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
   <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
     <div class="modal-content" >
 
@@ -149,12 +149,12 @@ $conn->close();
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='verify.php' method="post">
-      <input class='rc col-12 text-center' type="text" name="otherName" placeholder="Insert SR-Code" style="margin-bottom:1em;"><br>
+      <form action='verify.php' method="GET">
+      <input class='rc col-12 text-center' type="text" name="code" placeholder="Insert ID Number" style="margin-bottom:1em;"><br>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Verify' value='verify'>
+      <input type='submit' class="btn btn-success">
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>

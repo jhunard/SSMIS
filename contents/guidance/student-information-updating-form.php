@@ -66,7 +66,7 @@ h6{
     <img src="images/logo.png" alt="logo" style="width:70px;">
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search SR-Code" onkeyup="showResult(this.value)">
+    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
     <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
   </form>
   
@@ -108,8 +108,10 @@ h6{
             <div class="card-body" style="margin-left:2%;">
               
                 <!-- First row (on medium screen) -->
-                <div class="row "><h6><b>Name:</b>&nbsp;<input type="text" class="form-control col-md-12" name="name" placeholder="First Name  Middle Name Last Name"></h6><br> </div>
-                <div class="row "><h6><b>Sr-Code:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" placeholder="Sr-Code"></h6><br></div>
+                <div class="row "><h6><b>Full Name:</b>&nbsp;<input type="text" name="fname"  class="form-control col-12" placeholder="First Name" required> <br>
+                <input type="text" name="mname"  class="form-control col-12" placeholder="Middle Name" required> <br>
+                 <input type="text" name="lname"  class="form-control col-12" placeholder="Last Name" required> <br></h6><br> </div>
+                <div class="row "><h6><b>ID Number:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" placeholder="ID Number"></h6><br></div>
             </div> 
         </div>
         
@@ -137,14 +139,7 @@ h6{
 
                          <div class="form-group">
                             <label for="input_dept" class="col-form-label"><b>Department:</b></label>
-                            <select id="input_dept" name="department" class="form-control">
-                            <option value="CICS">CICS</option>
-                            <option value="CIT">CIT</option>
-                            <option value="CEAFA">CEAFA</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CTE">CTE</option>
-                            <option value="CABEIHM">CABEIHM</option>
-                        </select>
+                           <input type="text" class="form-control" name="department" id="department" placeholder="Department" required>
                         </div>
 
                         <div class="form-group">
