@@ -24,6 +24,34 @@
        
    }
 ?>
+<?php
+$code=$_GET["code"];
+
+include '../connections/conn.php';
+
+$sql = "SELECT * FROM student_offenses WHERE sr_code='$code' ";
+$result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          $mname = $row["mname"];
+          $lname = $row["lname"];
+          $fname=$row["fname"];
+          $yearlevel = $row["year_level"];
+          $program = $row["program"];
+          $department = $row["department"];
+          $started = $row["date_started"];
+          $ended = $row["date_ended"];
+          $typeofviolation = $row["type_of_violation"];
+          $violation = $row["violation"];
+          $status = $row["status"];
+          $name = $lname . ", " . $fname ." ". $mname[0] .".";
+          $srcode = $row["sr_code"];
+            
+          }
+        }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,9 +100,10 @@
 
 <div class="container">
    <div class="form-row text-center">
-      <div class="col-12"><h1>List of Student Offenses</h1></div>
-   </div>
-</div>
+   <div class="col-12"><h3>Student Offense Record</h3></div>
+      <div class="col-3"><h6>Name : <?php echo $lname; ?>, <?php echo $fname; ?> <?php echo $mname[0]; ?>.</h6></div>
+      <div class="offset-md-6 col-3"><h6>ID Number : <?php echo $srcode; ?></h6></div>
+</div><br>
 
 
 <!-- table -->
@@ -84,8 +113,6 @@
     <thead>
       <tr>
         <th>No.</th>
-        <th>SR-Code</th>
-        <th>Name</th>
         <th>Year Level</th>
          <th>Program</th>
          <th>Department</th>
@@ -99,6 +126,15 @@
     <tbody>
     <?php
     $code=$_GET["code"];
+    $status = $_GET["xml"];
+    if(empty($status)){
+      $status = "0";
+      $button = " <input type='submit' class='btn btn-success float-right ' name='Add' value='Add' data-toggle='modal' data-target='#addoffense'>
+      <input type='submit' class='btn btn-primary float-right' name='Add' value='Update' data-toggle='modal' data-target='#update' style='margin-right:1em;'>";
+    }else{
+      $status = "1";
+      $button = "";
+    }
 
     if (empty($code)){
       echo "<script type='text/javascript'>
@@ -124,14 +160,11 @@
                       $typeofviolation = $row["type_of_violation"];
                       $violation = $row["violation"];
                       $status = $row["status"];
-                      $name = $lname . ", " . $fname ." ". $mname[0] .".";
                       $srcode = $row["sr_code"];
                         $x = 0;
                         $y += $x + 1;
                         echo "<tr>
                         <td>".$y."</td>
-                        <td>".$srcode."</td>
-                        <td>".$name."</td>
                         <td>".$yearlevel."</td>
                         <td>".$program."</td>
                         <td>".$department."</td>
@@ -143,8 +176,7 @@
                       </tr>";
                       }
                     } else {
-                        echo "<td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
+                        echo "
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
@@ -166,8 +198,7 @@ $conn->close();
       </div>
 
 <div class="container" >
-       <input type='submit' class="btn btn-success float-right " name='Add' value='Add' data-toggle="modal" data-target="#addoffense">
-        <input type='submit' class="btn btn-primary float-right" name='Add' value='Update' data-toggle="modal" data-target="#update" style="margin-right:1em;">
+      <?php echo $button;?>
       </form>
       
       </div>
