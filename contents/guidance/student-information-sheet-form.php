@@ -119,7 +119,7 @@ th,td{font-size: 18px;
                 <!-- First row (on medium screen) -->
                 <div class="row "><h6 class="col-6"><b>Full Name:</b>&nbsp;
                 <input type="text" name="fname"  class="form-control col-7" placeholder="First Name" required> <br>
-                <input type="text" name="mname"  class="form-control col-7" placeholder="Middle Name" required> <br>
+                <input type="text" name="mname"  class="form-control col-7" placeholder="Middle Name"> <br>
                  <input type="text" name="lname"  class="form-control col-7" placeholder="Last Name" required> <br>
                  </h6>
                                   <h6 class="col-6"><b>Year Level:</b>&nbsp;<input type="text" name="yearlevel"  class="form-control col-7" placeholder="Year Level" required></h6><br> </div>

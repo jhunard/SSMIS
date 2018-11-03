@@ -30,9 +30,9 @@
 <div class="container">
 
 <div class="form-row text-center">
-<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#guidance"> <img src="images/user.png" alt="logo" width="50px;">Guidance</button></div>
-<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">OSD</button></div>  
-<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#soa"> <img src="images/user.png" alt="logo" width="50px;">SOA</button></div> 
+<div class="col-4"></div>
+<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">Log in</button></div>  
+<div class="col-4"></div> 
 
 </div>
 </div>
@@ -70,15 +70,14 @@
     <div class="col-lg-8 col-sm-8 col-12 main-section">
       <div class="modal-content">
           <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
-          <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>OSD Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+          <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>Welcome</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
             <div class="col-lg-12 col-sm-12 col-12 form-input">
              <form action="contents/connections/login_con.php" method="post">
                <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
                <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
-               <input type="submit" class="btn btn-success" name="Login" value="Login">
+               <input type="submit" class="btn btn-success" name="Login" value="Verify"><br><br>
              </form>
             </div>
-             <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
        </div>
     </div>
   </div>

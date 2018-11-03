@@ -24,39 +24,47 @@ if ($result->num_rows > 0) {
        $db_department = $row["department"];
 
        if(empty($row["SIS_date_filled"])){
-        $db_SIS_date_filled = "NO DATA FOUND";
+        $db_SIS_date_filled = "- - - - -";
        }else{
         $db_SIS_date_filled = $row["SIS_date_filled"];
        }
 
        if(empty($row["SIS_date_updated"])){
-        $db_SIS_date_updated = "NO DATA FOUND";
+        $db_SIS_date_updated = "- - - - -";
        }else{
         $db_SIS_date_updated = $row["SIS_date_updated"];
        }
        
        if(empty($row["RGM_date_filled"])){
-        $db_RGM_date_filled = "NO DATA FOUND";
+        $db_RGM_date_filled = "- - - - -";
+        $rgmstatus = 0;
        }else{
         $db_RGM_date_filled = $row["RGM_date_filled"];
+        $rgmstatus = 1;
        }
        
        if(empty($row["RGM_reason"])){
-        $db_RGM_reason = "NO DATA FOUND";
+        $db_RGM_reason = "- - - - -";
+        $rgmstatus = 0;
        }else{
         $db_RGM_reason = $row["RGM_reason"];
+        $rgmstatus = 1;
        }
 
        if(empty($row["RC_date_filled"])){
-        $db_RC_date_filled = "NO DATA FOUND";
+        $db_RC_date_filled = "- - - - -";
+        $rcstatus = 0;
        }else{
         $db_RC_date_filled = $row["RC_date_filled"];
+        $rcstatus = 1;
        }
 
        if(empty($row["RC_reason"])){
-        $db_RC_reason = "NO DATA FOUND";
+        $db_RC_reason = "- - - - -";
+        $rcstatus = 0;
        }else{
         $db_RC_reason = $row["RC_reason"];
+        $rcstatus = 1;
        }
       
     }
@@ -74,12 +82,12 @@ if ($result2->num_rows > 0) {
       $db_year_level = $row2["year_level"];
       $db_program = $row2["program"];
       $db_department = $row2["department"];
-      $db_SIS_date_filled = "NO DATA FOUND";
-      $db_SIS_date_updated = "NO DATA FOUND";
-      $db_RGM_date_filled = "NO DATA FOUND";
-      $db_RGM_reason = "NO DATA FOUND";
-      $db_RC_date_filled = "NO DATA FOUND";
-      $db_RC_reason = "NO DATA FOUND";
+      $db_SIS_date_filled = "- - - - -";
+      $db_SIS_date_updated = "- - - - -";
+      $db_RGM_date_filled = "- - - - -";
+      $db_RGM_reason = "- - - - -";
+      $db_RC_date_filled = "- - - - -";
+      $db_RC_reason = "- - - - -";
     }
 }
        
@@ -197,27 +205,40 @@ if ($result2->num_rows > 0) {
 </div>   
 </div>
 
-<div class="container">   
-<div class="row" style="font-size:18px; margin-top:3%;">
-  <span class="rounded col-11">
-     <div style="margin-left:3%;"><b>Request For Good Moral</b><br>
-      Date Filled: <?php echo $db_RGM_date_filled;?><br>
-      Reason: <?php echo $db_RGM_reason;?>
+<?php
+if($rgmstatus == 0 ){
+
+}else{
+echo "<div class='container'>   
+<div class='row' style='font-size:18px; margin-top:3%;'>
+  <span class='rounded col-11'>
+     <div style='margin-left:3%;'><b>Request For Good Moral</b><br>
+      Date Filled: " .$db_RGM_date_filled."<br>
+      Reason: ".$db_RGM_reason."
 </div>   
 </div>
+";
+}
 
-<div class="container">   
-<div class="row" style="font-size:18px; margin-top:3%;">
-  <span class="rounded col-11">
-     <div style="margin-left:3%;"><b>Referral Counseling</b><br>
-      Date Filled: <?php echo $db_RC_date_filled;?><br>
-      Reason: <?php echo $db_RC_reason;?>
+
+?>
+
+<?php
+if($rcstatus == 0 ){
+
+}else{
+echo "<div class='container'>   
+<div class='row' style='font-size:18px; margin-top:3%;'>
+  <span class='rounded col-11'>
+     <div style='margin-left:3%;'><b>Referral Counseling</b><br>
+      Date Filled: " .$db_RC_date_filled."<br>
+      Reason: ". $db_RC_reason."
 </div>   
 </div>
+";
+}
 
-
-
-
+?>
 
 <script>
 function openNav() {

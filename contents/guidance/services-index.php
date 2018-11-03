@@ -141,21 +141,13 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='../connections/rc-services-insert.php' method="post">
-      <input class='rc' type="text" name="rcName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="rcsrCode" placeholder="ID Number"><br>
-      <input class='rc' type="text" name="rcyearlevel" placeholder="Year Level"><br>
-      <input class='rc' type="text" name="rcprogram" placeholder="Program"><br>
-      <input class='rc' type="text" name="rcdepartment" placeholder="Department">
-<br><br><br>
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='rcdate' style="font-size:14px;"></a><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='rcreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
-
+      <form action='referal-counseling.php' method="post">
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      <input type='submit' class="btn btn-success" name='Add' value='Verify'>
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
@@ -175,19 +167,12 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-      <form action='../connections/rgm-services-insert.php' method="post">
-      <input class='rc' type="text" name="rgmName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="rgmsrCode" placeholder="ID Number"><br>
-      <input class='rc' type="text" name="rgmyearlevel" placeholder="Year Level"><br>
-      <input class='rc' type="text" name="rgmprogram" placeholder="Program"><br>
-      <input class='rc' type="text" name="rgmdepartment" placeholder="Department">
-<br><br><br>
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='rgmdate' style="font-size:14px;"></a><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='rgmreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
-
+        <!-- Modal body -->
+        <div class="modal-body">
+      <form action='rgm-services.php' method="post">
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
       </div>
+
 
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -213,44 +198,13 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action='../connections/other-services-insert.php' method="post">
-      <input class='rc' type="text" name="otherName" placeholder="Full Name"><br>
-      <input class='rc' type="text" name="othersrCode" placeholder="ID Number"><br>
-      <input class='rc' type="text" name="otheryearlevel" placeholder="Year Level"><br>
-      <input class='rc' type="text" name="otherprogram" placeholder="Program"><br>
-      <input class='rc' type="text" name="otherdepartment" placeholder="Department">
-<br><br><br>
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;"></a><br>
-   Service Type : <select class="col-md-8" name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
-
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if (empty($row['status'])){
-                          $status = '';
-                        }else{
-                          $status = 'disabled';
-                        }
-                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;"></a>
-
+      <form action='add-services.php' method="post">
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      <input type='submit' class="btn btn-success" name='Add' value='Verify'>
       </form>
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
