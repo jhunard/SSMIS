@@ -44,9 +44,14 @@ if ($result->num_rows > 0) {
        $db_id = $row["id"];
        $db_sr_code = $row["sr_code"];
        $fname=$row["fname"];
-       $mname=$row["mname"];
-       $lname=$row["lname"];
-       $name = $lname.", ". $fname ." ". $mname[0].".";
+        $mname=$row["mname"];
+        $lname=$row["lname"];
+        if (empty($mname)){
+            $mname = "";
+        }else{
+            $mname = $mname[0].".";
+        }
+        $name = $lname.", ". $fname ." ". $mname;
        $db_name = $name;
        $db_year_level = $row["year_level"];
        $db_program = $row["program"];

@@ -1,7 +1,9 @@
 <?php
 include 'conn.php';
 
-$name=$_POST["rcName"];
+$fname=$_POST["rcfName"];
+$mname=$_POST["rcmName"];
+$lname=$_POST["rclName"];
 $srcode=$_POST["rcsrCode"];
 $yearlevel=$_POST["rcyearlevel"];
 $program=$_POST["rcprogram"];
@@ -12,14 +14,14 @@ $month = date("F");
 $year = date("Y");
 $services = "Referral Counseling";
 
-$sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && name='$name'";
+$sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && fname='$fname'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
 
-        $sql2 = "UPDATE student_record SET RC_date_filled='$date', RC_reason='$reason' WHERE sr_code='$srcode' && name='$name'";
+        $sql2 = "UPDATE student_record SET RC_date_filled='$date', RC_reason='$reason' WHERE sr_code='$srcode' && fname='$fname'";
 
         if ($conn->query($sql2) === TRUE) {
             
@@ -64,7 +66,7 @@ if ($result->num_rows > 0) {
             if($now_month == $month_list[11]){
                 $quarter="first";
             }
-            $sql6 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
+            $sql6 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql6) === TRUE) {
                 echo "<script type='text/javascript'>
@@ -82,11 +84,11 @@ if ($result->num_rows > 0) {
         }
     }
 } else {
-    $sql3 = "INSERT INTO student_record (name,sr_code,year_level,program,department,RC_date_filled,RC_reason) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date','$reason')";
+    $sql3 = "INSERT INTO student_record (fname,mname,lname,sr_code,year_level,program,department,RC_date_filled,RC_reason) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date','$reason')";
 
     if ($conn->query($sql3) === TRUE) {
         
-        $sql4 = "INSERT INTO guidance_log (name,sr_code,year_level,program,department) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department')";
+        $sql4 = "INSERT INTO guidance_log (fname,mname,lname,sr_code,year_level,program,department) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department')";
 
         if ($conn->query($sql4) === TRUE) {
             
@@ -131,7 +133,7 @@ if ($result->num_rows > 0) {
             if($now_month == $month_list[11]){
                 $quarter="first";
             }
-            $sql5 = "INSERT INTO graph_data (name,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$name', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
+            $sql5 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
             
             if ($conn->query($sql5) === TRUE) {
                 echo "<script type='text/javascript'>

@@ -91,7 +91,7 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM guidance_log";
+            $sql = "SELECT * FROM guidance_log ORDER BY lname ASC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {

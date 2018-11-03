@@ -19,7 +19,12 @@ if ($result->num_rows > 0) {
         $fname=$row["fname"];
         $mname=$row["mname"];
         $lname=$row["lname"];
-        $name = $lname.", ". $fname ." ". $mname[0].".";
+        if (empty($mname)){
+            $mname = "";
+        }else{
+            $mname = $mname[0].".";
+        }
+        $name = $lname.", ". $fname ." ". $mname;
 
         if(empty($row["sr_code"])){
             $db_sr_code = "NO DATA FOUND";
