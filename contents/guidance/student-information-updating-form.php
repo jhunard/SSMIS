@@ -129,6 +129,7 @@ h6{
                         <div class="form-group">
                             <label for="input_year-level" class="col-form-label"><b>Year Level:</b></label>
                             <select id="input_year-level" name="yearlevel" class="form-control">
+                            <option>Select Year</option>
                             <option value="1st Year">1st Year</option>
                             <option value="2nd Year">2nd Year</option>
                             <option value="3rd Year">3rd Year</option>
@@ -167,7 +168,7 @@ h6{
 
                        <div class="form-group">
                              <label for="contact" class="col-form-label"><b>Contact Number:</b></label>
-                             <input type="text"  name="phone" class="form-control" id="contact" placeholder="+xxx - xxxx - xxx" required>
+                             <input type="number"  name="phone" class="form-control" id="contact" placeholder="+xxx - xxxx - xxx" required>
                         </div>
 
                         <div class="form-group">

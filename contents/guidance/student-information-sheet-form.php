@@ -122,7 +122,16 @@ th,td{font-size: 18px;
                 <input type="text" name="mname"  class="form-control col-7" placeholder="Middle Name"> <br>
                  <input type="text" name="lname"  class="form-control col-7" placeholder="Last Name" required> <br>
                  </h6>
-                                  <h6 class="col-6"><b>Year Level:</b>&nbsp;<input type="text" name="yearlevel"  class="form-control col-7" placeholder="Year Level" required></h6><br> </div>
+                                  <h6 class="col-6"><b>Year Level:</b>&nbsp;
+                                  <select name="yearlevel"  class="form-control col-7" required>
+                                    <option>Select Year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <option value="5th Year">5th Year</option>
+                                  </select>
+                                  </h6><br> </div>
                 <div class="row "><h6 class="col-6"><b>ID Number:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" placeholder="ID Number" required></h6>
                                   <h6 class="col-6"><b>Department:</b>&nbsp;<input type="text" name="department"  class="form-control col-7" placeholder="Department" required></h6> </div>
                <div class="row "> <h6 class="col-6"><b>Program:</b>&nbsp;<input type="text" name="program"  class="form-control col-7" placeholder="Program" required></h6><br> </div>                 
@@ -147,7 +156,7 @@ th,td{font-size: 18px;
                             <div class="form-row">
                               
                                <label for="phone-number" class="col-form-label col-2"><b>Phone Number:</b></label>
-                                <input type="text" name="phone" class="form-control col-3" placeholder="Home Phone Number:" id="phone-number" >
+                                <input type="number" name="phone" class="form-control col-3" placeholder="Home Phone Number:" id="phone-number" >
                               
                               <label for="birthdate" class="col-form-label col-4"><b style="margin-left:60%;">Date of Birth:</b></label>
                                 <input type="date" name="bday" class="form-control col-3" required>
@@ -175,8 +184,9 @@ th,td{font-size: 18px;
                               
                               <label for="sex" class="col-form-label col-4"><b style="margin-left:80%;">Sex:</b></label>
                                   <select id="sex" name="gender" class="form-control col-3" required>
-                                      <option value="male">Male</option>
-                                      <option value="female">Female</option></select>
+                                      <option>Select Gender</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option></select>
                            
                             </div>
                         </div>
@@ -242,10 +252,10 @@ th,td{font-size: 18px;
                               <div class="form-row">
                               
                                <label for="father-number" class="col-form-label col-3"><b>Mobile Number:</b></label>
-                                <input type="text" name="fathermobile" class="form-control col-3" placeholder="Mobile Number" id="father-number" required>
+                                <input type="number" name="fathermobile" class="form-control col-3" placeholder="Mobile Number" id="father-number" >
                               
                               <label for="mother-number" class="col-form-label col-3"><b style="margin-left:40%;">Mobile Number:</b></label>
-                                <input type="text" name="mothermobile" class="form-control col-3" placeholder="Mobile Number" id="mother-number" required>
+                                <input type="number" name="mothermobile" class="form-control col-3" placeholder="Mobile Number" id="mother-number" >
                            
                             </div>
                         </div>
