@@ -2,18 +2,26 @@
 <pages>
   <link>
     <title>15-02031</title>
-    <url>verify.php?code=15-02031&amp;xml=1</url>
+    <url>student-record.php?sr-code=15-02031</url>
   </link>
   <link>
     <title>15-00013</title>
-    <url>verify.php?code=15-00013&amp;xml=1</url>
+    <url>student-record.php?sr-code=15-00013</url>
   </link>
   <link>
     <title>15-01934</title>
-    <url>verify.php?code=15-01934&amp;xml=1</url>
+    <url>student-record.php?sr-code=15-01934</url>
   </link>
   <link>
     <title>14-95940</title>
-    <url>verify.php?code=14-95940&amp;xml=1</url>
+    <url>student-record.php?sr-code=14-95940</url>
+  </link>
+  <link>
+    <title>5</title>
+    <url>student-record.php?sr-code=5</url>
+  </link>
+  <link>
+    <title>34234234234</title>
+    <url>student-record.php?sr-code=34234234234</url>
   </link>
 </pages>

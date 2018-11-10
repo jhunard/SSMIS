@@ -1,3 +1,9 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+
 <?php
  session_start();
  $user = $_SESSION["user"];
@@ -24,432 +30,543 @@
        
    }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
+
 <head>
-  <title>Student Information</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/navbar.css">
-   <script src="js/search.js"></script>
-</head>
-<style>.card {
-    margin-top: 1em;
-}
-.form-row{margin-bottom: 1em;}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Guidance</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-h6{
-  font-size:16px;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    
+<style>
+  /* Hide HTML5 Up and Down arrows. */
+      input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+         -webkit-appearance: none;
+            margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
-.person-card {
-    margin-top: 2em;
-}
-.person-card .card-title{
-    text-align: center;
-}
-.person-card .person-img{
-    width: 10em;
-    position: absolute;
-    top: -5em;
-    left: 50%;
-    margin-left: -5em;
-    border-radius: 100%;
-    overflow: hidden;
-    background-color: white;
-}
-.table{
-  margin-top: 1em;
-  margin-bottom: 3em;
-}
-th,td{font-size: 18px;
-    text-align: center; }
+
 </style>
 
+</head>
 
 <body>
-<nav class="navbar navbar-expand-sm justify-content-between" >
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="index.php">
-    <img src="images/logo.png" alt="logo" style="width:70px;">
-  </a>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text"  size="30" placeholder="Search ID number" onkeyup="showResult(this.value)">
-    <div style="position:absolute;top:75%;width:19.25%;background-color:#8e8d8a;" id="livesearch">&nbsp;&nbsp;&nbsp;</div>
-  </form>
-  
-</nav>
-<!-- ENd NAV -->
-
-<!-- SideNav slide-out button -->
-<div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
- <div class="col-12" style="color:white; font-size:33px; margin-bottom:5%;">
- <a href="index.php"> 
- <img src="images/<?php echo $img; ?>" alt="logo" width="50px" height="50px" style="margin-right:5%; margin-top:-5%;border-radius:50%;">
- <?php echo $user;?></a></div> 
-
-  <a href="student-information.php">Student Information Sheet</a>
-  <a href="offenses-index.php">Student's Offense</a>
-  <a href="reports-index.php">Report</a>
-  <a href="settings-index.php">Settings</a>
-  <a href="../connections/logout.php">Log Out</a>
-</div>
-
-<div id="main">
-  <button class="openbtn" onclick="openNav()"style="color:black;">☰</button>  
-</div>
-
-<div class="container">
-   <div class="form-row text-center">
-      <div class="col-12"><h1>Student Information Sheet</h1></div><br>
-   </div>
-</div>
-
-<!-- table -->
-
-<div class="container" style="margin-top: 1em;">
-    <!-- UPDATE form -->
-    <form action="../connections/student-information-sheet-form-insert.php" method="POST">
-        <!-- UPDATE card -->
-        <div class="card person-card">
-            <div class="card-body" style="margin-left:2%;">
-              
-                <!-- First row (on medium screen) -->
-                <div class="row "><h6 class="col-6"><b>Full Name:</b>&nbsp;
-                <input type="text" name="fname"  class="form-control col-7" placeholder="First Name" required> <br>
-                <input type="text" name="mname"  class="form-control col-7" placeholder="Middle Name"> <br>
-                 <input type="text" name="lname"  class="form-control col-7" placeholder="Last Name" required> <br>
-                 </h6>
-                                  <h6 class="col-6"><b>Year Level:</b>&nbsp;
-                                  <select name="yearlevel"  class="form-control col-7" required>
-                                    <option>Select Year</option>
-                                    <option value="1st Year">1st Year</option>
-                                    <option value="2nd Year">2nd Year</option>
-                                    <option value="3rd Year">3rd Year</option>
-                                    <option value="4th Year">4th Year</option>
-                                    <option value="5th Year">5th Year</option>
-                                  </select>
-                                  </h6><br> </div>
-                <div class="row "><h6 class="col-6"><b>ID Number:</b>&nbsp;<input type="text" name="srcode"  class="form-control col-7" placeholder="ID Number" required></h6>
-                                  <h6 class="col-6"><b>Department:</b>&nbsp;<input type="text" name="department"  class="form-control col-7" placeholder="Department" required></h6> </div>
-               <div class="row "> <h6 class="col-6"><b>Program:</b>&nbsp;<input type="text" name="program"  class="form-control col-7" placeholder="Program" required></h6><br> </div>                 
-            </div> 
-        </div>
-        
-
-              <!-- Personal INFO -->
-        <div class="row">
-            <div class="col-md-12" style="padding=0.5em;">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center">Personal Information</h2>
-
-                        <div class="form-group">
-                        <div class="form-row">
-                             <label for="address" class="col-form-label col-2"><b>Home Address:</b></label>
-                             <input type="text" name="address" class="form-control col-10" id="address" placeholder="Enter your Address" required>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row">
-                              
-                               <label for="phone-number" class="col-form-label col-2"><b>Phone Number:</b></label>
-                                <input type="number" name="phone" class="form-control col-3" placeholder="Home Phone Number:" id="phone-number" >
-                              
-                              <label for="birthdate" class="col-form-label col-4"><b style="margin-left:60%;">Date of Birth:</b></label>
-                                <input type="date" name="bday" class="form-control col-3" required>
-                           
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                            <div class="form-row">
-                              
-                               <label for="mobile-number" class="col-form-label col-2"><b>Mobile Number:</b></label>
-                                <input type="text" name="mobile" class="form-control col-3" placeholder="Mobile Number" id="mobile-number" required>
-                              
-                              <label for="age" class="col-form-label col-4"><b style="margin-left:80%;">Age:</b></label>
-                                <input type="number" name="age" class="form-control col-3" id="age" placeholder="Age" required>
-                           
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                            <div class="form-row">
-                              
-                               <label for="email" class="col-form-label col-2"><b>Email Address:</b></label>
-                                <input type="email" name="email" class="form-control col-3" placeholder="example@email.com" id="email" required >
-                              
-                              <label for="sex" class="col-form-label col-4"><b style="margin-left:80%;">Sex:</b></label>
-                                  <select id="sex" name="gender" class="form-control col-3" required>
-                                      <option>Select Gender</option>
-                                      <option value="Male">Male</option>
-                                      <option value="Female">Female</option></select>
-                           
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                            <div class="form-row">
-                              
-                               <label for="civil-status" class="col-form-label col-2"><b>Civil Status:</b></label>
-                                <input type="text" name="civilstatus" class="form-control col-3" placeholder="Civil Status" id="Civil Status" required>
-                              
-                              <label for="spouse" class="col-form-label col-4"><b style="margin-left:30%;">Spouse's Name (if married):</b></label>
-                                <input type="text" name="spouse" class="form-control col-3" placeholder="Spouse Name (if married)" id="spouse">
-                           
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                         <div class="form-row">
-                             <label for="religion" class="col-form-label col-2"><b>Religion:</b></label>
-                             <input type="text" name="religion" class="form-control col-3" id="religion" placeholder="Religion" required>
-                          </div>
-                        </div>
-
-                    </div>
-                </div>
-              </div>
-            </div>
-            
-
-              <!-- OTHER INFO -->
-              
-            <div class="col-md-12">
-                <div class="card"> 
-                    <div class="card-body">
-                        <h2 class="card-title text-center">Other Information</h2>
-
-                        <div class="form-group">
-                              <div class="form-row">
-                              
-                               <label for="father" class="col-form-label col-3"><b>Name of Father:</b></label>
-                                <input type="text" name="fathername" class="form-control col-3" placeholder="Father's Name" id="father" required>
-                              
-                              <label for="mother" class="col-form-label col-3"><b style="margin-left:40%;">Name of Mother:</b></label>
-                                <input type="text" name="mothername" class="form-control col-3" placeholder="Mother's Name"  id="mother" required>
-                           
-                            </div>
-                        </div>
-
-                       <div class="form-group">
-                            <div class="form-row">
-                              
-                                <label for="father-age" class="col-form-label col-3"><b>Age:</b></label>
-                                <input type="number" name="fatherage" class="form-control col-1" id="father-age" placeholder="Age" required>
-                              
-                              <label for="mother-age" class="col-form-label col-5"><b style="margin-left:80%;">Age:</b></label>
-                                <input type="number" name="motherage" class="form-control col-1" id="mother-age" placeholder="Age" required>
-                           
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                              <div class="form-row">
-                              
-                               <label for="father-number" class="col-form-label col-3"><b>Mobile Number:</b></label>
-                                <input type="number" name="fathermobile" class="form-control col-3" placeholder="Mobile Number" id="father-number" >
-                              
-                              <label for="mother-number" class="col-form-label col-3"><b style="margin-left:40%;">Mobile Number:</b></label>
-                                <input type="number" name="mothermobile" class="form-control col-3" placeholder="Mobile Number" id="mother-number" >
-                           
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                              <div class="form-row">
-                              
-                               <label for="father-education" class="col-form-label col-3"><b>Educational Attainment:</b></label>
-                                <input  type="text" name="fathereducation" class="form-control col-3" placeholder="Educational Attainment" id="father-education" required>
-                              
-                              <label for="mother-education" class="col-form-label col-3"><b style="margin-left:20%;">Educational Attainment:</b></label>
-                                <input type="text" name="mothereducation" class="form-control col-3" placeholder="Educational Attainment" id="mother-education" required>
-                           
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                              <div class="form-row">
-                              
-                               <label for="father-occupation" class="col-form-label col-3"><b>Occupation:</b></label>
-                                <input type="text" name="fatheroccupation" class="form-control col-3" placeholder="Occupation" id="father-occupation" required>
-                              
-                              <label for="mother-occupation" class="col-form-label col-3"><b style="margin-left:40%;">Occupation:</b></label>
-                                <input type="text" name="motheroccupation" class="form-control col-3" placeholder="Occupation" id="mother-occupation" required>
-                           
-                            </div>
-                        </div>
-                      </div>
-                   </div>
-                </div>
-            <div class="col-md-12">
-                          <div class="card"> 
-                              <div class="card-body">
-                              
-
-                                  <div class="form-group">
-                                        <div class="form-row">
-                                        
-                                         <label for="guardian" class="col-form-label col-3"><b>Guardian's Name:</b></label>
-                                          <input type="text" name="guardiansname" class="form-control col-3" placeholder="Guardian's Name" id="guardian" required>
-                                        
-                                        <label for="relation" class="col-form-label col-3"><b style="margin-left:40%;">Relationship:</b></label>
-                                          <input type="text" name="guardiansrelationship" class="form-control col-3" placeholder="Relationship"  id="relation" required>
-                                     
-                                      </div>
-                                  </div>
-
-                                 <div class="form-group">
-                                      <div class="form-row">
-                                        
-                                          <label for="guardian-home" class="col-form-label col-3"><b>Guardian's Home Address:</b></label>
-                                          <input type="text" name="guardiansaddress" class="form-control col-9"placeholder="Guardian's Home Address" id="guardian-home" required>
-                                     
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group">
-                                        <div class="form-row">
-                                        
-                                         <label for="guardian-number" class="col-form-label col-3"><b> Guardian's Mobile Number:</b></label>
-                                          <input type="text" name="guardiansmobilenumber" class="form-control col-3" placeholder="Guardian's Number" id="guardian-number" required>
-                                        
-                                       
-                                     
-                                      </div>
-                                  </div>
-        </div>    
-      </div>  
-          <!-- <div style="margin-top: 1em;"> <button type="button" class="btn btn-primary btn-lg btn-block">Update</button></div> -->
-          <div class="container">
-            <h2 class="text-center" style="margin-top:2em;">Siblings</h2>    
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>School/Company</th>
-                  <th>Age</th>
-                  <th>Contact Number</th>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel ">
+        <nav class="navbar  navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
                   
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-                <tr>
-                <td><input type="text" name="siblingname1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage1" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact1" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-                <tr>
-                <td><input type="text" name="siblingname2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage2" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact2" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
+                    <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
+                     <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
+                        <li> <a href="student-offense.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
+                    
+                    
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Reports</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
+                              <li><i class="menu-icon fa fa-file-text"></i><a href="quarterly-report.php">Quarterly Report</a></li>
+                              <li><i class="menu-icon fa fa-file-text"></i><a href="annual-report.php">Annual Report</a></li>
+                        </ul>
+                    </li>
+                 
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="">Add Services</a></li>
+                            <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
+                        </ul>
+                    </li>
+                     <li> <a href=""> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
 
-                <tr>
-                <td><input type="text" name="siblingname3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage3" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact3" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-                <tr>
-                <td><input type="text" name="siblingname4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage4" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact4" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-                <tr>
-                <td><input type="text" name="siblingname5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage5" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact5" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-                <tr>
-                <td><input type="text" name="siblingname6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingschool6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingage6" style=" border:0;outline:0;background:transparent;"></td>
-                  <td><input type="text" name="siblingcontact6" style=" border:0;outline:0;background:transparent;"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="container">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th></th>
-                          <th>Schools Attended</th>
-                          <th>Year Graduated</th>
-                          <th>Honors/Awards Received</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><b>Elementary</b></td>
-                          <td><input type="text"  name="elemschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="elemyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;"></td>
-                        </tr>
-                        <tr>
-                          <td><b>High School</b></td>
-                          <td><input type="text" name="hsschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="hshonor" style=" border:0;outline:0;background:transparent;"></td>
-                        </tr>
-                        <tr>
-                          <td><b>College</b></td>
-                          <td><input type="text" name="collegeschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="collegehonor" style=" border:0;outline:0;background:transparent;"></td>
-                        </tr>
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
+                    
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                                    
 
-                        <tr>
-                          <td><b>Others (please specify)</b></td>
-                          <td><input type="text" name="otherschool" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;"></td>
-                          <td><input type="text" name="otherhonor" style=" border:0;outline:0;background:transparent;"></td>
-                        </tr>
-                       
-                      </tbody>
-                    </table>
-                  </div>                             
-        <input style="padding:20px;" class="btn btn-success offset-md-4 col-md-4" type="submit" value="Create">
-  </form>
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                        </a>
 
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- /#header -->
+     
+ 
+
+        
+        <div class="content">
+            <div class="animated fadeIn">
+            <form action="#" method="post" class="form">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                  
+                                </div>
+                                <div class="card-body">
+                                    <!-- Student info -->
+                                    <div id="student-info">
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h3 class="text-center">Student Information Sheet</h3>
+                                            </div>
+                                            <hr>
+                                
+                                    <div class="form-group"><label for="full-name" class=" form-control-label">Full Name:</label>
+                                        <div class="input-group">
+                                           
+                                           <div> <input type="text" id="Lname" name="username" placeholder="Last Name" class="form-control col col-sm-11" ></div>
+                                          
+                                           <div> <input type="text" id="Fname" name="username" placeholder="First Name" class="form-control col col-sm-11"></div>
+                                            
+                                            <div><input type="text" id="Mname" name="username" placeholder="Middle Name" class="form-control col col-sm-12"></div>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group"><label for="full-name" class=" form-control-label">ID Number:</label><input type="text" name="srcode"  class="form-control "  placeholder="ID Number"  maxlength="20" required > </div>
+                                        </div>
+                                               
+
+                                  
+                                        <div class="col-6">
+                                          <div class="form-group"><label for="yearlevel" class=" form-control-label">Year Level:</label>
+                                                 <select name="select" id="select" class="form-control">
+                                                    <option>Select Year</option>
+                                                    <option value="1st Year">1st Year</option>
+                                                    <option value="2nd Year">2nd Year</option>
+                                                    <option value="3rd Year">3rd Year</option>
+                                                    <option value="4th Year">4th Year</option>
+                                                    <option value="5th Year">5th Year</option>
+                                               </select>
+                                             </div>
+                                          </div>
+                                        </div>    
+
+                                    <div class="form-group"><label for="program" class=" form-control-label">Program:</label><input type="text" name="program" pattern="[A-Za-z]{1,120}"  class="form-control col-7 " placeholder="Program" required></div>
+                                    <div class="form-group"> <label for="department" class=" form-control-label">Department:</label><input type="text" name="department" pattern="[A-Za-z]{1,120}"  class="form-control col-7 " placeholder="Department" required></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> <!-- .student info -->
+
+                        </div><!--/.col-->
+
+                 
+
+                <div class="col-lg-6">
+                     <div class="card">
+                            <div class="card-header"></div>
+
+                         <div class="card-body card-block">
+                             <div id="student-info">
+                                 <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">Personal Information </h3>
+                                        </div>
+                                        <hr><br>
+
+
+                                   
+                                        <div class="row form-group">
+                                            <div class="col-12 col-md-3"><label for="address" class=" form-control-label">Home Address:</label></div>
+                                            <div class="col-12 col-md-9"><input type="text" id="address" name="address"  class="form-control form-control-sm" placeholder="Enter your Address" required></div>
+                                        </div>
+
+                                          <div class="row form-group">
+                                            <div class="col-12 col-md-3"><label for="phone-number" class=" form-control-label">Tel. Number:</label></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="10" maxlength="10" name="phone-number" class="form-control  form-control-sm" placeholder="Tel Number" id="phone-number"></div>
+
+                                            <div class="col-12 col-md-3"><label for="mobile-number" class=" form-control-label">Mobile Number:</label></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile-number"class="form-control form-control-sm "  placeholder="Mobile Number" id="mobile-number" ></div>
+                                         </div>
+
+                                        <div class="row form-group">
+                                             <div class="col-12 col-md-3"><label for="address" class=" form-control-label">Email Address:</label></div>
+                                            <div class="col-12 col-md-9"><input type="email" id="email" name="address"  class="form-control form-control-sm" placeholder="Enter your Email Address" required></div>
+
+                                          
+                                         </div>
+                                         <br>
+                                        <div class="row form-group">  
+
+                                           <div class="col-12 col-md-1"><label for="age" class=" form-control-label">Age:</label></div>
+                                            <div class="col-12 col-md-2"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3" name="phone-number" class="form-control form-control-sm  "    placeholder="Age" id="age" ></div> 
+
+                                            <div class="col-12 col-md-1"><label for="sex" class=" form-control-label">Sex:</label></div>
+                                             <select id="sex" name="gender" class="form-control form-control-sm col-3" required>
+                                              <option value="None">None</option>
+                                              <option value="Male">Male</option>
+                                              <option value="Female">Female</option></select>
+
+                                                <div class="col-12 col-md-2"><label for="civil-status" class=" form-control-label" >Civil Status:</label></div>
+                                             <select id="civil-status" name="civil-status" class="form-control form-control-sm col-3" required>
+                                              <option value="single">Single</option>
+                                              <option value="married">Married</option>
+                                              <option value="divorced">Divorced</option>
+                                              <option value="seperated">Seperated</option>
+                                              <option value="widowed">Widowed</option></select>
+
+                                          
+                                        </div>
+                                         <div class="row form-group">
+                                          
+                                        </div>
+                                           
+                                          <div class="row form-group">
+
+                                            <div class="col-12 col-md-4"><label for="spouse" class=" form-control-label">Spouse's Name (if married):</label></div>
+                                            <div class="col-12 col-md-8"><input type="text" id="spouse" name="spouse"  class="form-control form-control-sm" placeholder="Name of Spouse" maxlength="50"></div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-12 col-md-4"><label for="religion" class=" form-control-label">Religion:</label></div>
+                                            <div class="col-12 col-md-8"><input type="text" id="religion" name="religion"  class="form-control form-control-sm" placeholder="Religion" pattern="[A-Za-z]{1,15}"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-lg-12">
+                     <div class="card">
+                            <div class="card-header"></div>
+
+                         <div class="card-body card-block">
+                             <div id="student-info">
+                                 <div class="card-body">
+                                        <div class="card-title">
+                                            <h3 class="text-center">Other Information </h3>
+                                        </div>
+                                        <hr><br>
+
+
+                                   
+                                        <div class="row form-group">
+                                            <div class="col-12 col-md-2"><label for="father" class=" form-control-label">Name of Father:</label></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="father" name="father"  class="form-control form-control-sm" placeholder="Father's Name" pattern="[A-Za-z.]{1,20}"required></div>
+
+                                            <div class="col-12 col-md-2"><label for="mother" class=" form-control-label">Name of Mother:</label></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="mother" name="mother"  class="form-control form-control-sm" placeholder="Mother's Name" pattern="[A-Za-z.]{1,20}" required></div>
+                                        </div>
+
+                                          <div class="row form-group">
+                                             <div class="col-12 col-md-2"><label for="age" class=" form-control-label">Age:</label></div>
+                                            <div class="col-12 col-md-2"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3" name="phone-number" class="form-control form-control-sm  "    placeholder="Age" id="age" ></div> 
+
+                                             <div class="col-12 col-md-2" style="margin-left:17%;"><label for="age" class=" form-control-label">Age:</label></div>
+                                            <div class="col-12 col-md-2"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3" name="phone-number" class="form-control form-control-sm  "    placeholder="Age" id="age" ></div> 
+
+                                            
+                                         </div>
+
+                                        <div class="row form-group">
+                                             
+                                            <div class="col-12 col-md-2"><label for="mobile-number" class=" form-control-label">Mobile Number:</label></div>
+                                            <div class="col-12 col-md-4"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile-number"class="form-control form-control-sm "  placeholder="Mobile Number" id="mobile-number" ></div>
+
+
+                                            <div class="col-12 col-md-2"><label for="mobile-number" class=" form-control-label">Mobile Number:</label></div>
+                                            <div class="col-12 col-md-4"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile-number"class="form-control form-control-sm "  placeholder="Mobile Number" id="mobile-number" ></div>
+                                          
+                                         </div>
+                                         
+                                        <div class="row form-group"> 
+                                            <div class="col-12 col-md-2"><label for="education" class=" form-control-label">Educational Attainment: </label></div>
+                                             <select id="education" name="education" class="form-control form-control-sm col-12 col-md-4" required>
+                                              <option value="None">None</option>
+                                              <option value="colgrad">College Graduate</option>
+                                              <option value="vocational">Vocational</option>
+                                              <option value="hsgrad">High School Graduate</option>
+                                              <option value="gsgrad">Grade School Graduate</option>
+                                              <option value="colu-grad">College Undergraduate</option>
+                                              <option value="hsu-grad">High School Underraduate</option></select>
+
+                                               <div class="col-12 col-md-2"><label for="education" class=" form-control-label">Educational Attainment: </label></div>
+                                             <select id="education" name="education" class="form-control form-control-sm col-12 col-md-4" required>
+                                              <option value="None">None</option>
+                                              <option value="colgrad">College Graduate</option>
+                                              <option value="vocational">Vocational</option>
+                                              <option value="hsgrad">High School Graduate</option>
+                                              <option value="gsgrad">Grade School Graduate</option>
+                                              <option value="colu-grad">College Undergraduate</option>
+                                              <option value="hsu-grad">High School Underraduate</option></select>
+
+                                          
+                                        </div>
+                                           
+                                          <div class="row form-group">
+
+                                            <div class="col-12 col-md-2"><label for="occupation" class=" form-control-label">Occupation:</label></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="occupation" name="occupation"  class="form-control form-control-sm" placeholder="Occupation" pattern="[A-Za-z]{1,20}" required></div>
+
+                                            <div class="col-12 col-md-2"><label for="occupation" class=" form-control-label">Occupation:</label></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="occupation" name="occupation"  class="form-control form-control-sm" placeholder="Occupation" pattern="[A-Za-z]{1,20}" required></div>
+                                        </div><br><br>
+
+                                         <div class="row form-group">
+
+                                            <div class="col-12 col-md-2"><label for="guardian" class=" form-control-label">Guardian's Name:</label></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="guardian" name="guardian"  class="form-control form-control-sm" placeholder="Guardian's Name" pattern="[A-Za-z.]{1,20}" required></div>
+
+                                            <div class="col-12 col-md-2"><label for="sex" class=" form-control-label">Relationship:</label></div>
+                                             <select id="education" name="education" class="form-control form-control-sm col-4" required>
+                                              <option value="None">None</option>
+                                              <option value="mother">Mother</option>
+                                              <option value="father">Father</option>
+                                              <option value="gmother">Grandmother</option>
+                                              <option value="gfather">Grandfather</option>
+                                              <option value="sibling">Sibling</option>
+                                              <option value="aunt/uncle">Aunt/Uncle</option>
+
+                                              </select>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-12 col-md-2"><label for="Gaddress" class=" form-control-label">Guardian Address:</label></div>
+                                            <div class="col-12 col-md-8"><input type="text" id="Gaddress" name="Gaddress"  class="form-control form-control-sm" placeholder="Enter your Guardian Address" required></div>
+                                        </div>
+                                         <div class="row form-group">
+                                        <div class="col-12 col-md-2"><label for="Gmobile-number" class=" form-control-label"> Guardian Mobile Number:</label></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile-number"class="form-control form-control-sm "  placeholder="Guardian Mobile Number" id="Gmobile-number" ></div>
+                                            </div><br><br><br>
+
+                                             <div class="card-title">
+                                            <h3 class="text-center">Siblings </h3>
+                                        </div>
+                                        
+                                                    <table class="table table-bordered" >
+                                                      <thead>
+                                                        <tr>
+                                                          <th style="min-width:33.33%">Name</th>
+                                                          <th style="min-width:33.33%">School/Company</th>
+                                                          <th style="min-width:33.33%">Age</th>
+                                                          <th style="min-width:33.33%">Contact Number</th>
+                                                          
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody id="myTable">
+                                                        <tr>
+                                                          <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent; min-width:100%" pattern="[A-Za-z.]{1,20}"></td>
+                                                          <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;min-width:100%"pattern="[A-Za-z.]{1,50}"></td>
+                                                          <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;min-width:100% " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3"></td>
+                                                          <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+
+                                                        </tr>
+                                                        <div></div>
+                                                        <tr>
+                                                        <td><input type="text" name="siblingname1" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,20}"></td>
+                                                          <td><input type="text" name="siblingschool1" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,50}"></td>
+                                                          <td><input type="text" name="siblingage1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3"></td>
+                                                          <td><input type="text" name="siblingcontact1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><input type="text" name="siblingname2" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,20}"></td>
+                                                          <td><input type="text" name="siblingschool2" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,50}"></td>
+                                                          <td><input type="text" name="siblingage2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3"></td>
+                                                          <td><input type="text" name="siblingcontact2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                        <td><input type="text" name="siblingname3" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,20}"></td>
+                                                          <td><input type="text" name="siblingschool3" style=" border:0;outline:0;background:transparent;min-width:100% "pattern="[A-Za-z.]{1,50}"></td>
+                                                          <td><input type="text" name="siblingage3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="2" maxlength="3"></td>
+                                                          <td><input type="text" name="siblingcontact3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                        </tr>
+                                          
+                                                      </tbody>
+                                                    </table><br><hr><br>
+
+
+
+                                                        <table class="table table-bordered">
+                                                          <thead>
+                                                            <tr>
+                                                              <th style="min-width:33.33%"></th>
+                                                              <th style="min-width:33.33%">Schools Attended</th>
+                                                              <th style="min-width:33.33%">Year Graduated</th>
+                                                              <th style="min-width:33.33%">Honors/Awards Received</th>
+                                                              
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td><b>Elementary</b></td>
+                                                              <td><input type="text"  name="elemschool" style=" border:0;outline:0;background:transparent; min-width:100%" pattern="[A-Za-z.]{1,20}" required></td>
+                                                              <td><input type="text" name="elemyeargraduated" style=" border:0;outline:0;background:transparent; min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="4" maxlength="4" required></td>
+                                                              <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50" required></td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td><b>High School</b></td>
+                                                              <td><input type="text" name="hsschool" style=" border:0;outline:0;background:transparent;min-width:100%" pattern="[A-Za-z.]{1,20}"></td>
+                                                              <td><input type="text" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="4" maxlength="4"></td>
+                                                              <td><input type="text" name="hshonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"></td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td><b>College</b></td>
+                                                              <td><input type="text" name="collegeschool" style=" border:0;outline:0;background:transparent;min-width:100%" pattern="[A-Za-z.]{1,20}"></td>
+                                                              <td><input type="text" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="4" maxlength="4"></td>
+                                                              <td><input type="text" name="collegehonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"  ></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                              <td><b>Others (please specify)</b></td>
+                                                              <td><input type="text" name="otherschool" style=" border:0;outline:0;background:transparent;min-width:100%" pattern="[A-Za-z.]{1,20}"></td>
+                                                              <td><input type="text" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="4" maxlength="4"></td>
+                                                              <td><input type="text" name="otherhonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"></td>
+                                                            </tr>
+                                                           
+                                                          </tbody>
+                                                        </table>
+                                                      </div>                             
+
+                                                     <button  type="submit" style="padding:15px;" class="btn btn-outline-success offset-md-5 col-md-2"><i class="fa fa-check-circle-o"></i>&nbsp; Create</button>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+       </form>         
+
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+
+
+
+        <div class="clearfix"></div>
+
+     
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+               
+ 	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Table Script -->
+	 <script src="js/lib/data-table/datatables.min.js"></script>
+    <script src="js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="js/lib/data-table/jszip.min.js"></script>
+    <script src="js/lib/data-table/vfs_fonts.js"></script>
+    <script src="js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="js/lib/data-table/buttons.print.min.js"></script>
+    <script src="js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="js/init/datatables-init.js"></script>
+     <!-- input restriction -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- input restriction -->
+   
+  
+  <script type="text/javascript">
+        $(document).ready(function() {
+          $('#bootstrap-data-table-export').DataTable();
+      } );
+  </script>
+
+  <script>
+function myCreateFunction() {
+    var result = 1;
+ 
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4= row.insertCell(3);
+    cell1.innerHTML = "<input type='text'>";
+    cell2.innerHTML = "<input type='text'>";
+    cell3.innerHTML = "<input type='text'>";
+    cell4.innerHTML = "<input type='text' name='"+ (result += result) + "'>";
+}
+
+function myDeleteFunction() {
+    document.getElementById("myTable").deleteRow(0);
+}
+
+jQuery(document).ready( function($) {
+ 
+    // Disable scroll when focused on a number input.
+    $('form').on('focus', 'input[type=number]', function(e) {
+        $(this).on('wheel', function(e) {
+            e.preventDefault();
+        });
+    });
+ 
+    // Restore scroll on number inputs.
+    $('form').on('blur', 'input[type=number]', function(e) {
+        $(this).off('wheel');
+    });
+ 
+    // Disable up and down keys.
+    $('form').on('keydown', 'input[type=number]', function(e) {
+        if ( e.which == 38 || e.which == 40 )
+            e.preventDefault();
+    });  
       
-<br><br><br><br>
-<script>
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-}
+});
 
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-}
 </script>
 
 
-<!-- Javascript -->
-<script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script> 
-  <script src="js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>
-
