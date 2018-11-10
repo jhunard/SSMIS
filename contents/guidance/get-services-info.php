@@ -30,11 +30,38 @@
        
    }
 ?>
+<?php
+    $idNumber = $_POST["idNumber"];
 
+      include '../connections/conn.php';
+
+      $sql2 = "SELECT * FROM student_record WHERE sr_code ='$idNumber'";
+      $result2 = $conn->query($sql2);
+
+          if ($result2->num_rows > 0) {
+              // output data of each row
+              while($row2 = $result2->fetch_assoc()) {
+                  $db_srcode = $row2["sr_code"];
+                    if($idNumber == $db_srcode ){
+                        $fname = $row2["fname"];
+                        $mname = $row2["mname"];
+                        $lname = $row2["lname"];
+                        $yearlevel = $row2["year_level"];
+                        $program = $row2["program"];
+                        $department = $row2["department"];
+                    }
+                }
+              } else {
+                echo "<script type='text/javascript'>
+                alert ('Your ". $idNumber ." has no matches in database kindly create the student information first to proceed!'); 
+                window.location.href='../guidance/student-information-sheet-form.php';</script>";
+              }
+
+?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Guidance</title>
+    <title>Services</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -69,7 +96,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Reports</a>
                         <ul class="sub-menu children dropdown-menu">
-                              <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
+                           <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="quarterly-report.php">Quarterly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="annual-report.php">Annual Report</a></li>
                         </ul>
@@ -113,8 +140,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                           
-
                             <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
@@ -126,146 +151,59 @@
      
  
 
-        <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                          <div class="card-header text-center">
-                                <strong class="card-title">Quarterly Report</strong>
-                            </div>
-                            <div class="card-body">
-                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                           
-                               <div class="form-row d-flex justify-content-center">
-                                 
-                                  <div class="col-2"><h4>Services</h4>
-                                  <select name="services" style="width:100%;">  
-                                  <?php
-                                  include '../connections/conn.php';
-
-                                        $sql = "SELECT * FROM services";
-                                        $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                                                  }
-                                                } else {
-                                                    echo "0 results";
-                                                }
-                            $conn->close();
-                            ?>
-                              </select>
-                                  
-                                </div>
-
-
-                                          <div class="col-1"><h4>Quarter/Sem</h4>
-                                                 <select name='month' style="width:80%;">
-                                                <option value="first">First</option>
-                                                <option value="second">Second</option>
-                                                <option value="summer">Summer</option>
-                                               </select>
-                                              </div>
-
-
-                                                <div class="col-1"><h4>Year</h4>
-                                                  <span>
-                                                <select name="year">
-                                                  <?php 
-                                                    $year = date('Y');
-                                                    $min = $year - 10;
-                                                    $max = $year;
-                                                    for( $i=$max; $i>=$min; $i-- ) {
-                                                      echo '<option value='.$i.'>'.$i.'</option>';
-                                                    }
-                                                  ?>
-                                        </select>
-                                      </span></div>
-                                      <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
-                                     </div>
-                                        
-                                  </form>
-
-<!-- table -->
-
-<div class="" style="margin-top:2%;">      
-  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-
-    <thead>
-      <tr>
-      <th>No.</th>
-        <th style="font-size:15px; min-width:70px;">ID Number</th>
-        <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
-        <th style="font-size:15px; min-width:80px;">Year Level</th>
-         <th style="font-size:15px; min-width:70px;">Program</th>
-         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
-          <th style="font-size:15px; min-width:70px;">Date</th>
-          <th style="font-size:15px; min-width:70px;">Type of Services</th>
-         <th style="font-size:15px; min-width:70px;">Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
+<div class="container">      
+ <div class="col-md-6">
+<form action='../connections/other-services-insert.php' method="post">
+<div class= "row">
+<style>
+    .border-remove{
+        border:none;
+    }
+</style>
+      Name : <input class='border-remove col-md-3' type="text" name="otherfName" value="<?php echo $fname;?>" readonly>
+      <input class='border-remove  col-md-3' type="text" name="othermName" value="<?php echo $mname;?>" readonly>
+      <input class='border-remove  col-md-4' type="text" name="otherlName" value="<?php echo $lname;?>" readonly>
+      ID No : <input class='border-remove col-md-10' type="text" name="othersrCode" value="<?php echo $db_srcode;?>" readonly>
+      Year Level : <input class='border-remove col-md-10' type="text" name="otheryearlevel" value="<?php echo $yearlevel;?>" readonly>
+      Program : <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly>
+      Department : <input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly>
+</div>
+    <br><br><br>    
+   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br>
+   Service Type : <select class="col-md-8" name="services" style="width:80%;">  
+      <?php
       include '../connections/conn.php';
 
-      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
-        $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
-      }else{
-        $graph_month=$_POST["month"];
-        $graph_year=$_POST["year"];
-        $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
-      }
-     
-            $sql=$querryhere;
+            $sql = "SELECT * FROM services";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                      $count += 1;
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
+                        if (empty($row['status'])){
+                          $status = '';
+                        }else{
+                          $status = 'disabled';
+                        }
+                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
                       }
                     } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
+                        echo "0 results";
                     }
 $conn->close();
 ?>
-     
-    </tbody>
-  </table>
-               </div>
-                   </div>
-                  </div>
+  </select><br>
+    <a style="font-size:18px;">Reason: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;" required></a>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input type='submit' class="btn btn-success" name='Add' value='Add'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+
+
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
@@ -277,7 +215,8 @@ $conn->close();
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-               
+
+
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
@@ -303,3 +242,4 @@ $conn->close();
   </script>
 </body>
 </html>
+

@@ -63,7 +63,7 @@
                   
                     <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
                      <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
-                        <li> <a href="services.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
+                        <li> <a href="services-add.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
                     
                     
                     <li class="menu-item-has-children dropdown">
@@ -78,7 +78,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="">Add Services</a></li>
+                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
                             <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
                             <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
                         </ul>

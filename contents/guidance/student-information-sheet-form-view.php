@@ -162,7 +162,7 @@ if ($result->num_rows > 0) {
                   
                     <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
                      <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
-                        <li> <a href="services.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
+                        <li> <a href="services-add.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
                     
                     
                     <li class="menu-item-has-children dropdown">

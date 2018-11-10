@@ -63,7 +63,7 @@
                   
                     <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
                      <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
-                        <li> <a href="services.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
+                        <li> <a href="services-add.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
                     
                     
                     <li class="menu-item-has-children dropdown">
@@ -78,7 +78,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="">Add Services</a></li>
+                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
                             <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
                             <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
                         </ul>
@@ -131,55 +131,46 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header text-center">
-                                <strong class="card-title">List of Students</strong>
+                                <strong class="card-title">List of Available Services</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                		 <div class="float-right">
 								       <div class="" style="margin-right:20px">
-								       <a href="add-services-record.php"> <button type="button" class="btn btn-sm btn-success" style="">Add</button></a> 
-								       <a href="services-index.php"> <button type="button" class="btn btn-sm btn-primary">Update</button></a> 
+								       <a href="add-services-record.php"> <button type="button" class="btn btn-sm btn-success" style="">Add</button></a>
 								       </div>   
 								   		 </div>
                                    <thead>
       <tr>
       <th>No.</th>
-        <th>ID Number</th>
-        <th>Name</th>
-        <th>Year Level</th>
-         <th>Program</th>
-         <th>Department</th>
-          <th>Services</th>
+        <th>Services</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM graph_data ORDER BY lname ASC";
+            $sql = "SELECT * FROM services ORDER BY id ASC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                        $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                        if ($row["status"] = 0){
+                            $status = "Disabled";
+                        }else{
+                            $status = "Enabled";
+                        }
                         $count += 1;
                         echo "<tr>
                         <td>".$count."</td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
+                        <td>".$row["services"]."</td>
+                        <td>".$status."</td>
                       </tr>";
                       }
                     } else {
                       echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>

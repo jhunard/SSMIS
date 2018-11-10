@@ -34,7 +34,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Guidance</title>
+    <title>Services</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -69,7 +69,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Reports</a>
                         <ul class="sub-menu children dropdown-menu">
-                              <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
+                           <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="quarterly-report.php">Quarterly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="annual-report.php">Annual Report</a></li>
                         </ul>
@@ -113,8 +113,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                           
-
                             <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
@@ -129,110 +127,45 @@
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
+
                     <div class="col-md-12">
                         <div class="card">
-                          <div class="card-header text-center">
-                                <strong class="card-title">Quarterly Report</strong>
+                            <div class="card-header text-center">
+                                <strong class="card-title">List of Students</strong>
                             </div>
                             <div class="card-body">
-                             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                           
-                               <div class="form-row d-flex justify-content-center">
-                                 
-                                  <div class="col-2"><h4>Services</h4>
-                                  <select name="services" style="width:100%;">  
-                                  <?php
-                                  include '../connections/conn.php';
-
-                                        $sql = "SELECT * FROM services";
-                                        $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                                                  }
-                                                } else {
-                                                    echo "0 results";
-                                                }
-                            $conn->close();
-                            ?>
-                              </select>
-                                  
-                                </div>
-
-
-                                          <div class="col-1"><h4>Quarter/Sem</h4>
-                                                 <select name='month' style="width:80%;">
-                                                <option value="first">First</option>
-                                                <option value="second">Second</option>
-                                                <option value="summer">Summer</option>
-                                               </select>
-                                              </div>
-
-
-                                                <div class="col-1"><h4>Year</h4>
-                                                  <span>
-                                                <select name="year">
-                                                  <?php 
-                                                    $year = date('Y');
-                                                    $min = $year - 10;
-                                                    $max = $year;
-                                                    for( $i=$max; $i>=$min; $i-- ) {
-                                                      echo '<option value='.$i.'>'.$i.'</option>';
-                                                    }
-                                                  ?>
-                                        </select>
-                                      </span></div>
-                                      <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
-                                     </div>
-                                        
-                                  </form>
-
-<!-- table -->
-
-<div class="" style="margin-top:2%;">      
-  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-
-    <thead>
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                               		 <div class="float-right">
+								       <div class="" style="margin-right:20px">
+								       <button data-toggle="modal" data-target="#addservices" type="button" class="btn btn-sm btn-success " >Add</button>
+								       </div>   
+								   		 </div>
+                                   <thead>
       <tr>
       <th>No.</th>
-        <th style="font-size:15px; min-width:70px;">ID Number</th>
-        <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
-        <th style="font-size:15px; min-width:80px;">Year Level</th>
-         <th style="font-size:15px; min-width:70px;">Program</th>
-         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
-          <th style="font-size:15px; min-width:70px;">Date</th>
-          <th style="font-size:15px; min-width:70px;">Type of Services</th>
-         <th style="font-size:15px; min-width:70px;">Reason</th>
+        <th>ID Number</th>
+        <th>Name</th>
+        <th>Year Level</th>
+         <th>Program</th>
+         <th>Department</th>
+          <th>Services</th>
+          <th>Date Filled</th>
+          <th>Reason</th>
       </tr>
     </thead>
     <tbody>
     <?php
       include '../connections/conn.php';
 
-      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
-        $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
-      }else{
-        $graph_month=$_POST["month"];
-        $graph_year=$_POST["year"];
-        $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
-      }
-     
-            $sql=$querryhere;
+            $sql = "SELECT * FROM graph_data ORDER BY lname ASC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
                       $mname = $row["mname"];
-                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                      $count += 1;
+                        $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                        $count += 1;
                         echo "<tr>
                         <td>".$count."</td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
@@ -240,16 +173,13 @@
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
                         <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
+                      </tr>";
                       }
                     } else {
                       echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
@@ -260,12 +190,11 @@
                     }
 $conn->close();
 ?>
-     
     </tbody>
   </table>
-               </div>
-                   </div>
-                  </div>
+</div>
+
+
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
@@ -277,7 +206,35 @@ $conn->close();
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-               
+
+    <!-- Add Services-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="addservices">
+  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
+    <div class="modal-content" >
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
+      <h4 class="col-11 modal-title text-center">Add Services</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <form action='get-services-info.php' method="post">
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input type='submit' class="btn btn-success" name='Add' value='Verify'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
