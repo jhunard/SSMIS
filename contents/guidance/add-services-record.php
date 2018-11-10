@@ -172,11 +172,11 @@ $conn->close();
                                     
                                     <button type="button" data-toggle="modal" data-target="#services" type="button" class="btn btn-sm btn-success " style="padding:10px;">Add Service</button>
 
-                                    <button type="button"button type="button" class="btn btn-sm btn-primary " style="padding:10px;" data-toggle="modal" data-target="#enable" >Enable</button>
+                                    <button type="button"button type="button" class="btn btn-sm btn-primary " style="padding:10px;" data-toggle="modal" data-target="#enable" >Enable Services</button>
 
-                                    <button type="button" class="btn btn-sm btn-dark " style="padding:10px;" data-toggle="modal" data-target="#disable" >Disable</button>
+                                    <button type="button" class="btn btn-sm btn-dark " style="padding:10px;" data-toggle="modal" data-target="#disable" >Disable Services</button>
 
-                                    <a href=""> <button type="button" class="btn btn-sm btn-danger " style="padding:10px;">Delete Service</button></a> 
+                                    <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger " style="padding:10px;">Delete Service</button>
                                     
                                         </div>
                                         
@@ -213,11 +213,10 @@ $conn->close();
       </div>
            <!-- Modal body -->
       <div class="modal-body">
-      <h4>List of Enabled Services</h4>
       <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services WHERE status = '0'";
+            $sql = "SELECT * FROM services WHERE 1";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -228,44 +227,18 @@ $conn->close();
                         }else{
                           $status = "checked";
                         }
-                        $count += 1;
-                        echo $count.". &nbsp;".$row["services"]."<br>";
+                        echo $row["id"].". &nbsp;".$row["services"]."<br>";
                       }
                     } else {
                         echo "0 results";
                     }
 $conn->close();
 ?>
-<br><br>
-<h4>List of Disabled Services</h4>
-      <?php
-      include '../connections/conn.php';
-
-            $sql = "SELECT * FROM services WHERE status = '1'";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if(empty($row["status"])){
-                          $status = " ";
-                        }else{
-                          $status = "checked";
-                        }
-                        $count1 += 1;
-                        echo $count1.". &nbsp;".$row["services"]."<br>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?><br><br>
-
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-services" >Add Services</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-services" data-dismiss="modal">Add Services</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
 
@@ -280,12 +253,11 @@ $conn->close();
   <form  action="../connections/enable.php" method="POST" enctype="multipart/form-data">
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
-        <h4 class="col-11 modal-title text-center">Enable Services</h4>
+        <h4 class="col-11 modal-title text-center">List of Disabled Services</h4>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-      <h4>List of Disabled Services</h4>
       <?php
       include '../connections/conn.php';
 
@@ -312,7 +284,7 @@ $conn->close();
 
       <!-- Modal footer -->
       <div class="modal-footer">
-       <button type="submit" name="submit" class="btn btn-sm btn-primary " style="padding:10px;">Enable</button>
+       <button type="submit" name="submit" class="btn btn-sm btn-primary " style="padding:10px;">Enable Services</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" style="padding:10px;">Cancel</button>
       </div>
   </form>
@@ -328,7 +300,7 @@ $conn->close();
   <form  action="../connections/disable.php" method="POST" enctype="multipart/form-data">
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
-        <h4 class="col-11 modal-title text-center">List of Services</h4>
+        <h4 class="col-11 modal-title text-center">List of Enabled Services</h4>
       </div>
 
       <!-- Modal body -->
@@ -336,7 +308,7 @@ $conn->close();
       <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services WHERE status = '0'";
+            $sql = "SELECT * FROM services WHERE status = '0' AND id != 1";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -359,7 +331,7 @@ $conn->close();
 
       <!-- Modal footer -->
       <div class="modal-footer">
-       <button type="submit" name="submit" class="btn btn-sm btn-dark "  style="padding:10px;">Disable</button>
+       <button type="submit" name="submit" class="btn btn-sm btn-dark "  style="padding:10px;">Disable Services</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal"  style="padding:10px;">Cancel</button>
       </div>
   </form>
@@ -394,7 +366,51 @@ $conn->close();
     </div>
   </div>
 </div>
+<!--Delete-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="delete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+  <form  action="../connections/delete.php" method="POST" enctype="multipart/form-data">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
+        <h4 class="col-11 modal-title text-center">List of Services</h4>
+      </div>
 
+      <!-- Modal body -->
+      <div class="modal-body">
+      <?php
+      include '../connections/conn.php';
+
+            $sql = "SELECT * FROM services WHERE 1";
+            $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        if(empty($row["status"])){
+                          $status = " ";
+                        }else{
+                          $status = "checked";
+                        }
+                        $count += 1;
+                        echo "<input type='radio' name='disable' value='".$row["services"]."'>&nbsp;".$row["services"]."<br>";
+                      }
+                    } else {
+                        echo "0 results";
+                    }
+$conn->close();
+?>
+   </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+       <button type="submit" name="submit" class="btn btn-sm btn-warning"  style="padding:10px;">Delete Services</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"  style="padding:10px;">Cancel</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
     <!-- Right Panel -->
                
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>

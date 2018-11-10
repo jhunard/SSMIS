@@ -2,7 +2,7 @@
  include '../connections/conn.php';
  $querry = $_POST['disable'];
 
-             $sql = "UPDATE services SET status ='1' WHERE services='$querry'";
+             $sql = "DELETE FROM services WHERE services='$querry'";
 
             if ($conn->query($sql) === TRUE) {
                 echo "<script type='text/javascript'>
