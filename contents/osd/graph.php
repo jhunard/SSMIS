@@ -53,7 +53,22 @@
  $monthvalue= $_GET["monthvalue"];
  $yearvalue= $_GET["yearvalue"];
  $lyearvalue = $yearvalue - 1;
-include '../connections/graph-querry.php';
+ $status = $_GET["status"];
+
+ switch ($status) {
+    case "1":
+    include '../connections/graph-querry-osd.php';
+        break;
+    case "2":
+    include '../connections/graph-querry-osd-quarter.php';
+        break;
+    case "3":
+    include '../connections/graph-querry-osd-annual.php';
+        break;
+    default:
+      
+}
+
  ?>
 
 <head>
@@ -141,7 +156,7 @@ include '../connections/graph-querry.php';
         <!-- /#header -->     
         <!-- Content -->
         <br><br>
-        <h4 class='col-md-12'><?php echo $servicesvalue;?> on Month of <?php echo $monthvalue;?> on Year <?php echo $yearvalue;?></h4>
+        <h4 class='col-md-12'><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?></h4>
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">

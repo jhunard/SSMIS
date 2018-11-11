@@ -178,7 +178,7 @@ if ($result->num_rows > 0) {
             $sql5 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason1', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql5) === TRUE) {
-                include 'save-xml-data.php';
+                
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
                 window.location.href='../guidance/index.php';</script>";
@@ -250,7 +250,7 @@ if ($result->num_rows > 0) {
             $sql6 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$dateToday', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql6) === TRUE) {
-                include 'save-xml-data.php';
+                
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
                 window.location.href='../guidance/index.php';</script>";

@@ -189,43 +189,6 @@
                         </div><!-- .card -->
                     </div><!-- .col -->
 
-                    <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header"></div>
-                                <div class="card-body">
-                                    <!-- Student info -->
-                                    <div id="student-info">
-                                        <div class="card-body">
-                                            <div class="card-title">
-                                                <h3 class="text-center">  System Settings</h3>
-                                            </div>
-                                            <hr>
-
-
-                                   
-
-                                <div class="row form-group">
-                                <form action="../connections/system-settings.php" method="post" enctype="multipart/form-data">
-                                          <div class="col-12 col-md-5"><label for="newpass" class=" form-control-label">Change Logo:</label></div>
-                                       <div class="col-12 col-md-4"> <input type="file" name="fileToUpload" id="fileToUpload" required></div>
-                                    </div>  
-                                    <button type="submit"  type="button" class="btn btn-sm btn-success " style="padding:10px; ">Proceed</button>
-                                </form>  
-
-
-                                        
-                                      
-
-                                </div><!-- .card body -->
-                            </div> <!-- .info -->
-
-                        </div><!--/.cardbody-->
-                        </div><!-- .card -->
-                    </div><!-- .col -->
-
-
-
-
                  
 
            </div>    
