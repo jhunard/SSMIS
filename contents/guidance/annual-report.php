@@ -160,7 +160,7 @@
                                   <?php
                                   include '../connections/conn.php';
 
-                                        $sql = "SELECT * FROM services";
+                                        $sql = "SELECT * FROM services WHERE services != 'Student Information Sheet'";
                                         $result = $conn->query($sql);
 
                                             if ($result->num_rows > 0) {
@@ -239,7 +239,7 @@
         $lastyear= date("y") + 1;
        $graph_year= date("y")."-".$lastyear;
         $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
+       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By lname";
       }else{
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
