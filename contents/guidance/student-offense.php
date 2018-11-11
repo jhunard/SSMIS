@@ -150,7 +150,7 @@
             <div class="animated fadeIn">
                 <div class="row">
 
-                    <div class="col col-md-10 offset-md-2">
+                    <div class="col col-md-12">
                         <div class="card">
                             <div class="card-header text-center">
                                 <strong class="card-title">Student Offenses</strong>

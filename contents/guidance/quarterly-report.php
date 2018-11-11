@@ -221,8 +221,8 @@
                                     <span style='color:#235a81;'>Search >></span>
                                     <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
                                     <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
-                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value=".$year."' readonly><span style='color:#235a81;'>>> </span>
-                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph-quarterly.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
                                     ";
                                 }
                                     
@@ -245,7 +245,7 @@
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
+        $graph_month='first';
         $graph_year= date("Y");
         $graph_services= 'Student Informartion Sheet';
        $querryhere = "SELECT * FROM graph_data Order By lname";

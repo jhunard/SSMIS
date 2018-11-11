@@ -50,10 +50,10 @@
 ?>
 <?php 
  $servicesvalue= $_GET["servicesvalue"];
- $monthvalue= $_GET["monthvalue"];
  $yearvalue= $_GET["yearvalue"];
- $lyearvalue = $yearvalue - 1;
-include '../connections/graph-querry.php';
+ $lastyear= date("y") - 1;
+ $lyearvalue= $lastyear."-".date("y");
+include '../connections/graph-annual.php';
  ?>
 
 <head>
@@ -147,7 +147,7 @@ include '../connections/graph-querry.php';
         <!-- /#header -->     
         <!-- Content -->
         <br><br>
-        <h4 class='col-md-12'><?php echo $servicesvalue;?> on Year <?php echo $yearvalue;?></h4>
+        <h4 class='col-md-12'><?php echo $servicesvalue;?> on <?php echo $month;?> Quarter on Year <?php echo $yearvalue;?></h4>
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">

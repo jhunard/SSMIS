@@ -194,8 +194,7 @@
                                                 <option value="08-09">2008-2009</option></select>
                                             </div>
                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
-                                     </div>
+                                      </div>
                                         
                                   </form>
 
@@ -203,6 +202,21 @@
 
 <div class="" style="margin-top:2%;">      
   <table id="bootstrap-data-table" class="table table-striped table-bordered">
+  <?php
+                                $services = $_POST["services"];
+                                 $year = $_POST["year"];
+                                if(empty($services) || empty( $year) ){
+                                    echo "";
+                                }else{
+                                    echo "
+                                    <span style='color:#235a81;'>Search >></span>
+                                    <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph-annual.php?servicesvalue=".$services."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    ";
+                                }
+                                    
+                                ?>
 
     <thead>
       <tr>
@@ -222,15 +236,14 @@
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
-        $graph_year= date("Y");
+        $lastyear= date("y") + 1;
+       $graph_year= date("y")."-".$lastyear;
         $graph_services= 'Student Informartion Sheet';
        $querryhere = "SELECT * FROM graph_data Order By lname";
       }else{
-        $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE school_year='$graph_year' && services='$graph_services' Order By lname ";
       }
      
             $sql=$querryhere;
