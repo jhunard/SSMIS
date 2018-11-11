@@ -19,6 +19,7 @@
       $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
+              
               // output data of each row
               while($row = $result->fetch_assoc()) {
                   $img = $row["img"];
@@ -47,40 +48,18 @@
                       }
       
 ?>
+<?php 
+ $servicesvalue= $_GET["servicesvalue"];
+ $monthvalue= $_GET["monthvalue"];
+ $yearvalue= $_GET["yearvalue"];
+ $lyearvalue = $yearvalue - 1;
+include '../connections/graph-querry.php';
+ ?>
 
-<?php
-    $idNumber = $_POST["idNumber"];
-
-      include '../connections/conn.php';
-
-      $sql2 = "SELECT * FROM student_record WHERE sr_code ='$idNumber'";
-      $result2 = $conn->query($sql2);
-
-          if ($result2->num_rows > 0) {
-              // output data of each row
-              while($row2 = $result2->fetch_assoc()) {
-                  $db_srcode = $row2["sr_code"];
-                    if($idNumber == $db_srcode ){
-                        $fname = $row2["fname"];
-                        $mname = $row2["mname"];
-                        $lname = $row2["lname"];
-                        $yearlevel = $row2["year_level"];
-                        $program = $row2["program"];
-                        $department = $row2["department"];
-                    }
-                }
-              } else {
-                echo "<script type='text/javascript'>
-                alert ('Your ". $idNumber ." has no matches in database kindly create the student information first to proceed!'); 
-                window.location.href='../guidance/student-information-sheet-form.php';</script>";
-              }
-
-?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Services</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <title>Guidance| Reports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -90,18 +69,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-    
-
-
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Left Panel -->
-    <aside id="left-panel" class="left-panel ">
+     <aside id="left-panel" class="left-panel ">
         <nav class="navbar  navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -170,97 +143,184 @@
         <!-- /#header -->
         <!-- /#header -->
      
- 
+     
+        <!-- /#header -->     
+        <!-- Content -->
+        <br><br>
+        <h4 class='col-md-12'><?php echo $servicesvalue;?> on Month of <?php echo $monthvalue;?> on Year <?php echo $yearvalue;?></h4>
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                  <!-- Jhunard BarChart-->
 
-<div class="container">      
- <div class="col-md-6">
-<form action='../connections/other-services-insert.php' method="post">
-<div class= "row">
-<style>
-    .border-remove{
-        border:none;
-    }
-</style>
-      Name : <input class='border-remove col-md-3' type="text" name="otherfName" value="<?php echo $fname;?>" readonly>
-      <input class='border-remove  col-md-3' type="text" name="othermName" value="<?php echo $mname;?>" readonly>
-      <input class='border-remove  col-md-4' type="text" name="otherlName" value="<?php echo $lname;?>" readonly>
-      ID No : <input class='border-remove col-md-10' type="text" name="othersrCode" value="<?php echo $db_srcode;?>" readonly>
-      Year Level : <input class='border-remove col-md-10' type="text" name="otheryearlevel" value="<?php echo $yearlevel;?>" readonly>
-      Program : <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly>
-      Department : <input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly>
-</div>
-    <br><br><br>    
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br>
-   Service Type : <select class="col-md-8" name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
-
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if (empty($row['status'])){
-                          $status = '';
-                        }else{
-                          $status = 'disabled';
-                        }
-                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;" required></a>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Add'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mb-3">Bar Graph </h4>
+                                <canvas id="barGraph"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
 
 
+                    <!-- Jhunard LineChart--> 
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mb-3">Line Graph </h4>
+                                <canvas id="lineGraph"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+
+                      <!-- Jhunard LineChart--> 
+                    <div class="col-lg-6 offset-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mb-3">Pie Graph </h4>
+                                <canvas id="pieGraph"></canvas>
+                            </div>
+                        </div>
+                    </div><!-- /# column -->
+
+                 
                 </div>
+
             </div><!-- .animated -->
-        </div><!-- .content -->
-
-
+        </div>
+        <!-- /.content -->
         <div class="clearfix"></div>
 
-     
-    </div><!-- /#right-panel -->
-
-    <!-- Right Panel -->
+    </div>
+    <!-- /#right-panel -->
 
 
- 	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+
+
+    <!-- Scripts -->
+     <!--  Chart js -->
+     <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script> 
+  <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/mdb.min.js"></script>
+     <script src="js/mdb.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="js/main.js"></script>
+   
+<!-- Jhuanard BarChart -->
+ <script>
+  //bar
+  var ctxB = document.getElementById("barGraph").getContext('2d');
+  var myBarChart = new Chart(ctxB, {
+    type: 'bar',
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      datasets: [{
+        label: 'Counts of Student',
+        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 
-    <!-- Table Script -->
-	 <script src="js/lib/data-table/datatables.min.js"></script>
-    <script src="js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="js/lib/data-table/jszip.min.js"></script>
-    <script src="js/lib/data-table/vfs_fonts.js"></script>
-    <script src="js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="js/lib/data-table/buttons.print.min.js"></script>
-    <script src="js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="js/init/datatables-init.js"></script>
-  
-  <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-  </script>
+</script>
+<!-- Jhunard Line Chart -->
+<script>
+  //line
+  var ctxL = document.getElementById("lineGraph").getContext('2d');
+  var myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      datasets: [{
+          label: "Present Year",
+          data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
+          backgroundColor: [
+            'rgba(105, 0, 132, .2)',
+          ],
+          borderColor: [
+            'rgba(200, 99, 132, .7)',
+          ],
+          borderWidth: 2
+        },
+        {
+          label: "Last Year",
+          data: [<?php echo $ljanuary;?>,<?php echo $lfebruary;?>,<?php echo $lmarch;?>,<?php echo $lapril;?>,<?php echo $lmay;?>,<?php echo $ljune;?>,<?php echo $ljuly;?>,<?php echo $laugust;?>,<?php echo $lseptember;?>,<?php echo $loctober;?>,<?php echo $lnovember;?>,<?php echo $ldecember;?>,],
+          backgroundColor: [
+            'rgba(0, 137, 132, .2)',
+          ],
+          borderColor: [
+            'rgba(0, 10, 130, .7)',
+          ],
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true
+    }
+  });
+
+</script>
+
+<!-- Jhunard Pie Graph -->
+
+<script>
+  //pie
+  var ctxP = document.getElementById("pieGraph").getContext('2d');
+  var myPieChart = new Chart(ctxP, {
+    type: 'pie',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      datasets: [{
+        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
+        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+
+</script>
+
+
 </body>
 </html>
-

@@ -3,7 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-
 <?php
  session_start();
  $user = $_SESSION["user"];
@@ -27,14 +26,33 @@
               } else {
                   echo "0 results";
               }
+
        
    }
 ?>
+<?php
+ 
+      include '../connections/conn.php';
+
+              $sql2 = "SELECT * FROM system_settings ORDER BY id ASC";
+              $result2 = $conn->query($sql2);
+        
+                  if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while($row2 = $result2->fetch_assoc()) {
+                          $system_img = $row2["picture"];
+                        }
+                      } else {
+                          echo "0 results";
+                      }
+      
+?>
+
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Guidance</title>
+    <title>Guidance | Monthly Reports</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,7 +74,7 @@
 
 <body>
     <!-- Left Panel -->
-    <aside id="left-panel" class="left-panel ">
+     <aside id="left-panel" class="left-panel ">
         <nav class="navbar  navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -79,11 +97,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
-                            <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
+                            <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>
                         </ul>
                     </li>
-                     <li> <a href=""> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
+                     <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
 
                     
                 </ul>
@@ -97,7 +115,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -115,13 +133,14 @@
                         <div class="user-menu dropdown-menu">
                            
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="../connections/logout.php"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </header>
+        <!-- /#header -->
         <!-- /#header -->
      
  
@@ -139,7 +158,7 @@
                            
                                <div class="form-row d-flex justify-content-center">
                                  
-                                  <div class="col-2"><h4>Services</h4>
+                                  <div class="col-2"><h4><span style="color:#235a81;">Services</span></h4><br>
                                   <select name="services" style="width:100%;">  
                                   <?php
                                   include '../connections/conn.php';
@@ -162,7 +181,7 @@
                                 </div>
 
 
-                                        <div class="col-1"><h4>Month</h4>
+                                        <div class="col-1"><h4><span style="color:#235a81;">Month</span></h4><br>
                                         <span><select name="month">
                                           <?php for( $m=1; $m<=12; ++$m ) { 
                                             $month_label = date('F', mktime(0, 0, 0, $m, 1));?>
@@ -173,7 +192,7 @@
                                       </div>
 
 
-                                        <div class="col-1"><h4>Year</h4>
+                                        <div class="col-1"><h4><span style="color:#235a81;">Year</span></h4><br>
                                           <span>
                                         <select name="year">
                                           <?php 
@@ -186,17 +205,32 @@
                                           ?>
                                         </select>
                                       </span></div>
-                                      <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
+                                      <div class="col-1" style="margin-top:25px;padding:15px;"><button type="submit" class="btn btn-success ">Show Information</button></div>
                                      </div>
-                                        
-                                  </form>
+                                     </form>
 
 <!-- table -->
 
 <div class="" style="margin-top:2%;">      
-  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-
+  <table id="bootstrap-data-table" class="table table-striped table-bordered">       
+                                <?php
+                                $services = $_POST["services"];
+                                $month = $_POST["month"];
+                                $year = $_POST["year"];
+                                if(empty($services) || empty($month) || empty( $year) ){
+                                    echo "";
+                                }else{
+                                    echo "
+                                    <span style='color:#235a81;'>Search >></span>
+                                    <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value=".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    ";
+                                }
+                                    
+                                ?>
+                                 
     <thead>
       <tr>
       <th>No.</th>

@@ -1,7 +1,7 @@
 <?php
 include 'conn.php';
 session_start();
-$user = ucfirst($_POST["username"]);
+$user = $_POST["username"];
 $pass = md5($_POST["password"]);
 
 

@@ -12,14 +12,14 @@
          
             
         }
-      $oldpass=$_POST["oldpass"];
-      $newpass=$_POST["newpass"];
-      $retypepass=$_POST["retypepass"];
+      $oldpass=md5($_POST["oldpass"]);
+      $newpass=md5($_POST["newpass"]);
+      $retypepass=md5($_POST["retypepass"]);
 
       if($newpass != $retypepass){
         echo "<script type='text/javascript'>
         alert ('Password not match!'); 
-        window.location.href='../guidance/settings-index.php';</script>";
+        window.location.href='../guidance/user-account.php';</script>";
       }
 
             $sql = "SELECT * FROM user_info WHERE username='$user' && password='$oldpass'";
@@ -34,18 +34,18 @@
                         if ($conn->query($sql) === TRUE) {
                           echo "<script type='text/javascript'>
                           alert ('Password Updated!'); 
-                          window.location.href='../guidance/settings-index.php';</script>";
+                          window.location.href='../guidance/user-account.php';</script>";
                             } else {
                           echo "<script type='text/javascript'>
                         alert ('Error in Changing Password'); 
-                        window.location.href='../guidance/settings-index.php';</script>";
+                        window.location.href='../guidance/user-account.php';</script>";
                             }  
 
                       }
                     } else {
                         echo "<script type='text/javascript'>
                         alert ('Old Password not match!'); 
-                        window.location.href='../guidance/settings-index.php';</script>";
+                        window.location.href='../guidance/user-account.php';</script>";
                     }
 $conn->close();
 ?>

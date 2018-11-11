@@ -49,37 +49,41 @@
 ?>
 
 <?php
-    $idNumber = $_POST["idNumber"];
-
+    $idNumber = $_GET["idNumber"];
       include '../connections/conn.php';
 
-      $sql2 = "SELECT * FROM student_record WHERE sr_code ='$idNumber'";
-      $result2 = $conn->query($sql2);
+      $sql = "SELECT * FROM student_record WHERE sr_code ='$idNumber'";
+      $result = $conn->query($sql);
 
-          if ($result2->num_rows > 0) {
+          if ($result->num_rows > 0) {
               // output data of each row
-              while($row2 = $result2->fetch_assoc()) {
-                  $db_srcode = $row2["sr_code"];
-                    if($idNumber == $db_srcode ){
-                        $fname = $row2["fname"];
-                        $mname = $row2["mname"];
-                        $lname = $row2["lname"];
-                        $yearlevel = $row2["year_level"];
-                        $program = $row2["program"];
-                        $department = $row2["department"];
-                    }
+              while($row = $result->fetch_assoc()) {
+                  $fname = $row["fname"];
+                  $mname = $row["mname"];
+                  $lname = $row["lname"];
+                  $idnumber = $row["sr_code"];
+                  $db_image = $row["image"];
+                  $department = $row["department"];
+                  $yearlevel = $row["year_level"];
+                  $program = $row["program"];
+                  $email = $row["email"];
+                  $address = $row["address"];
+                  $number = $row["mobile"];
+                  $status = $row["civilstatus"];
+                  $spouse = $row["spouse"];
                 }
               } else {
                 echo "<script type='text/javascript'>
-                alert ('Your ". $idNumber ." has no matches in database kindly create the student information first to proceed!'); 
+                alert ('ID Number". $idNumber ." unmatched! Please make Student Information First!'); 
                 window.location.href='../guidance/student-information-sheet-form.php';</script>";
               }
-
+       
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Services</title>
+    <title>Guidance</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -168,66 +172,107 @@
             </div>
         </header>
         <!-- /#header -->
-        <!-- /#header -->
      
- 
-
-<div class="container">      
- <div class="col-md-6">
-<form action='../connections/other-services-insert.php' method="post">
-<div class= "row">
-<style>
-    .border-remove{
-        border:none;
-    }
-</style>
-      Name : <input class='border-remove col-md-3' type="text" name="otherfName" value="<?php echo $fname;?>" readonly>
-      <input class='border-remove  col-md-3' type="text" name="othermName" value="<?php echo $mname;?>" readonly>
-      <input class='border-remove  col-md-4' type="text" name="otherlName" value="<?php echo $lname;?>" readonly>
-      ID No : <input class='border-remove col-md-10' type="text" name="othersrCode" value="<?php echo $db_srcode;?>" readonly>
-      Year Level : <input class='border-remove col-md-10' type="text" name="otheryearlevel" value="<?php echo $yearlevel;?>" readonly>
-      Program : <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly>
-      Department : <input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly>
+        <div class="container">
+   <div class="form-row text-center">
+      <div class="col-12"><h1>Student Information Updating Form</h1></div><br>
+   </div>
 </div>
-    <br><br><br>    
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br>
-   Service Type : <select class="col-md-8" name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services";
-            $result = $conn->query($sql);
+<!-- table -->
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if (empty($row['status'])){
-                          $status = '';
-                        }else{
-                          $status = 'disabled';
-                        }
-                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;" required></a>
+<div class="container" style="margin-top: 1em;">
+    <!-- UPDATE form -->
+    <form action="../connections/student-information-sheet-form-update.php" method="POST">
+        <!-- UPDATE card -->
+        <div class="card person-card">
+            <div class="card-body" style="margin-left:2%;">
+              
+                <!-- First row (on medium screen) -->
+                <img class="offset-md-7 col-md-3" src="images/<?php echo $db_image; ?>" alt="<?php echo $fname;?> Image is NOT AVAILABLE" style="position:absolute;">
+                <div class="row "><h6><b>Full Name:</b>&nbsp;<input type="text" name="fname"  class="form-control col-12" placeholder="First Name" value="<?php echo $fname;?>" required> <br>
+                <input type="text" name="mname"  class="form-control col-12" placeholder="Middle Name" value="<?php echo $mname;?>" required> <br>
+                 <input type="text" name="lname"  class="form-control col-12" placeholder="Last Name"  value="<?php echo $lname;?>" required> <br></h6><br> </div>
+                <div class="row "><h6><b>ID Number:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" value="<?php echo $idNumber;?>"  placeholder="ID Number"></h6><br></div>
+            </div> 
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6" style="padding=0.5em;">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Personal Information</h2>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Add'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      </div>
+                        <div class="form-group">
+                            <label for="program" class="col-form-label"><b>Program:</b></label>
+                            <input type="text" class="form-control" name="program" id="program"  value="<?php echo $program; ?>" placeholder="Program" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="input_year-level" class="col-form-label"><b>Year Level:</b></label>
+                            <select id="input_year-level"  name="yearlevel" class="form-control">
+                            <option value="<?php echo $yearlevel; ?>"><?php echo $yearlevel; ?></option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="5th Year">5th Year</option>
+                        </select>
+                        </div>
 
+                         <div class="form-group">
+                            <label for="input_dept" class="col-form-label"><b>Department:</b></label>
+                           <input type="text" class="form-control" name="department" id="department" value="<?php echo $department; ?>" placeholder="Department" required>
+                        </div>
+
+                        <div class="form-group">
+                             <label for="email" class="col-form-label"><b>Email Address:</b></label>
+                             <input type="email" name="email"  class="form-control" id="email" placeholder="example@email.com" value="<?php echo $email; ?>" required>
+                        </div>
+
+                    </div>
                 </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+              </div>
+    
+            
+
+
+              
+            <div class="col-md-6">
+                <div class="card"> 
+                    <div class="card-body">
+                        <h2 class="card-title">Other Information</h2>
+
+                        <div class="form-group">
+                             <label for="address" class="col-form-label"><b>Present Address:</b></label>
+                             <input type="text" name="address" class="form-control" id="address" value="<?php echo $address; ?>" placeholder="Enter your Present Address" required>
+                        </div>
+
+                       <div class="form-group">
+                             <label for="contact" class="col-form-label"><b>Contact Number:</b></label>
+                             <input type="number"  name="phone" class="form-control" value="<?php echo $number; ?>" id="contact" placeholder="+xxx - xxxx - xxx" required>
+                        </div>
+
+                        <div class="form-group">
+                             <label for="civil-status" class="col-form-label"><b>Civil Status:</b></label> 
+                             <input type="text"  name="status" class="form-control" value="<?php echo $status; ?>" id="civil-status" placeholder="Single" required>
+                        </div>
+
+                         <div class="form-group">
+                             <label for="name-spouse" class="col-form-label"><b>If Married, Name of Spouse:</b></label>
+                             <input type="text"  name="spouse" class="form-control" value="<?php echo $spouse; ?>" id="name-spouse" placeholder="Name of Spouse">
+                        </div>
+
+                      </div>
+                   </div>
+                </div>
+           
+        </div>
+        <div style="margin-top: 1em;">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button><br><br>
+        </div>
+</div>
+  </form>
 
 
         <div class="clearfix"></div>
@@ -237,7 +282,8 @@ $conn->close();
 
     <!-- Right Panel -->
 
-
+ 
+               
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
@@ -263,4 +309,3 @@ $conn->close();
   </script>
 </body>
 </html>
-
