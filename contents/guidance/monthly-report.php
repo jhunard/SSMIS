@@ -163,7 +163,7 @@
                                   <?php
                                   include '../connections/conn.php';
 
-                                        $sql = "SELECT * FROM services";
+                                        $sql = "SELECT * FROM services WHERE services != 'Student Information Sheet'";
                                         $result = $conn->query($sql);
 
                                             if ($result->num_rows > 0) {
@@ -251,13 +251,13 @@
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
         $graph_month=date("F");
         $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
+        $graph_services= 'Referal ';
+       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By lname";
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services'  Order By lname ";
       }
      
             $sql=$querryhere;

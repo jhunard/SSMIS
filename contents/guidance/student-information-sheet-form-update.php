@@ -190,10 +190,10 @@
               
                 <!-- First row (on medium screen) -->
                 <img class="offset-md-7 col-md-3" src="images/<?php echo $db_image; ?>" alt="<?php echo $fname;?> Image is NOT AVAILABLE" style="position:absolute;">
-                <div class="row "><h6><b>Full Name:</b>&nbsp;<input type="text" name="fname"  class="form-control col-12" placeholder="First Name" value="<?php echo $fname;?>" required> <br>
-                <input type="text" name="mname"  class="form-control col-12" placeholder="Middle Name" value="<?php echo $mname;?>" required> <br>
-                 <input type="text" name="lname"  class="form-control col-12" placeholder="Last Name"  value="<?php echo $lname;?>" required> <br></h6><br> </div>
-                <div class="row "><h6><b>ID Number:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" value="<?php echo $idNumber;?>"  placeholder="ID Number"></h6><br></div>
+                <div class="row "><h6><b>Full Name:</b>&nbsp;<input type="text" name="fname"  class="form-control col-12" placeholder="First Name" value="<?php echo $fname;?>" readonly> <br>
+                <input type="text" name="mname"  class="form-control col-12" placeholder="Middle Name" value="<?php echo $mname;?>" readonly> <br>
+                 <input type="text" name="lname"  class="form-control col-12" placeholder="Last Name"  value="<?php echo $lname;?>" readonly> <br></h6><br> </div>
+                <div class="row "><h6><b>ID Number:</b>&nbsp;<input type="text" class="form-control col-md-12" name="srcode" value="<?php echo $idNumber;?>"  placeholder="ID Number" readonly></h6><br></div>
             </div> 
         </div>
         

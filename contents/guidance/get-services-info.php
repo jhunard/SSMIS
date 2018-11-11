@@ -195,7 +195,7 @@
       <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services";
+            $sql = "SELECT * FROM services WHERE services != 'Student Information Sheet'";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {

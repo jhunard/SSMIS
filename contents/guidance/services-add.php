@@ -178,7 +178,7 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM graph_data ORDER BY id DESC";
+            $sql = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' ORDER BY id DESC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
