@@ -2,9 +2,9 @@
       include '../connections/conn.php';
 
        $services = $_POST["service"];   
-       $status = 1;    
+       $status = 0;    
 $sql = "INSERT INTO services (services,status)
-VALUES ('$services',"$status")";
+VALUES ('$services','$status')";
 
 if ($conn->query($sql) === TRUE) {
     echo "<script type='text/javascript'>
