@@ -48,12 +48,15 @@
       
 ?>
 
+<style> .links a:hover{color: #ffc107!important;}
+        .links a{font-size: 16px;}
+       
+</style>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Services</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <title>Guidance | User Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -63,25 +66,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     
-
 
 </head>
 
 <body>
     <!-- Left Panel -->
-     <aside id="left-panel" class="left-panel ">
+    <aside id="left-panel" class="left-panel ">
         <nav class="navbar  navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                   
                     <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
-                     <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
-                        <li> <a href="services-add.php"> <i class="menu-icon fa fa-gears"></i>Services </a>  </li>
                     
                     
                     <li class="menu-item-has-children dropdown">
@@ -96,9 +97,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
                             <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>
                         </ul>
                     </li>
                      <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
@@ -115,9 +114,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
-                    
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
@@ -141,84 +139,101 @@
             </div>
         </header>
         <!-- /#header -->
-        <!-- /#header -->
      
  
 
-        <div class="content">
+         <div class="content">
             <div class="animated fadeIn">
-                <div class="row">
+            <form action="../connections/change_pass.php" method="post" class="form">
+                    <div class="row">
+                       <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <!-- Student info -->
+                                    <div id="student-info">
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h3 class="text-center">  User Account Settings</h3>
+                                            </div>
+                                            <hr>
 
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <strong class="card-title">Student Log Book</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                               		 <div class="float-right">
-								       <div class="" style="margin-right:20px">
-								       <button data-toggle="modal" data-target="#addservices" type="button" class="btn btn-sm btn-success " >Add</button>
-								       </div>   
-								   		 </div>
-                                   <thead>
-      <tr>
-      <th>No.</th>
-        <th>ID Number</th>
-        <th>Name</th>
-        <th>Year Level</th>
-         <th>Program</th>
-         <th>Department</th>
-          <th>Services</th>
-          <th>Date Filled</th>
-          <th>Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      include '../connections/conn.php';
+                                    <div class="form-group"><label for="changepw" class=" form-control-label">Change Password:</label></div>
+                                     
+                                       
+                                    
 
-            $sql = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' ORDER BY id DESC";
-            $result = $conn->query($sql);
+                                    <div class="row form-group">
+                                          <div class="col-12 col-md-3"><label for="oldpass" class=" form-control-label">Old Password:</label></div>
+                                        <div class="col-12 col-md-4"> <input type="password" name="oldpass" class="form-control "></div>
+                                      </div>
+                                     
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                        $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                        $count += 1;
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td>".$row["sr_code"]."</td>
-                        <td>".$name."</a></td>
-                        <td>".$row["year_level"]."</td>
-                        <td>".$row["program"]."</td>
-                        <td>".$row["department"]."</td>
-                        <td>".$row["services"]."</td>
-                        <td>".$row["graph_date"]."</td>
-                        <td>".$row["reason"]."</td>
-                      </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
-$conn->close();
-?>
-    </tbody>
-  </table>
-</div>
+                                <div class="row form-group">
+                                          <div class="col-12 col-md-3"><label for="newpass" class=" form-control-label">New Password:</label></div>
+                                       <div class="col-12 col-md-4"> <input type="password" name="newpass" class="form-control">  </div>
+                                    </div>    
 
 
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+                                       <div class="row form-group">
+                                        <div class="col-12 col-md-3"><label for="retypepass" class=" form-control-label">Retype Password:</label></div>
+                                          <div class="col-12 col-md-4"><input type="password" name="retypepass" class="form-control"></div>
+                                        </div>
+                                        
+                                      <button type="submit"  type="button" class="btn btn-sm btn-success " style="padding:10px; ">Change Password</button>
+                                      </form>    
+                                </div><!-- .card body -->
+                            </div> <!-- .info -->
+
+                        </div><!--/.cardbody-->
+                        </div><!-- .card -->
+                    </div><!-- .col -->
+
+                    <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <!-- Student info -->
+                                    <div id="student-info">
+                                        <div class="card-body">
+                                            <div class="card-title">
+                                                <h3 class="text-center">  System Settings</h3>
+                                            </div>
+                                            <hr>
+
+
+                                   
+
+                                <div class="row form-group">
+                                <form action="../connections/system-settings.php" method="post" enctype="multipart/form-data">
+                                          <div class="col-12 col-md-5"><label for="newpass" class=" form-control-label">Change Logo:</label></div>
+                                       <div class="col-12 col-md-4"> <input type="file" name="fileToUpload" id="fileToUpload" required></div>
+                                    </div>  
+                                    <button type="submit"  type="button" class="btn btn-sm btn-success " style="padding:10px; ">Proceed</button>
+                                </form>  
+
+
+                                        
+                                      
+
+                                </div><!-- .card body -->
+                            </div> <!-- .info -->
+
+                        </div><!--/.cardbody-->
+                        </div><!-- .card -->
+                    </div><!-- .col -->
+
+
+
+
+                 
+
+           </div>    
+     
+      
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
 
 
         <div class="clearfix"></div>
@@ -227,57 +242,21 @@ $conn->close();
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
-    <!-- Add Services-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="addservices">
-  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
-    <div class="modal-content" >
-
-      <!-- Modal Header -->
-      <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
-      <h4 class="col-11 modal-title text-center">Add Services</h4>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <form action='get-services-info.php' method="post">
-      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Verify'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
- 	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+               
+  <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Table Script -->
-	 <script src="js/lib/data-table/datatables.min.js"></script>
-    <script src="js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="js/lib/data-table/jszip.min.js"></script>
-    <script src="js/lib/data-table/vfs_fonts.js"></script>
-    <script src="js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="js/lib/data-table/buttons.print.min.js"></script>
-    <script src="js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="js/init/datatables-init.js"></script>
   
-  <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-  </script>
+  
+     <!-- input restriction -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- input restriction -->
+   
+  
+ 
+
+
 </body>
 </html>

@@ -47,6 +47,29 @@
                       }
       
 ?>
+<?php
+$code=$_GET["code"];
+
+include '../connections/conn.php';
+
+$sql = "SELECT * FROM student_record WHERE sr_code='$code' ";
+$result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          $mname = $row["mname"];
+          $lname = $row["lname"];
+          $fname = $row["fname"];
+          $yearlevel = $row["year_level"];
+          $program = $row["program"];
+          $department = $row["department"];
+          $name = $lname . ", " . $fname ." ". $mname[0] .".";
+          $srcode = $row["sr_code"];
+            
+          }
+        }
+?>
 
 
 <head>
@@ -146,14 +169,13 @@
  <div class="col col-md-12">
                         <div class="card">
                             <div class="card-header text-center">
-                                <strong class="card-title">Student Offenses</strong>
+                                <strong class="card-title"><?php echo $name;?> Offense Record</strong>
                             </div>
                             <div class="card-body" >
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered " width="100%">
                                 <div class="float-right">
                                       <div class="" style="margin-right:20px">
-                                        <button data-toggle="modal" data-target="#add" type="button" class="btn btn-sm btn-success">Add Offense</button>
-                                        <button data-toggle="modal" data-target="#update" type="button" class="btn btn-sm btn btn-primary ">Update Offense</button>
+                                        <button data-toggle="modal" data-target="#update" type="button" class="btn btn-sm btn-primary">Update Offense</button>
                                       </div>   
                                     </div>
                                  <thead>
@@ -175,7 +197,7 @@
                                       <?php
                                         include '../connections/conn.php';
 
-                                              $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY lname ";
+                                              $sql = "SELECT * FROM student_offenses WHERE sr_code = '$code' && status != 'Finished' ORDER BY id DESC ";
                                               $result = $conn->query($sql);
 
                                                   if ($result->num_rows > 0) {
@@ -214,6 +236,7 @@
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
+                                                                <td style='text-align:center;'>-</td>
                                                                 ";
                                                           
                                                       }
@@ -235,61 +258,56 @@
 
     <!-- Right Panel -->
 
-       
-    <!--Update Offense-->
+  <!-- Update -->
 <div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="update">
-  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
-    <div class="modal-content" >
+  <div class="modal-dialog">
+    <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
-      <h4 class="col-11 modal-title text-center">Update Student Offense</h4>
+        <h4 class="col-11 modal-title text-center">Update Offenses</h4>
       </div>
 
       <!-- Modal body -->
+      <form action="../connections/offenseupdate.php" method="POST">
       <div class="modal-body">
-      <form action='update.php' method="GET">
-      <input class='rc col-md-12' type="text" name="code" placeholder="Enter ID No." required><br>
+      <div class="form-group">
+      <p>Check if the case resolved!</p>
+      <input type="text" name="srcode" value="<?php echo $srcode; ?>" hidden>
+      <?php
+ 
+      include '../connections/conn.php';
+
+      $sql = "SELECT * FROM student_offenses WHERE sr_code = '$srcode' && status = 'On Going'";
+      $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                echo "<input type='radio' name='offense' value='".$row["id"]."' required> ".$row["violation"]."<br>";
+                }
+              } else {
+                  echo "0 results";
+              }
+
+?>
+     
+      
+            </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <input type='submit' class="btn btn-success" Value='Verify'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-success" >Update</button>
+        </form>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
     </div>
   </div>
 </div>
 
-  
-    <!--Add Offense-->
-<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="add">
-  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
-    <div class="modal-content" >
 
-      <!-- Modal Header -->
-      <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
-      <h4 class="col-11 modal-title text-center">Add Student Offense</h4>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      <form action='verify.php' method="GET">
-      <input class='rc col-md-12' type="text" name="code" placeholder="Enter ID No." required><br>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-      <input type='submit' class="btn btn-success" Value='Verify'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>               
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>

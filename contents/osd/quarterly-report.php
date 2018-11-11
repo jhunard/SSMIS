@@ -3,7 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-
 <?php
  session_start();
  $user = $_SESSION["user"];
@@ -27,8 +26,26 @@
               } else {
                   echo "0 results";
               }
+
        
    }
+?>
+<?php
+ 
+      include '../connections/conn.php';
+
+              $sql2 = "SELECT * FROM system_settings ORDER BY id ASC";
+              $result2 = $conn->query($sql2);
+        
+                  if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while($row2 = $result2->fetch_assoc()) {
+                          $system_img = $row2["picture"];
+                        }
+                      } else {
+                          echo "0 results";
+                      }
+      
 ?>
 
 <head>
@@ -56,15 +73,14 @@
 
 <body>
     <!-- Left Panel -->
-      <aside id="left-panel" class="left-panel ">
+    <aside id="left-panel" class="left-panel ">
         <nav class="navbar  navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                   
-                      <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
-                      <li> <a href=""> <i class="menu-icon fa fa-plus-circle"></i>Add Offense </a>  </li>
-                       
-
+                    <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
+                    
+                    
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Reports</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -77,10 +93,11 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
+                            <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
                         </ul>
                     </li>
-                     <li> <a href=""> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
+                     <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
+
                     
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -93,9 +110,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
-                    
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
@@ -105,13 +121,13 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
                            
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="../connections/logout.php"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -135,18 +151,30 @@
                            
                                <div class="form-row d-flex justify-content-center">
                                  
-                             
-                                  <div class="col-2"><h4>Offense Type</h4>
-                                  <select name="services" style="width:80%;">  
-                                  <option value='Minor'>Minor Offenses</option>
-                                  <option value='Major'>Major Offenses</option>
-                                  </select>
-                                
+                                  <div class="col-2"><h4>Services</h4>
+                                  <select name="services" style="width:100%;">  
+                                  <?php
+                                  include '../connections/conn.php';
+
+                                        $sql = "SELECT * FROM services";
+                                        $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
+                                                  }
+                                                } else {
+                                                    echo "0 results";
+                                                }
+                            $conn->close();
+                            ?>
+                              </select>
                                   
                                 </div>
 
 
-                                         <div class="col-1"><h4>Quarter/Sem</h4>
+                                          <div class="col-1"><h4>Quarter/Sem</h4>
                                                  <select name='month' style="width:80%;">
                                                 <option value="first">First</option>
                                                 <option value="second">Second</option>
@@ -169,7 +197,6 @@
                                         </select>
                                       </span></div>
                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
                                      </div>
                                         
                                   </form>
@@ -178,19 +205,34 @@
 
 <div class="" style="margin-top:2%;">      
   <table id="bootstrap-data-table" class="table table-striped table-bordered">
-
-      <thead>
+  <?php
+                                $services = $_POST["services"];
+                                $month = $_POST["month"];
+                                $year = $_POST["year"];
+                                if(empty($services) || empty($month) || empty( $year) ){
+                                    echo "";
+                                }else{
+                                    echo "
+                                    <span style='color:#235a81;'>Search >></span>
+                                    <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value=".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    ";
+                                }
+                                    
+                                ?>
+    <thead>
       <tr>
-          <th>ID No.</th>
-        <th style="min-width:110px">SR-Code</th>
-        <th style="min-width:250px" class="text-center">Name</th>
-        <th style="min-width:100px">Year Level</th>
-         <th>Program</th>
-         <th>Department</th>
-          <th style="min-width:110px">Date Started</th>
-          <th>Violation</th>
-          <th>Type of Violation</th>
-         <th>Status</th>
+      <th>No.</th>
+        <th style="font-size:15px; min-width:70px;">ID Number</th>
+        <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
+        <th style="font-size:15px; min-width:80px;">Year Level</th>
+         <th style="font-size:15px; min-width:70px;">Program</th>
+         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
+          <th style="font-size:15px; min-width:70px;">Date</th>
+          <th style="font-size:15px; min-width:70px;">Type of Services</th>
+         <th style="font-size:15px; min-width:70px;">Reason</th>
       </tr>
     </thead>
     <tbody>
@@ -200,13 +242,13 @@
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
         $graph_month=date("F");
         $graph_year= date("Y");
-        $graph_services= 'Minor';
-       $querryhere = "SELECT * FROM student_offenses Order By lname";
+        $graph_services= 'Student Informartion Sheet';
+       $querryhere = "SELECT * FROM graph_data Order By lname";
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM student_offenses WHERE month='$graph_month' && year='$graph_year' && type_of_violation='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
       }
      
             $sql=$querryhere;
@@ -217,24 +259,21 @@
                     while($row = $result->fetch_assoc()) {
                       $mname = $row["mname"];
                       $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                        $x = 0;
-                        $y += $x + 1;
+                      $count += 1;
                         echo "<tr>
-                        <td>".$y."</td>
-                        <td>".$row["sr_code"]."</td>
-                        <td>".$name."</td>
-                        <td>".$row["year_level"]."</td>
-                        <td>".$row["program"]."</td>
-                        <td>".$row["department"]."</td>
-                        <td>".$row["date_started"]."</td>
-                        <td>".$row["violation"]."</td>
-                        <td>".$row["type_of_violation"]."</td>
-                        <td>".$row["status"]."</td>
+                        <td>".$count."</td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
+                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
                         </tr>";
                       }
                     } else {
                       echo "<tr>
-                      <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
