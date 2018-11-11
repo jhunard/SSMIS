@@ -223,19 +223,7 @@ include '../connections/graph-querry.php';
       datasets: [{
         label: 'Counts of Student',
         data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"
         ],
         borderColor: [
           'rgba(255,99,132,1)',
@@ -310,8 +298,8 @@ include '../connections/graph-querry.php';
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       datasets: [{
         data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"],
+        hoverBackgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"]
       }]
     },
     options: {
