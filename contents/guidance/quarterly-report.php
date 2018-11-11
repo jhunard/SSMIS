@@ -202,7 +202,6 @@
                                         </select>
                                       </span></div>
                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
                                      </div>
                                         
                                   </form>
@@ -211,7 +210,23 @@
 
 <div class="" style="margin-top:2%;">      
   <table id="bootstrap-data-table" class="table table-striped table-bordered">
-
+  <?php
+                                $services = $_POST["services"];
+                                $month = $_POST["month"];
+                                $year = $_POST["year"];
+                                if(empty($services) || empty($month) || empty( $year) ){
+                                    echo "";
+                                }else{
+                                    echo "
+                                    <span style='color:#235a81;'>Search >></span>
+                                    <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value=".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    ";
+                                }
+                                    
+                                ?>
     <thead>
       <tr>
       <th>No.</th>
@@ -238,7 +253,7 @@
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
       }
      
             $sql=$querryhere;
