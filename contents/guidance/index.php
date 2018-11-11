@@ -3,7 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-
 <?php
  session_start();
  $user = $_SESSION["user"];
@@ -27,9 +26,28 @@
               } else {
                   echo "0 results";
               }
+
        
    }
 ?>
+<?php
+ 
+      include '../connections/conn.php';
+
+              $sql2 = "SELECT * FROM system_settings ORDER BY id ASC";
+              $result2 = $conn->query($sql2);
+        
+                  if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while($row2 = $result2->fetch_assoc()) {
+                          $system_img = $row2["picture"];
+                        }
+                      } else {
+                          echo "0 results";
+                      }
+      
+?>
+
 
 <head>
     <meta charset="utf-8">
@@ -79,11 +97,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
-                            <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
+                            <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>
                         </ul>
                     </li>
-                     <li> <a href=""> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
+                     <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
 
                     
                 </ul>
@@ -97,9 +115,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
-                    
-                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
@@ -115,7 +132,7 @@
                         <div class="user-menu dropdown-menu">
                            
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="../connections/logout.php"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -139,7 +156,8 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                		 <div class="float-right">
 								       <div class="" style="margin-right:20px">
-								       <a href="student-information-sheet-form.php"> <button type="button" class="btn btn-sm btn-success" style="">Add</button></a> 
+								       <a href="student-information-sheet-form.php"> <button type="button" class="btn btn-sm btn-success">Add</button></a> 
+                                        <button data-toggle="modal" data-target="#update" type="button" class="btn btn-sm btn btn-primary ">Update</button>
 								       </div>   
 								   		 </div>
 
@@ -148,6 +166,7 @@
                               <th>No.</th>
                                 <th>ID Number</th>
                                 <th>Name</th>
+                                <th>Gender</th>
                                 <th>Year Level</th>
                                  <th>Program</th>
                                  <th>Department</th>
@@ -173,6 +192,7 @@
                         <td>".$count."</td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
+                        <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["gender"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
                         <td><a href='student-information-sheet-form-view.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
@@ -197,8 +217,7 @@ $conn->close();
     </tbody>
   </table>
 </div>
-
-
+                </div></div>
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
@@ -210,6 +229,34 @@ $conn->close();
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
+
+       
+    <!-- Add Services-->
+<div class="modal fade modal "tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="update">
+  <div class="modal-dialog modal-dialog-centered" role="dialog" style="position: absolute;top:-20%;right:0;bottom: 0;left:5%;">
+    <div class="modal-content" >
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color:#343a40!important; color:#ffc107!important;">
+      <h4 class="col-11 modal-title text-center">Update Student Information</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <form action='student-information-sheet-form-update.php' method="GET">
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <input type='submit' class="btn btn-success" Value='Verify'>
+      </form>
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
                
  	<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>

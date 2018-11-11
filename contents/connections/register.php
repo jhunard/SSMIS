@@ -29,7 +29,7 @@ if(isset($_POST["submit"])) {
 if ($uploadOk == 0) {
     echo "<script type='text/javascript'>
     alert ('Account Failed to Register!'); 
-    window.location.href='../guidance/settings-index.php';</script>";
+    window.location.href='../guidance/register.php';</script>";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -40,11 +40,11 @@ if ($uploadOk == 0) {
                 if ($conn->query($sql) === TRUE) {
                     echo "<script type='text/javascript'>
                     alert ('Account Succesfully Registered!'); 
-                    window.location.href='../guidance/settings-index.php';</script>";
+                    window.location.href='../guidance/register.php';</script>";
                     } else {
                         echo "<script type='text/javascript'>
                         alert ('Account Failed to Register!'); 
-                        window.location.href='../guidance/settings-index.php';</script>";
+                        window.location.href='../guidance/register.php';</script>";
                     }
 
     } else {

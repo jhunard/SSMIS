@@ -97,33 +97,51 @@ if ($result2->num_rows > 0) {
 }
        
 } 
+?><?php
+session_start();
+$user = $_SESSION["user"];
+if (empty($user)){
+  session_destroy();
+  session_unset();
+  echo "<script type='text/javascript'>
+      alert ('Please Login First Before You Access our Dashboard! -Administration'); 
+      window.location.href='../../index.php';</script>";
+    }else{
+     include '../connections/conn.php';
+
+     $sql = "SELECT * FROM user_info WHERE username ='$user'";
+     $result = $conn->query($sql);
+
+         if ($result->num_rows > 0) {
+             // output data of each row
+             while($row = $result->fetch_assoc()) {
+                 $img = $row["img"];
+               }
+             } else {
+                 echo "0 results";
+             }
+
+      
+  }
 ?>
 <?php
- session_start();
- $user = $_SESSION["user"];
- if (empty($user)){
-   session_destroy();
-   session_unset();
-   echo "<script type='text/javascript'>
-       alert ('Please Login First Before You Access our Dashboard! -Administration'); 
-       window.location.href='../../index.php';</script>";
-     }else{
-      include '../connections/conn.php';
 
-      $sql = "SELECT * FROM user_info WHERE username ='$user'";
-      $result = $conn->query($sql);
+     include '../connections/conn.php';
 
-          if ($result->num_rows > 0) {
-              // output data of each row
-              while($row = $result->fetch_assoc()) {
-                  $img = $row["img"];
-                }
-              } else {
-                  echo "0 results";
-              }
+             $sql2 = "SELECT * FROM system_settings ORDER BY id ASC";
+             $result2 = $conn->query($sql2);
        
-   }
+                 if ($result2->num_rows > 0) {
+                     // output data of each row
+                     while($row2 = $result2->fetch_assoc()) {
+                         $system_img = $row2["picture"];
+                       }
+                     } else {
+                         echo "0 results";
+                     }
+     
 ?>
+
 <style>
 </style>
 
@@ -155,7 +173,7 @@ if ($result2->num_rows > 0) {
     <aside id="left-panel" class="left-panel ">
         <nav class="navbar  navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
-                 <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                   
                     <li style="margin-top:50px"><a href="index.php"> <i class="menu-icon fa fa-home"></i>Home</a> </li>
                      <li> <a href="student-offense.php"> <i class="menu-icon fa fa-exclamation-circle"></i>Student's Offense </a>  </li>
@@ -165,7 +183,7 @@ if ($result2->num_rows > 0) {
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Reports</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
+                              <li><i class="menu-icon fa fa-file-text"></i><a href="monthly-report.php">Monthly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="quarterly-report.php">Quarterly Report</a></li>
                               <li><i class="menu-icon fa fa-file-text"></i><a href="annual-report.php">Annual Report</a></li>
                         </ul>
@@ -174,11 +192,12 @@ if ($result2->num_rows > 0) {
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-gear"></i>Settings</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a href="">User Account</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="">Register</a></li>
+                            <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
+                            <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>
                         </ul>
                     </li>
-                     <li> <a href=""> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
+                     <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
 
                     
                 </ul>
@@ -192,14 +211,15 @@ if ($result2->num_rows > 0) {
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
-            
-
-                     
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                                    
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -207,7 +227,9 @@ if ($result2->num_rows > 0) {
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                           
+
+                            <a class="nav-link" href="../connections/logout.php"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

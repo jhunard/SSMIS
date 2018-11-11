@@ -73,16 +73,16 @@ if ($result->num_rows > 0) {
             if ($conn->query($sql6) === TRUE) {
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/services-add.php';</script>";
             } else {
                 echo "<script type='text/javascript'>
                 alert ('Eror Inserting Data!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/services-add.php';</script>";
             }
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Updating Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            window.location.href='../guidance/services-add.php';</script>";
         }
     }
 } else {
@@ -142,16 +142,16 @@ if ($result->num_rows > 0) {
             if ($conn->query($sql5) === TRUE) {
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../services-add.php';</script>";
             } else {
                 echo "<script type='text/javascript'>
                 alert ('Eror Inserting Data!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/services-add.php';</script>";
             }
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Inserting Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            window.location.href='../guidance/services-add.php';</script>";
         }
 
     } else {

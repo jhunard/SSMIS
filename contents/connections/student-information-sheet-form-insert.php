@@ -82,6 +82,43 @@ $services = "Student Information Sheet";
 
 
 
+$target_dir = "../guidance/images/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$student_image = basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+       
+        $uploadOk = 1;
+    } else {
+
+        $uploadOk = 0;
+    }
+}
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "<script type='text/javascript'>alert ('Sorry, file already exists.'); 
+    window.location.href='../guidance/index.php';</script>";
+    $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "<script type='text/javascript'>alert ('Sorry, your file was not uploaded.'); 
+    window.location.href='../guidance/index.php';</script>";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+       
+    } else {
+        echo "<script type='text/javascript'>alert ('Sorry, there was an error uploading your file..'); 
+        window.location.href='../guidance/index.php';</script>";
+       }
+}
+
 
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && lname='$lname'";
@@ -91,7 +128,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
 
-        $sql2 = "UPDATE student_record SET sr_code='$srcode',fname='$fname',mname='$mname',lname='$lname',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingname',siblingname1='$siblingname1',siblingname2='$siblingname2',siblingname3='$siblingname3',siblingname4='$siblingname4',siblingname5='$siblingname5',siblingname6='$siblingname6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && lname='$lname'";
+        $sql2 = "UPDATE student_record SET image='$student_image',sr_code='$srcode',fname='$fname',mname='$mname',lname='$lname',year_level='$yearlevel',program='$program',department='$department',address='$address',phone='$phone',bday='$bday',mobile='$mobile',age='$age',email='$email',gender='$gender',civilstatus='$civilstatus',spouse='$spouse',religion='$religion',fathername='$fathername',mothername='$mothername',fatherage='$fatherage',motherage='$motherage',fathermobile='$fathermobile',mothermobile='$mothermobile',fathereducation='$fathereducation',mothereducation='$mothereducation',guardiansname='$guardiansname',guardainsrelationship='$guardiansrelationship',guardainsaddress='$guardiansaddress',guardiansmobilenumber='$guardiansmobilenumber',siblingname='$siblingname',siblingname1='$siblingname1',siblingname2='$siblingname2',siblingname3='$siblingname3',siblingname4='$siblingname4',siblingname5='$siblingname5',siblingname6='$siblingname6',siblingschool='$siblingschool',siblingschool1='$siblingschool1',siblingschool2='$siblingschool2',siblingschool3='$siblingschool3',siblingschool4='$siblingschool4',siblingschool5='$siblingschool5',siblingschool6='$siblingschool6',siblingage='$siblingage',siblingage1='$siblingage1',siblingage2='$siblingage2',siblingage3='$siblingage3',siblingage4='$siblingage4',siblingage5='$siblingage5',siblingage6='$siblingage6',siblingcontact='$siblingcontact',siblingcontact1='$siblingcontact1',siblingcontact2='$siblingcontact2',siblingcontact3='$siblingcontact3',siblingcontact4='$siblingcontact4',siblingcontact5='$siblingcontact5',siblingcontact6='$siblingcontact6',elemschool='$elemschool',elemyeargraduated='$elemyeargraduated',elemhonor='$elemhonor',hsschool='$hsschool',hsyeargraduated='$hsyeargraduated',hshonor='$hshonor',collegeschool='$collegeschool',collegeyeargraduated='$collegeyeargraduated',collegehonor='$collegehonor',otherschool='$otherschool',otheryeargraduated='$otheryeargraduated',otherhonor='$otherhonor',fatheroccupation='$fatheroccupation',motheroccupation='$motheroccupation' , SIS_date_updated='$dateToday' WHERE sr_code='$srcode' && lname='$lname'";
 
         if ($conn->query($sql2) === TRUE) {
             $reason1 = "Update Student Information Sheet";
@@ -144,21 +181,21 @@ if ($result->num_rows > 0) {
                 include 'save-xml-data.php';
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/index.php';</script>";
             } else {
                 echo "<script type='text/javascript'>
                 alert ('Eror Inserting Data!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/index.php';</script>";
             }
             
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Updating Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            window.location.href='../guidance/index.php';</script>";
         }
     }
 } else {
-    $sql3 = "INSERT INTO student_record (sr_code, fname,mname,lname, year_level, program, department, address, phone, bday, mobile, age, email, gender, civilstatus, spouse, religion, fathername, mothername, fatherage, motherage, fathermobile, mothermobile, fathereducation, mothereducation, guardiansname, guardainsrelationship, guardainsaddress, guardiansmobilenumber, siblingname, siblingname1, siblingname2, siblingname3, siblingname4, siblingname5, siblingname6, siblingschool, siblingschool1, siblingschool2, siblingschool3, siblingschool4, siblingschool5, siblingschool6, siblingage, siblingage1, siblingage2, siblingage3, siblingage4, siblingage5, siblingage6, siblingcontact, siblingcontact1, siblingcontact2, siblingcontact3, siblingcontact4, siblingcontact5, siblingcontact6, elemschool, elemyeargraduated, elemhonor, hsschool, hsyeargraduated, hshonor, collegeschool, collegeyeargraduated, collegehonor, otherschool, otheryeargraduated, otherhonor, fatheroccupation, motheroccupation, SIS_date_filled) VALUES ('$srcode','$fname','$mname','$lname', '$yearlevel', '$program', '$department', '$address', '$phone', '$bday', '$mobile', '$age', '$email', '$gender', '$civilstatus', '$spouse', '$religion', '$fathername', '$mothername', '$fatherage', '$motherage', '$fathermobile', '$mothermobile', '$fathereducation', '$mothereducation', '$guardiansname', '$guardiansrelationship', '$guardiansaddress', '$guardiansmobilenumber', '$siblingname', '$siblingname1', '$siblingname2', '$siblingname3', '$siblingname4', '$siblingname5', '$siblingname6', '$siblingschool', '$siblingschool1', '$siblingschool2', '$siblingschool3', '$siblingschool4', '$siblingschool5', '$siblingschool6', '$siblingage', '$siblingage1', '$siblingage2', '$siblingage3', '$siblingage4', '$siblingage5', '$siblingage6', '$siblingcontact', '$siblingcontact1', '$siblingcontact2', '$siblingcontact3', '$siblingcontact4', '$siblingcontact5', '$siblingcontact6', '$elemschool', '$elemyeargraduated', '$elemhonor', '$hsschool', '$hsyeargraduated', '$hshonor', '$collegeschool', '$collegeyeargraduated', '$collegehonor', '$otherschool', '$otheryeargraduated', '$otherhonor', '$fatheroccupation', '$motheroccupation',  '$dateToday')";
+    $sql3 = "INSERT INTO student_record (image,sr_code, fname,mname,lname, year_level, program, department, address, phone, bday, mobile, age, email, gender, civilstatus, spouse, religion, fathername, mothername, fatherage, motherage, fathermobile, mothermobile, fathereducation, mothereducation, guardiansname, guardainsrelationship, guardainsaddress, guardiansmobilenumber, siblingname, siblingname1, siblingname2, siblingname3, siblingname4, siblingname5, siblingname6, siblingschool, siblingschool1, siblingschool2, siblingschool3, siblingschool4, siblingschool5, siblingschool6, siblingage, siblingage1, siblingage2, siblingage3, siblingage4, siblingage5, siblingage6, siblingcontact, siblingcontact1, siblingcontact2, siblingcontact3, siblingcontact4, siblingcontact5, siblingcontact6, elemschool, elemyeargraduated, elemhonor, hsschool, hsyeargraduated, hshonor, collegeschool, collegeyeargraduated, collegehonor, otherschool, otheryeargraduated, otherhonor, fatheroccupation, motheroccupation, SIS_date_filled) VALUES ('$student_image','$srcode','$fname','$mname','$lname', '$yearlevel', '$program', '$department', '$address', '$phone', '$bday', '$mobile', '$age', '$email', '$gender', '$civilstatus', '$spouse', '$religion', '$fathername', '$mothername', '$fatherage', '$motherage', '$fathermobile', '$mothermobile', '$fathereducation', '$mothereducation', '$guardiansname', '$guardiansrelationship', '$guardiansaddress', '$guardiansmobilenumber', '$siblingname', '$siblingname1', '$siblingname2', '$siblingname3', '$siblingname4', '$siblingname5', '$siblingname6', '$siblingschool', '$siblingschool1', '$siblingschool2', '$siblingschool3', '$siblingschool4', '$siblingschool5', '$siblingschool6', '$siblingage', '$siblingage1', '$siblingage2', '$siblingage3', '$siblingage4', '$siblingage5', '$siblingage6', '$siblingcontact', '$siblingcontact1', '$siblingcontact2', '$siblingcontact3', '$siblingcontact4', '$siblingcontact5', '$siblingcontact6', '$elemschool', '$elemyeargraduated', '$elemhonor', '$hsschool', '$hsyeargraduated', '$hshonor', '$collegeschool', '$collegeyeargraduated', '$collegehonor', '$otherschool', '$otheryeargraduated', '$otherhonor', '$fatheroccupation', '$motheroccupation',  '$dateToday')";
 
     if ($conn->query($sql3) === TRUE) {
         
@@ -216,16 +253,16 @@ if ($result->num_rows > 0) {
                 include 'save-xml-data.php';
                 echo "<script type='text/javascript'>
                 alert ('Data Insert Sucessfully!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/index.php';</script>";
             } else {
                 echo "<script type='text/javascript'>
                 alert ('Eror Inserting Data!'); 
-                window.location.href='../guidance/services-index.php';</script>";
+                window.location.href='../guidance/index.php';</script>";
             }
         } else {
             echo "<script type='text/javascript'>
             alert ('Eror Inserting Data!'); 
-            window.location.href='../guidance/services-index.php';</script>";
+            window.location.href='../guidance/index.php';</script>";
         }
 
     } else {
