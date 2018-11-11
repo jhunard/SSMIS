@@ -151,30 +151,16 @@
                            
                                <div class="form-row d-flex justify-content-center">
                                  
-                                  <div class="col-2"><h4>Services</h4>
+                                  <div class="col-2"><h4><span style="color:#235a81;">Offenses</span></h4><br>
                                   <select name="services" style="width:100%;">  
-                                  <?php
-                                  include '../connections/conn.php';
-
-                                        $sql = "SELECT * FROM services";
-                                        $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                                                  }
-                                                } else {
-                                                    echo "0 results";
-                                                }
-                            $conn->close();
-                            ?>
-                              </select>
+                                   <option value='Minor'>Minor</option>
+                                   <option value='Major'>Major</option>
+                                  </select>
                                   
                                 </div>
 
 
-                                          <div class="col-1"><h4>Quarter/Sem</h4>
+                                          <div class="col-2"><h4><span style="color:#235a81;">Quarter/Sem</span></h4><br>
                                                  <select name='month' style="width:80%;">
                                                 <option value="first">First</option>
                                                 <option value="second">Second</option>
@@ -183,7 +169,7 @@
                                               </div>
 
 
-                                                <div class="col-1"><h4>Year</h4>
+                                                <div class="col-2"><h4><span style="color:#235a81;">Year</span></h4><br>
                                                   <span>
                                                 <select name="year">
                                                   <?php 
@@ -214,10 +200,10 @@
                                 }else{
                                     echo "
                                     <span style='color:#235a81;'>Search >></span>
-                                    <input class='col-md-3' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
                                     <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
-                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value=".$year."' readonly><span style='color:#235a81;'>>> </span>
-                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."'>Show Graph</a><br><br><br>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."&status=2'>Show Graph</a><br><br><br>
                                     ";
                                 }
                                     
@@ -240,51 +226,54 @@
       include '../connections/conn.php';
 
       if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
+        $graph_month='first';
         $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
+        $graph_services= 'Minor';
+       $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' Order By id DESC";
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' && quarter = '$graph_month' && year='$graph_year' && type_of_violation='$graph_services'  Order By id DESC ";
       }
      
-            $sql=$querryhere;
-            $result = $conn->query($sql);
+      $sql=$querryhere;
+      $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                      $count += 1;
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
+          if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                $mname = $row["mname"];
+                $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                  $x = 0;
+                  $y += $x + 1;
+                  echo "<tr>
+                  <td>".$y."</td>
+                  <td>".$row["sr_code"]."</td>
+                  <td>".$name."</td>
+                  <td>".$row["year_level"]."</td>
+                  <td>".$row["program"]."</td>
+                  <td>".$row["department"]."</td>
+                  <td>".$row["date_started"]."</td>
+                  <td>".$row["violation"]."</td>
+                  <td>".$row["type_of_violation"]."</td>
+                  <td>".$row["status"]."</td>
+                  </tr>";
+                }
+              } else {
+                echo "<tr>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                </tr>";
+              }
 $conn->close();
 ?>
      

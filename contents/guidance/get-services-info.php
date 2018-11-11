@@ -170,61 +170,93 @@
         <!-- /#header -->
         <!-- /#header -->
      
- 
+      <div class="content">
+         <div class="animated fadeIn">
+            <form action="../connections/student-information-sheet-form-insert.php" method="post" class="form" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-lg-6 offset-md-3">
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                    <!-- Student info -->
+                                    <div id="student-info">
+                                      <div class="card-body">
+                                            <div class="card-title">
+                                                <h3 class="text-center">Add Services</h3>
+                                            </div>
+                                            <hr>
+                                            <style>
+                                                .border-remove{
+                                                    border:none;
+                                                }
+                                            </style>
+                                        
+                                            <div class="form-group"><label for="full-name" class=" form-control-label"><strong>Full Name:</strong></label>
+                                                <div class="input-group">
+                                                   
+                                                   <div> <input type="text" id="fname" name="otherfName" placeholder="Last Name" class=" col col-md-11 border-remove" value="<?php echo $fname;?>" readonly> </div>
+                                                          
+                                                  
+                                                   <div> <input type="text" id="mname" name="othermName" placeholder="Last Name" class=" col col-md-11 border-remove" value="<?php echo $mname;?>" readonly></div>
+                                                    
+                                                    <div><input type="text" id="lname" name="otherlName" placeholder="Last Name" class=" col col-md-11 border-remove" value="<?php echo $lname;?>" readonly></div>
+                                                </div>
+                                            </div><br>
 
-<div class="container">      
- <div class="col-md-6">
-<form action='../connections/other-services-insert.php' method="post">
-<div class= "row">
-<style>
-    .border-remove{
-        border:none;
-    }
-</style>
-      Name : <input class='border-remove col-md-3' type="text" name="otherfName" value="<?php echo $fname;?>" readonly>
-      <input class='border-remove  col-md-3' type="text" name="othermName" value="<?php echo $mname;?>" readonly>
-      <input class='border-remove  col-md-4' type="text" name="otherlName" value="<?php echo $lname;?>" readonly>
-      ID No : <input class='border-remove col-md-10' type="text" name="othersrCode" value="<?php echo $db_srcode;?>" readonly>
-      Year Level : <input class='border-remove col-md-10' type="text" name="otheryearlevel" value="<?php echo $yearlevel;?>" readonly>
-      Program : <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly>
-      Department : <input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly>
-</div>
-    <br><br><br>    
-   <a style="font-size:18px;">Date: <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br>
-   Service Type : <select class="col-md-8" name="services" style="width:80%;">  
-      <?php
-      include '../connections/conn.php';
+                                              <div class="row form-group">
+                                               <div class="col-12 col-md-3"><label for="sr_code" class=" form-control-label"><strong>ID Number:</strong></label></div>
+                                               <div class="col-12 col-md-3"><input class='border-remove col-md-10' type="text" name="othersrCode" value="<?php echo $db_srcode;?>" readonly> </div>
+                                                 <div class="col-12 col-md-2"><label for="year_level" class=" form-control-label"><strong>Year Level:</strong></label></div>  
+                                                  <div class="col-12 col-md-3"><input class='border-remove ' type="text" name="otheryearlevel" value="<?php echo $yearlevel;?>" readonly> </div>  
+                                                </div>
+                                                  
+                                              <div class="form-group"><label for="program" class=" form-control-label"><strong>Program:</strong></label> <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly></div>
+                                              <div class="form-group"> <label for="department" class=" form-control-label"><strong>Department:</strong></label><input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly> </div><br>
+                                            <hr>
 
-            $sql = "SELECT * FROM services WHERE services != 'Student Information Sheet'";
-            $result = $conn->query($sql);
+                                             <a style="font-size:18px;"><strong>Date:</strong> <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br><br>
+                                                 <strong>Service Type :</strong>&nbsp; <select class="col-md-4" name="services">  
+                                                    <?php
+                                                    include '../connections/conn.php';
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if (empty($row['status'])){
-                          $status = '';
-                        }else{
-                          $status = 'disabled';
-                        }
-                        echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-  </select><br>
-    <a style="font-size:18px;">Reason: <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;" required></a>
+                                                          $sql = "SELECT * FROM services WHERE services != 'Student Information Sheet'";
+                                                          $result = $conn->query($sql);
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-      <input type='submit' class="btn btn-success" name='Add' value='Add'>
-      </form>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-      </div>
+                                                              if ($result->num_rows > 0) {
+                                                                  // output data of each row
+                                                                  while($row = $result->fetch_assoc()) {
+                                                                      if (empty($row['status'])){
+                                                                        $status = '';
+                                                                      }else{
+                                                                        $status = 'disabled';
+                                                                      }
+                                                                      echo " <option value='".$row["services"]."'".$status.">".$row["services"]."</option>";
+                                                                    }
+                                                                  } else {
+                                                                      echo "0 results";
+                                                                  }
+                                              $conn->close();
+                                              ?>
+                                           </select><br><br>
+                                                  <a style="font-size:18px;"><strong>Reason:</strong> <input type="text"name='otherreason' style=" border:0;outline: 0;background: transparent; border-bottom: 1px solid black;" <required></a>
+
+                                               <button type="submit" name="Add" type="button" class="btn btn-sm btn-success col col-md-4 offset-md-4" style="padding:10px; margin-top:20px;">Add</button>
+   
+                                          </div>
+                                      </div>
+                            </div> <!-- .card-body -->
+                          </div> <!--/.card-->
+                        </div><!--/.col-->
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
 
 
+        <div class="clearfix"></div>
+
+     
+    </div><!-- /#right-panel -->
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->

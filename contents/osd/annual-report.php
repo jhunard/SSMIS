@@ -149,25 +149,11 @@
                            
                                <div class="form-row d-flex justify-content-center">
                                  
-                                  <div class="col-2"><h4>Services</h4>
+                               <div class="col-2"><h4>Offenses</h4>
                                   <select name="services" style="width:100%;">  
-                                  <?php
-                                  include '../connections/conn.php';
-
-                                        $sql = "SELECT * FROM services";
-                                        $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo " <option value='".$row["services"]."'>".$row["services"]."</option>";
-                                                  }
-                                                } else {
-                                                    echo "0 results";
-                                                }
-                            $conn->close();
-                            ?>
-                              </select>
+                                   <option value='Minor'>Minor</option>
+                                   <option value='Major'>Major</option>
+                                  </select>
                                   
                                 </div>
 
@@ -188,8 +174,7 @@
                                                 <option value="08-09">2008-2009</option></select>
                                             </div>
                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Show</button></div>
-                                       <div class="col-1" style="  padding:15px;"><button type="submit" class="btn btn-success ">Graph</button></div>
-                                     </div>
+                                      </div>
                                         
                                   </form>
 
@@ -197,6 +182,21 @@
 
 <div class="" style="margin-top:2%;">      
   <table id="bootstrap-data-table" class="table table-striped table-bordered">
+  <?php
+                                $services = $_POST["services"];
+                                $year = $_POST["year"];
+                                if(empty($services) || empty( $year) ){
+                                    echo "";
+                                }else{
+                                    echo "
+                                    <span style='color:#235a81;'>Search >></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                    <a href='graph.php?servicesvalue=".$services."&yearvalue=".$year."&status=3'>Show Graph</a><br><br><br>
+                                    ";
+                                }
+                                    
+                                ?>
 
     <thead>
       <tr>
@@ -215,52 +215,54 @@
     <?php
       include '../connections/conn.php';
 
-      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month=date("F");
-        $graph_year= date("Y");
-        $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data Order By lname";
+      if(empty($_POST["year"]) && empty($_POST["services"])){
+          $graph_year= date("Y");
+        $graph_services= 'Minor';
+       $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' Order By id DESC";
       }else{
-        $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' && annual='$graph_year' && type_of_violation='$graph_services' Order By id DESC ";
       }
      
-            $sql=$querryhere;
-            $result = $conn->query($sql);
+         
+      $sql=$querryhere;
+      $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                      $count += 1;
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["sr_code"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$name."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["year_level"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["program"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["department"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["graph_date"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["services"]."</a></td>
-                        <td><a href='student-record.php?sr-code=".$row["sr_code"]."'>".$row["reason"]."</a></td>
-                        </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
+          if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+                $mname = $row["mname"];
+                $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                  $x = 0;
+                  $y += $x + 1;
+                  echo "<tr>
+                  <td>".$y."</td>
+                  <td>".$row["sr_code"]."</td>
+                  <td>".$name."</td>
+                  <td>".$row["year_level"]."</td>
+                  <td>".$row["program"]."</td>
+                  <td>".$row["department"]."</td>
+                  <td>".$row["date_started"]."</td>
+                  <td>".$row["violation"]."</td>
+                  <td>".$row["type_of_violation"]."</td>
+                  <td>".$row["status"]."</td>
+                  </tr>";
+                }
+              } else {
+                echo "<tr>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                <td style='text-align:center;'>-</td>
+                </tr>";
+              }
 $conn->close();
 ?>
      
