@@ -8,6 +8,7 @@ $srcode=$_POST["rgmsrCode"];
 $yearlevel=$_POST["rgmyearlevel"];
 $program=$_POST["rgmprogram"];
 $department=$_POST["rgmdepartment"];
+$gender=$_POST["gender"];
 $date=$_POST["rgmdate"];
 $reason=$_POST["rgmreason"];
 $month = date("F");
@@ -67,7 +68,7 @@ if ($result->num_rows > 0) {
                 $quarter="first";
             }
 
-            $sql6 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
+            $sql6 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,gender,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$gender', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql6) === TRUE) {
                 echo "<script type='text/javascript'>
@@ -85,11 +86,11 @@ if ($result->num_rows > 0) {
         }
     }
 } else {
-    $sql3 = "INSERT INTO student_record (fname,mname,lname,sr_code,year_level,program,department,RGM_date_filled,RGM_reason) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date','$reason')";
+    $sql3 = "INSERT INTO student_record (fname,mname,lname,sr_code,year_level,program,department,gender,RGM_date_filled,RGM_reason) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$gender', '$date','$reason')";
 
     if ($conn->query($sql3) === TRUE) {
         
-        $sql4 = "INSERT INTO guidance_log (fname,mname,lname,sr_code,year_level,program,department) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department')";
+        $sql4 = "INSERT INTO guidance_log (fname,mname,lname,sr_code,year_level,program,department,gender) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department','$gender')";
 
         if ($conn->query($sql4) === TRUE) {
 
@@ -135,7 +136,7 @@ if ($result->num_rows > 0) {
                 $quarter="first";
             }
             
-            $sql5 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
+            $sql5 = "INSERT INTO graph_data (fname,mname,lname,sr_code,year_level,program,department,gender,graph_date,reason,services,graph_month,graph_year,quarter,school_year,other_index) VALUES ('$fname','$mname','$lname', '$srcode', '$yearlevel','$program', '$department', '$gender', '$date', '$reason', '$services', '$month', '$year','$quarter','$school_year','0')";
 
             if ($conn->query($sql5) === TRUE) {
                 echo "<script type='text/javascript'>

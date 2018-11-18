@@ -111,11 +111,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header-->  <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -160,6 +160,7 @@
                                         <button data-toggle="modal" data-target="#update" type="button" class="btn btn-sm btn btn-primary ">Update</button>
 								       </div>   
 								   		 </div>
+                       <style>a{color: #2d3436;}</style>
 
                           <thead>
                               <tr>
@@ -170,7 +171,7 @@
                                 <th>Year Level</th>
                                  <th>Program</th>
                                  <th>Department</th>
-                                 <th>Date Filled</th>
+                                 <th>Date Filed</th>
                                  <th>Date Updated</th>
                               </tr>
                             </thead>
@@ -202,6 +203,7 @@
                       }
                     } else {
                       echo "<tr>
+                      <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>

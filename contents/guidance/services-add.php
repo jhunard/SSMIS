@@ -111,11 +111,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -163,22 +163,23 @@
 								   		 </div>
                                    <thead>
       <tr>
-      <th>No.</th>
-        <th>ID Number</th>
-        <th>Name</th>
-        <th>Year Level</th>
-         <th>Program</th>
-         <th>Department</th>
-          <th>Services</th>
-          <th>Date Filled</th>
-          <th>Reason</th>
+      <th style="font-size:14px;">No.</th>
+        <th style="font-size:14px;">ID Number</th>
+        <th style="font-size:14px;">Name</th>
+         <th style="font-size:14px;">Gender</th>
+        <th style="font-size:14px;">Year Level</th>
+         <th style="font-size:14px;"> Program</th>
+         <th style="font-size:14px;">Department</th>
+          <th style="font-size:14px;">Services</th>
+          <th style="font-size:14px;">Date Filled</th>
+          <th style="font-size:14px;">Reason</th>
       </tr>
     </thead>
     <tbody>
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' ORDER BY id DESC";
+            $sql = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' ORDER BY graph_date DESC";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -191,6 +192,7 @@
                         <td>".$count."</td>
                         <td>".$row["sr_code"]."</td>
                         <td>".$name."</a></td>
+                        <td>".$row["gender"]."</td>
                         <td>".$row["year_level"]."</td>
                         <td>".$row["program"]."</td>
                         <td>".$row["department"]."</td>
@@ -207,6 +209,10 @@
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
                       <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
+                      <td style='text-align:center;'>-</td>
                       </tr>";
                     }
 $conn->close();
@@ -214,8 +220,8 @@ $conn->close();
     </tbody>
   </table>
 </div>
-
-
+                </div>        
+                </div>
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
@@ -241,7 +247,7 @@ $conn->close();
       <!-- Modal body -->
       <div class="modal-body">
       <form action='get-services-info.php' method="post">
-      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID No." required><br>
+      <input class='rc col-md-12' type="text" name="idNumber" placeholder="Enter ID Number" required><br>
       </div>
 
       <!-- Modal footer -->

@@ -115,10 +115,11 @@
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
+          <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -158,61 +159,54 @@
                             <section class="card">
                               <div class="card-header bg-dark">
                                 <strong class="card-title text-warning">Services</strong>
-                            </div>
+                              </div>
 
 
                                 <ul class="list-group list-group-flush">
-            <?php
-            include '../connections/conn.php';
+                                          <?php
+                                          include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services WHERE status = '0'";
-            $result = $conn->query($sql);
+                                          $sql = "SELECT * FROM services WHERE status = '0'";
+                                          $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if(empty($row["status"])){
-                          $status = " ";
-                        }else{
-                          $status = "checked";
-                        }
-                        $count += 1;
-                        echo "<li class='list-group-item'>
-                       ".$row["services"]."
-                    </li>";
-                      }
-                    } else {
-                        echo "0 results";
-                    }
-$conn->close();
-?>
-                                  </ul>
-                                  <div style="margin-top:20px; margin-bottom:20px;" class="text-center"> 
-                                    
-                                    <button type="button" data-toggle="modal" data-target="#services" type="button" class="btn btn-sm btn-success " style="padding:10px;">Add Service</button>
+                                              if ($result->num_rows > 0) {
+                                                  // output data of each row
+                                                  while($row = $result->fetch_assoc()) {
+                                                      if(empty($row["status"])){
+                                                        $status = " ";
+                                                      }else{
+                                                        $status = "checked";
+                                                      }
+                                                      $count += 1;
+                                                      echo "<li class='list-group-item'>
+                                                     ".$row["services"]."
+                                                  </li>";
+                                                    }
+                                                  } else {
+                                                      echo "0 results";
+                                                  }
+                                                $conn->close();
+                                                ?>
+                                       </ul>
+                                       <div style="margin-top:20px; margin-bottom:20px;" class="text-center"> 
+                                                                  
+                                          <button type="button" data-toggle="modal" data-target="#services" type="button" class="btn btn-sm btn-success " style="padding:10px;">Add Service</button>
 
-                                    <button type="button"button type="button" class="btn btn-sm btn-primary " style="padding:10px;" data-toggle="modal" data-target="#enable" >Enable Services</button>
+                                          <button type="button"button type="button" class="btn btn-sm btn-primary " style="padding:10px;" data-toggle="modal" data-target="#enable" >Enable Services</button>
 
-                                    <button type="button" class="btn btn-sm btn-dark " style="padding:10px;" data-toggle="modal" data-target="#disable" >Disable Services</button>
-
-                                    <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger " style="padding:10px;">Delete Service</button>
-                                    
-                                        </div>
-                                        
-
-                            </section>
-                        
-                    </div>
+                                          <button type="button" class="btn btn-sm btn-dark " style="padding:10px;" data-toggle="modal" data-target="#disable" >Disable Services</button>
+                                          <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger " style="padding:10px;">Delete Service</button>
+                                                                  
+                                      </div>
+                                  </section>
+                                                      
+                             </div>
 
 
 
 
               
-
                </div> <!-- row -->
-            </div><!-- .animated -->
-        </div><!-- .content -->
-             </div> <!-- row -->
             </div><!-- .animated -->
         </div><!-- .content -->
 

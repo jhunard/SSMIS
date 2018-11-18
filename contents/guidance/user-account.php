@@ -114,11 +114,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -164,7 +164,7 @@
                                             </div>
                                             <hr>
 
-                                    <div class="form-group"><label for="changepw" class=" form-control-label">Change Password:</label></div>
+                                    <div class="form-group"><label for="changepw" class=" form-control-label"><strong>Change Password:</strong></label></div>
                                      
                                        
                                     
@@ -212,7 +212,7 @@
 
                                 <div class="row form-group">
                                 <form action="../connections/system-settings.php" method="post" enctype="multipart/form-data">
-                                          <div class="col-12 col-md-5"><label for="newpass" class=" form-control-label">Change Logo:</label></div>
+                                          <div class="col-12 col-md-5"><label for="newpass" class=" form-control-label"><strong>Change Logo:</strong></label></div>
                                        <div class="col-12 col-md-4"> <input type="file" name="fileToUpload" id="fileToUpload" required></div>
                                     </div>  
                                     <button type="submit"  type="button" class="btn btn-sm btn-success " style="padding:10px; ">Proceed</button>

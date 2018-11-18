@@ -64,10 +64,16 @@ $result = $conn->query($sql);
           $yearlevel = $row["year_level"];
           $program = $row["program"];
           $department = $row["department"];
+          $gender = $row["gender"];
           $name = $lname . ", " . $fname ." ". $mname[0] .".";
           $srcode = $row["sr_code"];
             
           }
+        }
+        else {
+         echo "<script type='text/javascript'>
+       alert ('Id No. ".$code." is not exist!'); 
+       window.location.href='index.php';</script>";
         }
 ?>
 
@@ -130,11 +136,11 @@ $result = $conn->query($sql);
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -145,7 +151,7 @@ $result = $conn->query($sql);
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -183,9 +189,10 @@ $result = $conn->query($sql);
                                           <th >No.</th>
                                           <th style="font-size:14px; min-width:70px;">ID Number</th>
                                           <th style="font-size:14px; min-width:70px;">Name</th>
+                                             <th style="font-size:14px; min-width:70px;">Gender</th>  
                                           <th style="font-size:14px; min-width:70px;">Year Level</th>
                                            <th style="font-size:14px; min-width:70px;">Program</th>
-                                           <th style="font-size:14px; min-width:70px;">Department</th>
+                                           <th style="font-size:14px; min-width:70px;">Department</th> 
                                            <th style="font-size:14px; min-width:70px;">Date Started</th>
                                            <th style="font-size:14px; min-width:70px;">Date Ended</th>
                                            <th style="font-size:14px; min-width:70px;">Type of Violation</th>
@@ -197,7 +204,7 @@ $result = $conn->query($sql);
                                       <?php
                                         include '../connections/conn.php';
 
-                                              $sql = "SELECT * FROM student_offenses WHERE sr_code = '$code' && status != 'Finished' ORDER BY id DESC ";
+                                              $sql = "SELECT * FROM student_offenses WHERE sr_code = '$code' ORDER BY date_started DESC ";
                                               $result = $conn->query($sql);
 
                                                   if ($result->num_rows > 0) {
@@ -215,6 +222,7 @@ $result = $conn->query($sql);
                                                           <td>".$count."</td>
                                                           <td>".$row["sr_code"]."</td>
                                                           <td>".$name."</a></td>
+                                                           <td>".$row["gender"]."</td>
                                                           <td>".$row["year_level"]."</td>
                                                           <td>".$row["program"]."</td>
                                                           <td>".$row["department"]."</td>
@@ -227,6 +235,7 @@ $result = $conn->query($sql);
                                                         }
                                                       } else {
                                                           echo "<td style='text-align:center;'>-</td>
+                                                                <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
@@ -279,22 +288,28 @@ $result = $conn->query($sql);
       <input type="text" name="yearlevel" value="<?php echo $yearlevel; ?>" hidden>
       <input type="text" name="program" value="<?php echo $program; ?>" hidden>
       <input type="text" name="department" value="<?php echo $department; ?>" hidden>
+       <input type="text" name="gender" value="<?php echo $gender; ?>" hidden>
       <input type="text" name="status" value="On Going" hidden>
       <input type="text" class="form-control" id="add" name="offense" placeholder="Add Offense" required>
             </div>
-           <div class="form-group">
-      <input type="date" name="date" required>
-      <select name="offensetype" required>
-        <option>Select Type of Offense</option>
-        <option value="Minor">Minor</option>
-        <option value="Major">Major</option>
-       </select>
+            <style>input[type="date"].disabled::-webkit-calendar-picker-indicator {display: none;}</style>
+           <div class="row form-group">
+            <div class="col-12 col-md-4"><label for="date" class=" form-control-label"><strong>Date Started:</strong></label></div> 
+             <div class="col-12 col-md-6"><input type="date" name="date" class="form-control form-control-sm disabled" id="date" required></div>
             </div>
-      </div>
+      <div class="row form-group">
+        <div class="col-12 col-md-4"><label for="offensetype" class=" form-control-label"><strong>Type of Offense:</strong></label></div> 
+           <div class="col-12 col-md-4"> <select name="offensetype" class="form-control form-control-sm "required>
+        
+                <option value="Minor">Minor</option>
+                <option value="Major">Major</option>
+               </select> </div>
+
+                 </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-      <button type="submit" class="btn btn-success" >Add</button>
+          <button type="submit" class="btn btn-success" >Add</button>
         </form>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
@@ -326,6 +341,31 @@ $result = $conn->query($sql);
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
+
+
+        jQuery(document).ready( function($) {
+ 
+    // Disable scroll when focused on a number input.
+    $('form').on('focus', 'input[type=number]', function(e) {
+        $(this).on('wheel', function(e) {
+            e.preventDefault();
+        });
+    });
+ 
+    // Restore scroll on number inputs.
+    $('form').on('blur', 'input[type=number]', function(e) {
+        $(this).off('wheel');
+    });
+ 
+    // Disable up and down keys.
+    $('form').on('keydown', 'input[type=number]', function(e) {
+        if ( e.which == 38 || e.which == 40 )
+            e.preventDefault();
+    });  
+      
+});
+
   </script>
 </body>
 </html>
+

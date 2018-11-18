@@ -64,10 +64,15 @@ $result = $conn->query($sql);
           $yearlevel = $row["year_level"];
           $program = $row["program"];
           $department = $row["department"];
+          $gender = $row["gender"];
           $name = $lname . ", " . $fname ." ". $mname[0] .".";
           $srcode = $row["sr_code"];
             
           }
+        }else {
+         echo "<script type='text/javascript'>
+       alert ('Id No. ".$code." is not exist!'); 
+       window.location.href='index.php';</script>";
         }
 ?>
 
@@ -130,11 +135,11 @@ $result = $conn->query($sql);
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" ></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -145,7 +150,7 @@ $result = $conn->query($sql);
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -183,6 +188,7 @@ $result = $conn->query($sql);
                                           <th >No.</th>
                                           <th style="font-size:14px; min-width:70px;">ID Number</th>
                                           <th style="font-size:14px; min-width:70px;">Name</th>
+                                          <th style="font-size:14px; min-width:70px;">Gender</th>
                                           <th style="font-size:14px; min-width:70px;">Year Level</th>
                                            <th style="font-size:14px; min-width:70px;">Program</th>
                                            <th style="font-size:14px; min-width:70px;">Department</th>
@@ -197,7 +203,7 @@ $result = $conn->query($sql);
                                       <?php
                                         include '../connections/conn.php';
 
-                                              $sql = "SELECT * FROM student_offenses WHERE sr_code = '$code' && status != 'Finished' ORDER BY id DESC ";
+                                              $sql = "SELECT * FROM student_offenses WHERE sr_code = '$code' && status != 'Finished' ORDER BY date_started DESC ";
                                               $result = $conn->query($sql);
 
                                                   if ($result->num_rows > 0) {
@@ -215,9 +221,10 @@ $result = $conn->query($sql);
                                                           <td>".$count."</td>
                                                           <td>".$row["sr_code"]."</td>
                                                           <td>".$name."</a></td>
+                                                           <td>".$row["gender"]."</td>
                                                           <td>".$row["year_level"]."</td>
                                                           <td>".$row["program"]."</td>
-                                                          <td>".$row["department"]."</td>
+                                                          <td>".$row["department"]."</td>   
                                                           <td>".$row["date_started"]."</td>
                                                           <td>".$ended."</a></td>
                                                           <td>".$row["type_of_violation"]."</td>
@@ -232,6 +239,7 @@ $result = $conn->query($sql);
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
+                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
@@ -274,23 +282,36 @@ $result = $conn->query($sql);
       <div class="form-group">
       <p>Check if the case resolved!</p>
       <input type="text" name="srcode" value="<?php echo $srcode; ?>" hidden>
+<table id="bootstrap-data-table" class="table table-striped table-bordered " width="100%">               
+       <thead>
+                                        <tr>
+                                          
+                                          <th style="font-size:14px; min-width:70px;">Action</th>
+                                          <th style="font-size:14px; min-width:70px;">Reason</th>
+                                          <th style="font-size:14px; min-width:70px;">Date Started</th>
+                                           
+                                        </tr>
+                                      </thead>
+                                      <tbody>
       <?php
  
       include '../connections/conn.php';
 
-      $sql = "SELECT * FROM student_offenses WHERE sr_code = '$srcode' && status = 'On Going'";
+      $sql = "SELECT * FROM student_offenses WHERE sr_code = '$srcode' && status = 'On Going' ORDER BY id desc";
       $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
               // output data of each row
               while($row = $result->fetch_assoc()) {
-                echo "<input type='radio' name='offense' value='".$row["id"]."' required> ".$row["violation"]."<br>";
+                echo "<tr><td><input type='radio' name='offense' value='".$row["id"]."' required></td> 
+                          <td>".$row["violation"]."</td>
+                          <td>".$row["date_started"] ."</td></tr>";
                 }
               } else {
                   echo "0 results";
               }
 
-?>
+?></tbody></table>
      
       
             </div>

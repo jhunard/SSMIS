@@ -113,11 +113,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" ></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -164,7 +164,7 @@
                                             </div>
                                             <hr>
 
-                                    <div class="form-group"><label for="register" class=" form-control-label">Choose Position:</label></div>
+                                    <div class="form-group"><label for="register" class=" form-control-label"><strong>Choose Position:</strong></label></div>
                                      
                                         <div class="offset-md-2 col-md-8">
                                             <input type="radio" value="guidance" id="radioOne" name="position" checked/>
@@ -185,16 +185,17 @@
 
                                 <div class="row form-group">
                                           <div class="col-12 col-md-3"><label for="newpass" class=" form-control-label">Password:</label></div>
-                                       <div class="col-12 col-md-4"> <input type="password" name="password" class="form-control">  </div>
+                                       <div class="col-12 col-md-4"> <input type="password" name="password" class="form-control" placeholder="Password">  </div>
                                     </div>    
 
 
                                        <div class="row form-group">
                                         <div class="col-12 col-md-3"><label for="retypepass" class=" form-control-label">Retype Password:</label></div>
-                                          <div class="col-12 col-md-4"><input type="password" name="re-type" class="form-control"></div>
+                                          <div class="col-12 col-md-4"><input type="password" name="re-type" class="form-control" placeholder="Retype Password"></div>
                                         </div><br>
 
                                          <div class="offset-md-2 col-md-8">
+                                         <label for="fileToUpload" class=" form-control-label"><strong>Upload Profile Picture:</strong></label>
                                               <input type="file" name="fileToUpload" id="fileToUpload">
                                             </div> 
                                             <br><br>
@@ -211,7 +212,7 @@
                     </div><!-- .col -->
                  
 
-         </div>           
+                 
        </form>         
 
         </div><!-- .animated -->

@@ -142,11 +142,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -229,7 +229,8 @@
 
                         <div class="form-group">
                              <label for="email" class="col-form-label"><b>Email Address:</b></label>
-                             <input type="email" name="email"  class="form-control" id="email" placeholder="example@email.com" value="<?php echo $email; ?>" required>
+                             <input type="email" name="email"  class="form-control" id="email" placeholder="example@email.com" value="<?php echo $email; ?>" required
+                                      pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*">
                         </div>
 
                     </div>

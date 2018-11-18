@@ -1,629 +1,331 @@
 <?php
-//January
+
+ //January 1
  include '../connections/conn.php';
+ 
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '1' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $one = $row3["count"];
+           }
+         } else {
+            $one= 0;
+         }
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'January' && year = '$yearvalue' ORDER BY id DESC ";
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '2' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $january = 0;
-                }else{
-                $january = $rowcount;
-
-                }           
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $two = $row3["count"];
                    }
                  } else {
-                    $january = 0;
+                    $two= 0;
                  }
- 
-?>
 
-<?php
-//February
- include '../connections/conn.php';
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '3' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $three = $row3["count"];
+           }
+         } else {
+            $three= 0;
+         }
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'February' && year = '$yearvalue' ORDER BY id DESC ";
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '4' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $february = 0;
-                }else{
-                $february = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $four = $row3["count"];
                    }
                  } else {
-                    $february = 0;
+                    $four= 0;
                  }
- 
-?>
 
-<?php
-//March
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'March' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '5' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $five = $row3["count"];
+           }
+         } else {
+            $five= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '6' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $march = 0;
-                }else{
-                $march = $rowcount;
-  
-                }
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $six = $row3["count"];
                    }
                  } else {
-                    $march = 0;
+                    $six= 0;
                  }
- 
-?>
 
-<?php
-//April
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'April' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '7' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $seven = $row3["count"];
+           }
+         } else {
+            $seven= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '8' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $april = 0;
-                }else{
-                $april = $rowcount;
-  
-                }
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $eight = $row3["count"];
                    }
                  } else {
-                    $april = 0;
+                    $eight= 0;
                  }
- 
-?>
 
-<?php
-//May
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'May' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '9' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $nine = $row3["count"];
+           }
+         } else {
+            $nine= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '10' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $may = 0;
-                }else{
-                $may = $rowcount;
-    
-                }       
-                $rowcount=mysqli_num_rows($result3);     
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $ten = $row3["count"];
                    }
                  } else {
-                    $may = 0;
+                    $ten= 0;
                  }
- 
-?>
 
-<?php
-//June
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'June' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '11' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $eleven = $row3["count"];
+           }
+         } else {
+            $eleven= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '12' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $june = 0;
-                }else{
-                $june = $rowcount;
-   
-                }           
-                $rowcount=mysqli_num_rows($result3);  
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twelve = $row3["count"];
                    }
                  } else {
-                    $june = 0;
+                    $twelve= 0;
                  }
- 
-?>
 
-<?php
-//July
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'July' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '13' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $thirteen = $row3["count"];
+           }
+         } else {
+            $thirteen= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '14' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $july = 0;
-                }else{
-                $july = $rowcount;
-   
-                }           
-                $rowcount=mysqli_num_rows($result3);  
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $fourteen = $row3["count"];
                    }
                  } else {
-                    $july = 0;
+                    $fourteen= 0;
                  }
- 
-?>
 
-<?php
-//August
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'August' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '15' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $fifteen = $row3["count"];
+           }
+         } else {
+            $fifteen= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '16' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $august = 0;
-                }else{
-                $august = $rowcount;
-                }
-               $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $sixteen = $row3["count"];
                    }
                  } else {
-                    $august = 0;
+                    $sixteen= 0;
                  }
- 
-?>
 
-<?php
-//September
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'September' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '17' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $seventeen = $row3["count"];
+           }
+         } else {
+            $seventeen= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '18' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $september  = 0;
-                }else{
-                $september = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $eighteen = $row3["count"];
                    }
                  } else {
-                    $september = 0;
+                    $eighteen= 0;
                  }
- 
-?>
 
-<?php
-//October
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'October' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '19' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $nineteen = $row3["count"];
+           }
+         } else {
+            $nineteen= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '20' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $october = 0;
-                }else{
-                $october = $rowcount;
-                } 
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twenty = $row3["count"];
                    }
                  } else {
-                    $october = 0;
+                    $twenty= 0;
                  }
- 
-?>
 
-<?php
-//November
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'November' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '21' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $twentyone = $row3["count"];
+           }
+         } else {
+            $twentyone= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '22' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $november = 0;
-                }else{
-                $november = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twentytwo = $row3["count"];
                    }
                  } else {
-                    $november= 0;
+                    $twentytwo= 0;
                  }
- 
-?>
 
-<?php
-//December
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'December' && year = '$yearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '23' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $twentythree = $row3["count"];
+           }
+         } else {
+            $twentythree= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '24' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $december = 0;
-                }else{
-                $december = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twentyfour = $row3["count"];
                    }
                  } else {
-                    $december = 0;
+                    $twentyfour= 0;
                  }
- 
-?>
 
 
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '25' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $twentyfive = $row3["count"];
+           }
+         } else {
+            $twentyfive= 0;
+         }
 
-<?php
-//January
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'January' && year = '$lyearvalue' ORDER BY id DESC ";
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '26' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $ljanuary = 0;
-                }else{
-                $ljanuary = $rowcount;
-
-                }           
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twentysix = $row3["count"];
                    }
                  } else {
-                    $ljanuary = 0;
+                    $twentysix= 0;
                  }
- 
-?>
 
-<?php
-//February
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'February' && year = '$lyearvalue' ORDER BY id DESC ";
+ $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '27' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $twentyseven = $row3["count"];
+           }
+         } else {
+            $twentyseven= 0;
+         }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '28' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $lfebruary = 0;
-                }else{
-                $lfebruary = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $twentyeight = $row3["count"];
                    }
                  } else {
-                    $lfebruary = 0;
+                    $twentyeight= 0;
                  }
- 
-?>
+  $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '29' && year = '$yearvalue'  ";
+ $result3 = $conn->query($sql3);
+     if ($result3->num_rows > 0) {
+         while($row3 = $result3->fetch_assoc()) {
+           $twentynine = $row3["count"];
+           }
+         } else {
+            $twentynine= 0;
+         }
 
-<?php
-//March
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'March' && year = '$lyearvalue' ORDER BY id DESC ";
+         $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '30' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $lmarch = 0;
-                }else{
-                $lmarch = $rowcount;
-  
-                }
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $thirty = $row3["count"];
                    }
                  } else {
-                    $lmarch = 0;
-                 }
- 
-?>
+                    $thirty= 0;
+                 } 
 
-<?php
-//April
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'April' && year = '$lyearvalue' ORDER BY id DESC ";
+          $sql3 = "SELECT COUNT(id) AS count FROM  student_offenses WHERE  type_of_violation = '$servicesvalue' && month = '$monthvalue' && day = '31' && year = '$yearvalue'  ";
          $result3 = $conn->query($sql3);
-   
              if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $lapril = 0;
-                }else{
-                $lapril = $rowcount;
-  
-                }
-                $rowcount=mysqli_num_rows($result3);   
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
+                 while($row3 = $result3->fetch_assoc()) {
+                   $thirtyone = $row3["count"];
                    }
                  } else {
-                    $lapril = 0;
-                 }
- 
-?>
+                    $thirtyone= 0;
+                 }                         
+                                        
 
-<?php
-//May
- include '../connections/conn.php';
 
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'May' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                    $lmay = 0;
-                }else{
-                $lmay = $rowcount;
-    
-                }       
-                $rowcount=mysqli_num_rows($result3);     
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $lmay = 0;
-                 }
- 
-?>
-
-<?php
-//June
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'June' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $ljune = 0;
-                }else{
-                $ljune = $rowcount;
-   
-                }           
-                $rowcount=mysqli_num_rows($result3);  
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $ljune = 0;
-                 }
- 
-?>
-
-<?php
-//July
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'July' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $ljuly = 0;
-                }else{
-                $ljuly = $rowcount;
-   
-                }           
-                $rowcount=mysqli_num_rows($result3);  
-                // Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $ljuly = 0;
-                 }
- 
-?>
-
-<?php
-//August
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'August' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $laugust = 0;
-                }else{
-                $laugust = $rowcount;
-                }
-               $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $laugust = 0;
-                 }
- 
-?>
-
-<?php
-//September
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'September' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $lseptember  = 0;
-                }else{
-                $lseptember = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $lseptember = 0;
-                 }
- 
-?>
-
-<?php
-//October
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'October' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $loctober = 0;
-                }else{
-                $loctober = $rowcount;
-                } 
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $loctober = 0;
-                 }
- 
-?>
-
-<?php
-//November
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'November' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $lnovember = 0;
-                }else{
-                $lnovember = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $lnovember= 0;
-                 }
- 
-?>
-
-<?php
-//December
- include '../connections/conn.php';
-
-         $sql3 = "SELECT * FROM student_offenses WHERE type_of_violation = '$servicesvalue' && month = 'December' && year = '$lyearvalue' ORDER BY id DESC ";
-         $result3 = $conn->query($sql3);
-   
-             if ($result3->num_rows > 0) {
-                
-                if(empty($rowcount)){
-                $ldecember = 0;
-                }else{
-                $ldecember = $rowcount;
-                }
-                $rowcount=mysqli_num_rows($result3);// Free result set
-                mysqli_free_result($result3);
-                while($row3 = $result3->fetch_assoc()) {
-                        
-                   }
-                 } else {
-                    $ldecember = 0;
-                 }
- 
 ?>
 
 

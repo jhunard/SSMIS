@@ -31,6 +31,24 @@
    }
 ?>
 
+<?php
+ 
+      include '../connections/conn.php';
+
+              $sql2 = "SELECT * FROM system_settings ORDER BY id ASC";
+              $result2 = $conn->query($sql2);
+        
+                  if ($result2->num_rows > 0) {
+                      // output data of each row
+                      while($row2 = $result2->fetch_assoc()) {
+                          $system_img = $row2["picture"];
+                        }
+                      } else {
+                          echo "0 results";
+                      }
+      
+?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,11 +113,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "images/logos.png" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -119,7 +137,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -152,9 +170,11 @@
         <th>No.</th>
         <th>ID Number</th>
         <th>Name</th>
+        <th >Gender</th>
         <th>Year Level</th>
          <th >Program</th>
          <th >Department</th>
+          
          <th>Date Started</th>
          <th>Date Ended</th>
          <th>Type of Violation</th>
@@ -166,7 +186,7 @@
     <?php
       include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY lname ";
+            $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY date_started DESC ";
             $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -184,9 +204,10 @@
                         <td>".$count."</td>
                         <td>".$row["sr_code"]."</a></td>
                         <td>".$name."</a></td>
+                         <td>".$row["gender"]."</a></td>
                         <td>".$row["year_level"]."</a></td>
                         <td>".$row["program"]."</a></td>
-                        <td>".$row["department"]."</a></td>
+                        <td>".$row["department"]."</a></td> 
                         <td>".$row["date_started"]."</a></td>
                         <td>".$ended."</a></td>
                         <td>".$row["type_of_violation"]."</a></td>
@@ -196,6 +217,8 @@
                       }
                     } else {
                         echo "<td style='text-align:center;'>-</td>
+                              <td style='text-align:center;'>-</td>
+                              <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>
                               <td style='text-align:center;'>-</td>

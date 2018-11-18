@@ -111,11 +111,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" ></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -238,7 +238,7 @@
         <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
         <th style="font-size:15px; min-width:80px;">Year Level</th>
          <th style="font-size:15px; min-width:70px;">Program</th>
-         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
+         <th style="font-size:14px; min-width:70px;">Department</th>
           <th style="font-size:15px; min-width:70px;">Date</th>
           <th style="font-size:15px; min-width:70px;">Type of Services</th>
          <th style="font-size:15px; min-width:70px;">Reason</th>
@@ -252,12 +252,12 @@
         $graph_month=date("F");
         $graph_year= date("Y");
         $graph_services= 'Referal ';
-       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By lname";
+       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By graph_date DESC";
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services'  Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE graph_month='$graph_month' && graph_year='$graph_year' && services='$graph_services'  Order By graph_date DESC ";
       }
      
             $sql=$querryhere;
@@ -299,6 +299,7 @@ $conn->close();
      
     </tbody>
   </table>
+               </div>
                </div>
                    </div>
                   </div>

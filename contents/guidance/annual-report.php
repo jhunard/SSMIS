@@ -110,10 +110,11 @@
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
+          <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -225,7 +226,7 @@
         <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
         <th style="font-size:15px; min-width:80px;">Year Level</th>
          <th style="font-size:15px; min-width:70px;">Program</th>
-         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
+         <th style="font-size:15px; min-width:70px;">Department</th>
           <th style="font-size:15px; min-width:70px;">Date</th>
           <th style="font-size:15px; min-width:70px;">Type of Services</th>
          <th style="font-size:15px; min-width:70px;">Reason</th>
@@ -239,11 +240,11 @@
         $lastyear= date("y") + 1;
        $graph_year= date("y")."-".$lastyear;
         $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By lname";
+       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By graph_date DESC";
       }else{
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE school_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE school_year='$graph_year' && services='$graph_services' Order By graph_date DESC ";
       }
      
             $sql=$querryhere;
@@ -284,8 +285,9 @@ $conn->close();
 ?>
      
     </tbody>
-  </table>
-               
+  </table>         
+                   </div>
+                    </div>
                    </div>
                   </div>
                 </div>

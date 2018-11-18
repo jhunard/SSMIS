@@ -67,6 +67,7 @@
                         $yearlevel = $row2["year_level"];
                         $program = $row2["program"];
                         $department = $row2["department"];
+                         $gender = $row2["gender"];
                     }
                 }
               } else {
@@ -139,10 +140,11 @@
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
+          <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -172,7 +174,7 @@
      
       <div class="content">
          <div class="animated fadeIn">
-            <form action="../connections/student-information-sheet-form-insert.php" method="post" class="form" enctype="multipart/form-data">
+            <form action="../connections/other-services-insert.php" method="post" class="form" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-6 offset-md-3">
                             <div class="card">
@@ -211,7 +213,8 @@
                                                 </div>
                                                   
                                               <div class="form-group"><label for="program" class=" form-control-label"><strong>Program:</strong></label> <input class='border-remove  col-md-10' type="text" name="otherprogram" value="<?php echo $program;?>" readonly></div>
-                                              <div class="form-group"> <label for="department" class=" form-control-label"><strong>Department:</strong></label><input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly> </div><br>
+                                              <div class="form-group"> <label for="department" class=" form-control-label"><strong>Department:</strong></label><input class='border-remove  col-md-8' type="text" name="otherdepartment" value="<?php echo $department;?>" readonly> </div>
+                                               <div class="form-group"> <label for="gender" class=" form-control-label"><strong>Gender:</strong></label><input class='border-remove  col-md-8' type="text" name="othergender" value="<?php echo $gender;?>" readonly> </div><br>
                                             <hr>
 
                                              <a style="font-size:18px;"><strong>Date:</strong> <input type="date" style='border:none;text-align:center;' name='otherdate' style="font-size:14px;" required></a><br><br>
