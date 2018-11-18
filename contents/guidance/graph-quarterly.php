@@ -281,12 +281,7 @@ $yearvalue = $_GET["yearvalue"];
                             <div class="card-body">
                               <div class="row ">
                                 
-                                <h3 class="col-9 "><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?> (Bar Graph)</h3>
-                                <div class="float-right">
-                                    <a href="#section1" class="col-1">Bar Graph</a>
-                                   <a href="#section2"  class="col-1">Line Graph</a>
-                                   <a href="#section3"  class="col-1">Pie Graph</a>
-                               </div>
+                                <h3 class="col-9 "><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?> </h3>
                                 <canvas id="barGraph"></canvas>
                             </div>
                         </div>
