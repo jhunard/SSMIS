@@ -107,11 +107,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -122,7 +122,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -161,6 +161,7 @@
                                           <th >No.</th>
                                           <th style="font-size:14px; min-width:70px;">ID Number</th>
                                           <th style="font-size:14px; min-width:70px;">Name</th>
+                                          <th style="font-size:14px; min-width:70px;">Gender</th>
                                           <th style="font-size:14px; min-width:70px;">Year Level</th>
                                            <th style="font-size:14px; min-width:70px;">Program</th>
                                            <th style="font-size:14px; min-width:70px;">Department</th>
@@ -169,13 +170,14 @@
                                            <th style="font-size:14px; min-width:70px;">Type of Violation</th>
                                            <th style="font-size:14px; min-width:70px;">Violation</th>
                                            <th style="font-size:14px; min-width:70px;">Status</th>
+                                          <!--  <th style="font-size:14px; min-width:70px;">Remarks</th> -->
                                         </tr>
                                       </thead>
                                       <tbody>
                                       <?php
                                         include '../connections/conn.php';
 
-                                              $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY lname ";
+                                              $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY date_started DESC ";
                                               $result = $conn->query($sql);
 
                                                   if ($result->num_rows > 0) {
@@ -189,10 +191,19 @@
                                                           }else{
                                                             $ended= $row["date_ended"];
                                                           }
+
+                                                          if ($row["remarks"] == "1") {
+                                                            $remarks= "Request for ID";
+                                                          }else{
+                                                            $remarks= "No ID Requested";
+                                                          }
+
+
                                                           echo "<tr>
                                                           <td>".$count."</td>
                                                           <td>".$row["sr_code"]."</td>
                                                           <td>".$name."</a></td>
+                                                          <td>".$row["gender"]."</td>
                                                           <td>".$row["year_level"]."</td>
                                                           <td>".$row["program"]."</td>
                                                           <td>".$row["department"]."</td>
@@ -201,6 +212,7 @@
                                                           <td>".$row["type_of_violation"]."</td>
                                                           <td>".$row["violation"]."</td>
                                                           <td>".$row["status"]."</td>
+                                                         
                                                         </tr>";
                                                         }
                                                       } else {
@@ -214,6 +226,9 @@
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
                                                                 <td style='text-align:center;'>-</td>
+                                                                <td style='text-align:center;'>-</td>
+                                                                <td style='text-align:center;'>-</td>
+                                                                
                                                                 ";
                                                           
                                                       }

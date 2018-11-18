@@ -49,12 +49,137 @@
       
 ?>
 <?php 
- $servicesvalue= $_GET["servicesvalue"];
- $month= $_GET["monthvalue"];
- $yearvalue= $_GET["yearvalue"];
- $lyearvalue = $yearvalue - 1;
-include '../connections/graph-quarterly.php';
- ?>
+$servicesvalue = $_GET["servicesvalue"];
+$monthvalue = $_GET["monthvalue"];
+$yearvalue = $_GET["yearvalue"];
+
+//January 1
+ include '../connections/conn.php';
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'January' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $january = $row3["count"];
+                   }
+                 } else {
+                    $january= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'February' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $february = $row3["count"];
+                   }
+                 } else {
+                    $february= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'March' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $march = $row3["count"];
+                   }
+                 } else {
+                    $march= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'April' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $april = $row3["count"];
+                   }
+                 } else {
+                    $april= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'May' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $may = $row3["count"];
+                   }
+                 } else {
+                    $may= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'June' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $june = $row3["count"];
+                   }
+                 } else {
+                    $june= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'July' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $july = $row3["count"];
+                   }
+                 } else {
+                    $july= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'August' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $august = $row3["count"];
+                   }
+                 } else {
+                    $august= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'September' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $september = $row3["count"];
+                   }
+                 } else {
+                    $september= 0;
+                 }
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'October' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $october = $row3["count"];
+                   }
+                 } else {
+                    $october= 0;
+                 }
+
+
+                 $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'November'  && quarter = '$monthvalue'  && graph_year = '$yearvalue'  ";
+                 $result3 = $conn->query($sql3);
+                     if ($result3->num_rows > 0) {
+                         while($row3 = $result3->fetch_assoc()) {
+                           $november = $row3["count"];
+                           }
+                         } else {
+                            $november= 0;
+                         }
+
+
+         $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'December' && quarter = '$monthvalue' && graph_year = '$yearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $december = $row3["count"];
+                   }
+                 } else {
+                    $december= 0;
+                 }
+
+
+?>
 
 <head>
     <meta charset="utf-8">
@@ -111,11 +236,11 @@ include '../connections/graph-quarterly.php';
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header-->  <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -146,44 +271,28 @@ include '../connections/graph-quarterly.php';
      
         <!-- /#header -->     
         <!-- Content -->
-        <br><br>
-        <h4 class='col-md-12'><?php echo $servicesvalue;?> on <?php echo $month;?> Quarter on Year <?php echo $yearvalue;?></h4>
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
-                  <!-- Jhunard BarChart-->
+                  <!--  BarChart-->
 
-                    <div class="col-lg-6">
+                   <div class="col-lg-12"  id="section1">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Bar Graph </h4>
+                              <div class="row ">
+                                
+                                <h3 class="col-9 "><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?> (Bar Graph)</h3>
+                                <div class="float-right">
+                                    <a href="#section1" class="col-1">Bar Graph</a>
+                                   <a href="#section2"  class="col-1">Line Graph</a>
+                                   <a href="#section3"  class="col-1">Pie Graph</a>
+                               </div>
                                 <canvas id="barGraph"></canvas>
                             </div>
                         </div>
                     </div><!-- /# column -->
-
-
-                    <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Line Graph </h4>
-                                <canvas id="lineGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                      <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6 offset-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Pie Graph </h4>
-                                <canvas id="pieGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                 
+                   </div> 
+                                   
                 </div>
 
             </div><!-- .animated -->
@@ -211,6 +320,7 @@ include '../connections/graph-quarterly.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="js/main.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
 <!-- Jhuanard BarChart -->
  <script>
@@ -308,6 +418,34 @@ include '../connections/graph-quarterly.php';
   });
 
 </script>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+
 
 
 </body>

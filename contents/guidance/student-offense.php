@@ -113,11 +113,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -155,76 +155,82 @@
                             <div class="card-header text-center">
                                 <strong class="card-title">Student Offenses</strong>
                             </div>
-                            <div class="card-body" >
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered " width="100%">
-                                 <thead>
-      <tr>
-        <th >No.</th>
-        <th style="font-size:14px; min-width:70px;">ID Number</th>
-        <th style="font-size:14px; min-width:70px;">Name</th>
-        <th style="font-size:14px; min-width:70px;">Year Level</th>
-         <th style="font-size:14px; min-width:70px;">Program</th>
-         <th style="font-size:14px; min-width:70px;">Department</th>
-         <th style="font-size:14px; min-width:70px;">Date Started</th>
-         <th style="font-size:14px; min-width:70px;">Date Ended</th>
-         <th style="font-size:14px; min-width:70px;">Type of Violation</th>
-         <th style="font-size:14px; min-width:70px;">Violation</th>
-         <th style="font-size:14px; min-width:70px;">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      include '../connections/conn.php';
+                                <div class="card-body" >
+                                  <table id="bootstrap-data-table" class="table table-striped table-bordered " width="100%">
+                                     <thead>
+                                        <tr>
+                                          <th >No.</th>
+                                          <th style="font-size:14px; min-width:70px;">ID Number</th>
+                                          <th style="font-size:14px; min-width:120px;">Name</th>
+                                            <th style="font-size:14px; min-width:50px;">Gender</th>
+                                          <th style="font-size:14px; min-width:70px;">Year Level</th>
+                                           <th style="font-size:14px; min-width:70px;">Program</th>
+                                           <th style="font-size:14px; min-width:70px;">Department</th>
+                                           <th style="font-size:14px; min-width:70px;">Date Started</th>
+                                           <th style="font-size:14px; min-width:70px;">Date Ended</th>
+                                           <th style="font-size:14px; min-width:70px;">Type of Violation</th>
+                                           <th style="font-size:14px; min-width:70px;">Violation</th>
+                                           <th style="font-size:14px; min-width:70px;">Status</th>
+                                        </tr>
+                                      </thead>
+                                        <tbody>
+                                          <?php
+                                            include '../connections/conn.php';
 
-            $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY lname ";
-            $result = $conn->query($sql);
+                                                  $sql = "SELECT * FROM student_offenses WHERE 1 ORDER BY date_started DESC ";
+                                                  $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                      $mname = $row["mname"];
-                      $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                      $count += 1;
-                        if(empty($row["date_ended"])){
-                          $ended = "-";
-                        }else{
-                          $ended= $row["date_ended"];
-                        }
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td>".$row["sr_code"]."</a></td>
-                        <td>".$name."</a></td>
-                        <td>".$row["year_level"]."</a></td>
-                        <td>".$row["program"]."</a></td>
-                        <td>".$row["department"]."</a></td>
-                        <td>".$row["date_started"]."</a></td>
-                        <td>".$ended."</a></td>
-                        <td>".$row["type_of_violation"]."</a></td>
-                        <td>".$row["violation"]."</a></td>
-                        <td>".$row["status"]."</a></td>
-                      </tr>";
-                      }
-                    } else {
-                        echo "<td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              <td style='text-align:center;'>-</td>
-                              ";
-                        
-                    }
-$conn->close();
-?>
-    </tbody>
-  </table>
-</div>
+                                                      if ($result->num_rows > 0) {
+                                                          // output data of each row
+                                                          while($row = $result->fetch_assoc()) {
+                                                            $mname = $row["mname"];
+                                                            $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                                                            $count += 1;
+                                                              if(empty($row["date_ended"])){
+                                                                $ended = "-";
+                                                              }else{
+                                                                $ended= $row["date_ended"];
+                                                              }
+                                                              echo "<tr>
+                                                              <td>".$count."</td>
+                                                              <td>".$row["sr_code"]."</td>
+                                                              <td>".$name."</a></td>
+                                                                <td>".$row["gender"]."</td>
+                                                              <td>".$row["year_level"]."</td>
+                                                              <td>".$row["program"]."</td>
+                                                              <td>".$row["department"]."</td>                     
+                                                              <td>".$row["date_started"]."</td>
+                                                              <td>".$ended."</td>
+                                                              <td>".$row["type_of_violation"]."</td>
+                                                              <td>".$row["violation"]."</td>
+                                                              <td>".$row["status"]."</td>
+                                                            </tr>";
+                                                            }
+                                                          } else {
+                                                              echo "<td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    ";
+                                                              
+                                                          }
+                                              $conn->close();
+                                              ?>
+                                          </tbody>
+                                   </table>
+                                </div>
 
-                </div>
+                     </div>
+                  </div> <!--col md-12  -->
+               </div> <!-- row -->
             </div><!-- .animated -->
         </div><!-- .content -->
 

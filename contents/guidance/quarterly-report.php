@@ -110,11 +110,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -248,12 +248,12 @@
         $graph_month='first';
         $graph_year= date("Y");
         $graph_services= 'Student Informartion Sheet';
-       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By lname";
+       $querryhere = "SELECT * FROM graph_data WHERE services != 'Student Information Sheet' Order By graph_date DESC";
       }else{
         $graph_month=$_POST["month"];
         $graph_year=$_POST["year"];
         $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By lname ";
+        $querryhere = "SELECT * FROM graph_data WHERE quarter='$graph_month' && graph_year='$graph_year' && services='$graph_services' Order By graph_date DESC ";
       }
      
             $sql=$querryhere;
@@ -294,7 +294,7 @@ $conn->close();
 ?>
      
     </tbody>
-  </table>
+  </table>      </div>
                </div>
                    </div>
                   </div>

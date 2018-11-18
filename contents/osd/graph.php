@@ -74,7 +74,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OSD| Graph</title>
+    <title>OSD | Graph</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -122,11 +122,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -137,7 +137,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                           <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -155,44 +155,32 @@
      
         <!-- /#header -->     
         <!-- Content -->
-        <br><br>
-        <h4 class='col-md-12'><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?></h4>
+        <style>
+
+
+section {
+    min-height: 100%;
+}
+</style>
+        
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
-                  <!-- Jhunard BarChart-->
+                  <!--  BarChart-->
 
-                    <div class="col-lg-6">
+
+                  
+                    <div class="col-lg-12"  id="section1">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Bar Graph </h4>
+                              <div class="row ">
+                                
+                                <h3 class="col-9 "><?php echo $servicesvalue;?> Offenses result on <?php echo $monthvalue;?> <?php echo $yearvalue;?></h3>
                                 <canvas id="barGraph"></canvas>
                             </div>
                         </div>
                     </div><!-- /# column -->
-
-
-                    <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Line Graph </h4>
-                                <canvas id="lineGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                      <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6 offset-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Pie Graph </h4>
-                                <canvas id="pieGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                 
+                   </div> 
                 </div>
 
             </div><!-- .animated -->
@@ -220,19 +208,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
+  
 <!-- Jhuanard BarChart -->
- <script>
+<script>
   //bar
   var ctxB = document.getElementById("barGraph").getContext('2d');
   var myBarChart = new Chart(ctxB, {
     type: 'bar',
     data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      labels: [ "<?php echo $monthvalue;?> 1, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 2, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 3, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 4, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 5, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 6, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 7, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 8, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 9, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 10, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 11, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 12, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 13, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 14, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 15, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 16, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 17, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 18, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 19, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 20, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 21, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 22, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 23, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 24, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 25, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 26, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 27, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 28, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 29, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 30, <?php echo $yearvalue;?>","<?php echo $monthvalue;?> 31, <?php echo $yearvalue;?>",],
       datasets: [{
         label: 'Counts of Student',
-        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"
+        data: ["<?php echo $one;?>","<?php echo $two;?>","<?php echo $three;?>","<?php echo $four;?>","<?php echo $five;?>","<?php echo $six;?>","<?php echo $seven;?>","<?php echo $eight;?>","<?php echo $nine;?>","<?php echo $ten;?>","<?php echo $eleven;?>","<?php echo $twelve;?>","<?php echo $thirteen;?>","<?php echo $fourteen;?>","<?php echo $fifteen;?>","<?php echo $sixteen;?>","<?php echo $seventeen;?>","<?php echo $eighteen;?>","<?php echo $nineteen;?>","<?php echo $twenty;?>","<?php echo $twentyone;?>","<?php echo $twentytwo;?>","<?php echo $twentythree;?>","<?php echo $twentyfour;?>","<?php echo $twentyfive;?>","<?php echo $twentysix;?>","<?php echo $twentyseven;?>","<?php echo $twentyeight;?>","<?php echo $twentynine;?>","<?php echo $thirty;?>","<?php echo $thirtyone;?>",],
+        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262","#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262","#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262","#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262","#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262","#336B87"
         ],
         borderColor: [
           'rgba(255,99,132,1)',
@@ -240,7 +230,32 @@
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)'
         ],
         borderWidth: 1
       }]
@@ -257,65 +272,33 @@
   });
 
 </script>
-<!-- Jhunard Line Chart -->
-<script>
-  //line
-  var ctxL = document.getElementById("lineGraph").getContext('2d');
-  var myLineChart = new Chart(ctxL, {
-    type: 'line',
-    data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      datasets: [{
-          label: "Present Year",
-          data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-          backgroundColor: [
-            'rgba(105, 0, 132, .2)',
-          ],
-          borderColor: [
-            'rgba(200, 99, 132, .7)',
-          ],
-          borderWidth: 2
-        },
-        {
-          label: "Last Year",
-          data: [<?php echo $ljanuary;?>,<?php echo $lfebruary;?>,<?php echo $lmarch;?>,<?php echo $lapril;?>,<?php echo $lmay;?>,<?php echo $ljune;?>,<?php echo $ljuly;?>,<?php echo $laugust;?>,<?php echo $lseptember;?>,<?php echo $loctober;?>,<?php echo $lnovember;?>,<?php echo $ldecember;?>,],
-          backgroundColor: [
-            'rgba(0, 137, 132, .2)',
-          ],
-          borderColor: [
-            'rgba(0, 10, 130, .7)',
-          ],
-          borderWidth: 2
-        }
-      ]
-    },
-    options: {
-      responsive: true
-    }
-  });
 
-</script>
-
-<!-- Jhunard Pie Graph -->
 
 <script>
-  //pie
-  var ctxP = document.getElementById("pieGraph").getContext('2d');
-  var myPieChart = new Chart(ctxP, {
-    type: 'pie',
-    data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      datasets: [{
-        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"],
-        hoverBackgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"]
-      }]
-    },
-    options: {
-      responsive: true
-    }
-  });
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
 </script>
 
 

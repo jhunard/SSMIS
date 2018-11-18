@@ -49,17 +49,278 @@
       
 ?>
 <?php 
- $servicesvalue= $_GET["servicesvalue"];
- $yearvalue= $_GET["yearvalue"];
- $lastyear= date("y") - 1;
+ $servicesvalue = $_GET["servicesvalue"];
+ $monthvalue = $_GET["monthvalue"];
+ $yearvalue = $_GET["yearvalue"];
+$lastyear= date("y") - 1;
  $lyearvalue= $lastyear."-".date("y");
-include '../connections/graph-annual.php';
+
+ //January 1
+  include '../connections/conn.php';
+ 
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'January' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $january = $row3["count"];
+                    }
+                  } else {
+                     $january= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'January' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $ljanuary = $row3["count"];
+                   }
+                 } else {
+                    $ljanuary= 0;
+                 }        
+// February
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'February' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $february = $row3["count"];
+                    }
+                  } else {
+                     $february= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'February' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lfebruary = $row3["count"];
+                   }
+                 } else {
+                    $lfebruary= 0;
+                 }        
+// March
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'March' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $march = $row3["count"];
+                    }
+                  } else {
+                     $march= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'March' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lmarch = $row3["count"];
+                   }
+                 } else {
+                    $lmarch= 0;
+                 }        
+// April
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'April' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $april = $row3["count"];
+                    }
+                  } else {
+                     $april= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'April' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lapril = $row3["count"];
+                   }
+                 } else {
+                    $lapril= 0;
+                 }        
+
+// May
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'May' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $may = $row3["count"];
+                    }
+                  } else {
+                     $may= 0;
+                  }
+  
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'May' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lmay = $row3["count"];
+                   }
+                 } else {
+                    $lmay= 0;
+                 }        
+
+// June
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'June' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $june = $row3["count"];
+                    }
+                  } else {
+                     $june= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'June' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $ljune = $row3["count"];
+                   }
+                 } else {
+                    $ljune= 0;
+                 }        
+// july
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'July' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $july = $row3["count"];
+                    }
+                  } else {
+                     $july= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'July' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $ljuly = $row3["count"];
+                   }
+                 } else {
+                    $ljuly= 0;
+                 }        
+// August
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'August' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $august = $row3["count"];
+                    }
+                  } else {
+                     $august= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'August' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $laugust = $row3["count"];
+                   }
+                 } else {
+                    $laugust= 0;
+                 }        
+// September
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'September' && school_year = '$yearvalue' ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $september = $row3["count"];
+                    }
+                  } else {
+                     $september= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'September' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lseptember = $row3["count"];
+                   }
+                 } else {
+                    $lseptember= 0;
+                 }        
+
+// October
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'October' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $october = $row3["count"];
+                    }
+                  } else {
+                     $october= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'October' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $loctober = $row3["count"];
+                   }
+                 } else {
+                    $loctober= 0;
+                 }        
+
+// November
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'November'  && school_year = '$yearvalue'  ";
+                  $result3 = $conn->query($sql3);
+                      if ($result3->num_rows > 0) {
+                          while($row3 = $result3->fetch_assoc()) {
+                            $november = $row3["count"];
+                            }
+                          } else {
+                             $november= 0;
+                          }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'November' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $lnovember = $row3["count"];
+                   }
+                 } else {
+                    $lnovember= 0;
+                 }        
+
+// December
+          $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'December' && school_year = '$yearvalue'  ";
+          $result3 = $conn->query($sql3);
+              if ($result3->num_rows > 0) {
+                  while($row3 = $result3->fetch_assoc()) {
+                    $december = $row3["count"];
+                    }
+                  } else {
+                     $december= 0;
+                  }
+
+
+                  $sql3 = "SELECT COUNT(id) AS count FROM graph_data WHERE services = '$servicesvalue' && graph_month = 'December' && school_year = '$lyearvalue'  ";
+         $result3 = $conn->query($sql3);
+             if ($result3->num_rows > 0) {
+                 while($row3 = $result3->fetch_assoc()) {
+                   $ldecember = $row3["count"];
+                   }
+                 } else {
+                    $ldecember= 0;
+                 }        
+
+
  ?>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Guidance| Reports</title>
+    <title>Guidance | Reports</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -112,10 +373,11 @@ include '../connections/graph-annual.php';
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
+          <style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -146,48 +408,26 @@ include '../connections/graph-annual.php';
      
         <!-- /#header -->     
         <!-- Content -->
-        <br><br>
-        <h4 class='col-md-12'><?php echo $servicesvalue;?> on <?php echo $month;?> Quarter on Year <?php echo $yearvalue;?></h4>
+    
+       
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
-                  <!-- Jhunard BarChart-->
+                 
 
-                    <div class="col-lg-6">
+
+                    <div class="col-lg-12"  id="section2">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mb-3">Bar Graph </h4>
-                                <canvas id="barGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-
-                    <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Line Graph </h4>
+                              <div class="row ">
+                                
+                                <h3 class="col-9 "><?php echo $servicesvalue;?> result on Year <?php echo $yearvalue;?> Compared on Last Year <?php echo $lyearvalue;?></h3><br><br>
                                 <canvas id="lineGraph"></canvas>
                             </div>
                         </div>
                     </div><!-- /# column -->
+                   </div> 
 
-                      <!-- Jhunard LineChart--> 
-                    <div class="col-lg-6 offset-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mb-3">Pie Graph </h4>
-                                <canvas id="pieGraph"></canvas>
-                            </div>
-                        </div>
-                    </div><!-- /# column -->
-
-                 
-                </div>
-
-            </div><!-- .animated -->
-        </div>
         <!-- /.content -->
         <div class="clearfix"></div>
 
@@ -211,43 +451,8 @@ include '../connections/graph-annual.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
-<!-- Jhuanard BarChart -->
- <script>
-  //bar
-  var ctxB = document.getElementById("barGraph").getContext('2d');
-  var myBarChart = new Chart(ctxB, {
-    type: 'bar',
-    data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      datasets: [{
-        label: 'Counts of Student',
-        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-
-</script>
 <!-- Jhunard Line Chart -->
 <script>
   //line
@@ -289,25 +494,37 @@ include '../connections/graph-annual.php';
 
 <!-- Jhunard Pie Graph -->
 
-<script>
-  //pie
-  var ctxP = document.getElementById("pieGraph").getContext('2d');
-  var myPieChart = new Chart(ctxP, {
-    type: 'pie',
-    data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      datasets: [{
-        data: [<?php echo $january;?>,<?php echo $february;?>,<?php echo $march;?>,<?php echo $april;?>,<?php echo $may;?>,<?php echo $june;?>,<?php echo $july;?>,<?php echo $august;?>,<?php echo $september;?>,<?php echo $october;?>,<?php echo $november;?>,<?php echo $december;?>,],
-        backgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"],
-        hoverBackgroundColor: ["#336B87","#763626","#A43820","#598234","#66A5AD","#FB6542","#FFBBOO","#375E97","#34675C","#F4CC70","#BCBABE","#2D4262"]
-      }]
-    },
-    options: {
-      responsive: true
-    }
-  });
 
+
+
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
 </script>
+
 
 
 </body>

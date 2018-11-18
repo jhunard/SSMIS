@@ -106,11 +106,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" ></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -121,7 +121,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/<?php echo $img; ?>" alt="User Avatar">
+                           <img class="user-avatar rounded-circle" src="../guidance/images/<?php echo $img; ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -189,100 +189,105 @@
 
 <!-- table -->
 
-<div class="" style="margin-top:2%;">      
-  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-  <?php
-                                $services = $_POST["services"];
-                                $month = $_POST["month"];
-                                $year = $_POST["year"];
-                                if(empty($services) || empty($month) || empty( $year) ){
-                                    echo "";
-                                }else{
-                                    echo "
-                                    <span style='color:#235a81;'>Search >></span>
-                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
-                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
-                                    <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
-                                    <a href='graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."&status=2'>Show Graph</a><br><br><br>
-                                    ";
-                                }
-                                    
-                                ?>
-    <thead>
-      <tr>
-      <th>No.</th>
-        <th style="font-size:15px; min-width:70px;">ID Number</th>
-        <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
-        <th style="font-size:15px; min-width:80px;">Year Level</th>
-         <th style="font-size:15px; min-width:70px;">Program</th>
-         <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
-          <th style="font-size:15px; min-width:70px;">Date</th>
-          <th style="font-size:15px; min-width:70px;">Type of Services</th>
-         <th style="font-size:15px; min-width:70px;">Reason</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      include '../connections/conn.php';
+                          <div class="" style="margin-top:2%;">      
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                                      <?php
+                                                          $services = $_POST["services"];
+                                                          $month = $_POST["month"];
+                                                          $year = $_POST["year"];
+                                                          if(empty($services) || empty($month) || empty( $year) ){
+                                                              echo "";
+                                                          }else{
+                                                              echo "
+                                                              <span style='color:#235a81;'>Search >></span>
+                                                              <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='servicesvalue' value='".$services."' readonly><span style='color:#235a81;'>>></span>
+                                                              <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='monthvalue' value='".$month."' readonly><span style='color:#235a81;'>>></span>
+                                                              <input class='col-md-1' style='border:none;text-align:center;cursor:pointer;font-weight:bolder;' type='text' name='yearvalue' value='".$year."' readonly><span style='color:#235a81;'>>> </span>
+                                                              <a href='quarter-graph.php?servicesvalue=".$services."&monthvalue=".$month."&yearvalue=".$year."&status=2'>Show Graph</a><br><br><br>
+                                                              ";
+                                                          }
+                                                              
+                                                          ?>
+                                                      <thead>
+                                                        <tr>
+                                                        <th>No.</th>
+                                                          <th style="font-size:15px; min-width:70px;">ID Number</th>
+                                                          <th  class="text-center"style="font-size:15px; min-width:70px;">Name</th>
+                                                          <th style="font-size:15px; min-width:80px;">Year Level</th>
+                                                           <th style="font-size:15px; min-width:70px;">Program</th>
+                                                           <th style="font-size:15px; min-width:70px;"style="font-size:14px; min-width:70px;">Department</th>
+                                                            <th style="font-size:15px; min-width:70px;">Date</th>
+                                                           <th style="font-size:15px; min-width:70px;">Reason</th>
+                                                           <th style="font-size:15px; min-width:70px;">Type of Violation</th>
+                                                           <th style="font-size:15px; min-width:70px;">Quarter</th>
+                                                           <th style="font-size:15px; min-width:70px;">Status</th>
+                                                        </tr>
+                                                      </thead>
+                                                        <tbody>
+                                                        <?php
+                                                          include '../connections/conn.php';
 
-      if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
-        $graph_month='first';
-        $graph_year= date("Y");
-        $graph_services= 'Minor';
-       $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' Order By id DESC";
-      }else{
-        $graph_month=$_POST["month"];
-        $graph_year=$_POST["year"];
-        $graph_services=$_POST["services"];
-        $querryhere = "SELECT * FROM student_offenses WHERE status='Finished' && quarter = '$graph_month' && year='$graph_year' && type_of_violation='$graph_services'  Order By id DESC ";
-      }
-     
-      $sql=$querryhere;
-      $result = $conn->query($sql);
+                                                          if(empty($_POST["month"]) && empty($_POST["year"]) && empty($_POST["services"])){
+                                                            $graph_month='first';
+                                                            $graph_year= date("Y");
+                                                            $graph_services= 'Minor';
+                                                           $querryhere = "SELECT * FROM student_offenses WHERE 1 Order By date_started DESC";
+                                                          }else{
+                                                            $graph_month=$_POST["month"];
+                                                            $graph_year=$_POST["year"];
+                                                            $graph_services=$_POST["services"];
+                                                            $querryhere = "SELECT * FROM student_offenses WHERE  quarter = '$graph_month' && year='$graph_year' && type_of_violation='$graph_services'  Order By date_started DESC ";
+                                                          }
+                                                         
+                                                          $sql=$querryhere;
+                                                          $result = $conn->query($sql);
 
-          if ($result->num_rows > 0) {
-              // output data of each row
-              while($row = $result->fetch_assoc()) {
-                $mname = $row["mname"];
-                $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
-                  $x = 0;
-                  $y += $x + 1;
-                  echo "<tr>
-                  <td>".$y."</td>
-                  <td>".$row["sr_code"]."</td>
-                  <td>".$name."</td>
-                  <td>".$row["year_level"]."</td>
-                  <td>".$row["program"]."</td>
-                  <td>".$row["department"]."</td>
-                  <td>".$row["date_started"]."</td>
-                  <td>".$row["violation"]."</td>
-                  <td>".$row["type_of_violation"]."</td>
-                  <td>".$row["status"]."</td>
-                  </tr>";
-                }
-              } else {
-                echo "<tr>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                <td style='text-align:center;'>-</td>
-                </tr>";
-              }
-$conn->close();
-?>
-     
-    </tbody>
-  </table>
-               </div>
+                                                              if ($result->num_rows > 0) {
+                                                                  // output data of each row
+                                                                  while($row = $result->fetch_assoc()) {
+                                                                    $mname = $row["mname"];
+                                                                    $name = $row["lname"] . ", " .  $row["fname"] ." ". $mname[0] .".";
+                                                                      $x = 0;
+                                                                      $y += $x + 1;
+                                                                      echo "<tr>
+                                                                      <td>".$y."</td>
+                                                                      <td>".$row["sr_code"]."</td>
+                                                                      <td>".$name."</td>
+                                                                      <td>".$row["year_level"]."</td>
+                                                                      <td>".$row["program"]."</td>
+                                                                      <td>".$row["department"]."</td>
+                                                                      <td>".$row["date_started"]."</td>
+                                                                      <td>".$row["violation"]."</td>
+                                                                      <td>".$row["type_of_violation"]."</td>
+                                                                      <td>".$row["quarter"]."</td>
+                                                                      <td>".$row["status"]."</td>
+                                                                      </tr>";
+                                                                    }
+                                                                  } else {
+                                                                    echo "<tr>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    <td style='text-align:center;'>-</td>
+                                                                    </tr>";
+                                                                  }
+                                                    $conn->close();
+                                                    ?>
+                                                         
+                                                        </tbody>
+                            </table>
+                          </div>
                    </div>
                   </div>
                 </div>
+               </div> 
             </div><!-- .animated -->
         </div><!-- .content -->
 

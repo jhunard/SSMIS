@@ -1,115 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
-  <title>Student Service Management Information System</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/index.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Student Service Management Information System</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
-<body>
+<body class="bg-light">
 
-<nav class="navbar navbar-expand-sm" >
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">
-    <img src="images/logo.png" alt="logo" width="50px">
-  </a>
-  
-</nav>
-<div class="container">
-<div class="text-center" style="margin-top:-10%;">
-<img src="images/logo.jpg" style="width:300px;">
-</div>
-</div>
-<!-- Buttons Menu -->
-
-<!-- Guidance -->
-<div class="container">
-  <div class="col-12"><hr></div>
-</div>
-<div class="container">
-
-<div class="form-row text-center">
-<div class="col-4"></div>
-<div class="col-4"><button type="button" class="btn btn-danger custom" data-toggle="modal" data-target="#osd"> <img src="images/user.png" alt="logo" width="50px;">Log in</button></div>  
-<div class="col-4"></div> 
-
-</div>
-</div>
-
-
-
-
-
-<!-- Modal -->
- <div id="guidance" class="modal fade text-center">
-  <div class="modal-dialog modal-lg">
-    <div class="col-lg-8 col-sm-8 col-12 main-section">
-      <div class="modal-content">
-          <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
-          <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>Guidance Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
-            <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form action="contents/connections/login_con.php" method="post">
-               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
-               <input type="submit" class="btn btn-success" name="Login" value="Login">
-              </form>
-             </form>
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="index.html">
+                        <img class="align-content" src="images/logo-emboss.png" alt="" width="50%">
+                    </a>
+                </div>
+                <div class="login-form border  col-10 offset-md-1">
+                   <form action="contents/connections/login_con.php" method="post"><br>
+                    <style>h3{color:#455a64; }</style>
+                    <div class="text-center"> <h3>Login to your Account</h3></div><br><br>
+                         <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+                                    </div>
+                                </div>
+                       <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                        <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                                    </div>
+                                </div><br>
+                        
+                      
+                         <button type="submit" class="btn btn-success btn-sm">&nbsp;&nbsp; Login &nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
+                        <hr>
+                      
+                        <div class="register-link m-t-15 text-center">
+                      
+                        </div>
+                        <style>footer{color: #03a9f3; text-align: center;}</style>
+                        <footer><p>Student Service Management Information System</p> &copy; Copyright 2018 </footer>
+                    </form>
+                </div>
             </div>
-             <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
-       </div>
+        </div>
     </div>
-  </div>
-</div>
-</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="js/main.js"></script>
 
-<!-- OSD modal -->
-<div id="osd" class="modal fade text-center">
-  <div class="modal-dialog modal-lg">
-    <div class="col-lg-8 col-sm-8 col-12 main-section">
-      <div class="modal-content">
-          <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
-          <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>Welcome</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
-            <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form action="contents/connections/login_con.php" method="post">
-               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
-               <input type="submit" class="btn btn-success" name="Login" value="Verify"><br><br>
-             </form>
-            </div>
-       </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- SOA Login -->
-<div id="soa" class="modal fade text-center">
-  <div class="modal-dialog modal-lg">
-    <div class="col-lg-8 col-sm-8 col-12 main-section">
-      <div class="modal-content">
-          <div class="col-lg-12 col-sm-12 col-12 user-img"><img src="images/userlogin.png"></div>
-          <div class="col-lg-12 col-sm-12 col-12 user-name"><h1>SOA Login</h1><button type="button" class="close" data-dismiss="modal">&times;</button></div>
-            <div class="col-lg-12 col-sm-12 col-12 form-input">
-             <form action="contents/connections/login_con.php" method="post">
-               <div class="form-group"><input type="text" class="form-control" name="username" placeholder="Enter Username"></div>
-               <div class="form-group"><input type="password" class="form-control" name="password" placeholder="Password"></div>
-               <input type="submit" class="btn btn-success" name="Login" value="Login">
-            </div>
-             <div class="col-lg-12 col-sm-12 col-12 link-part"><a href="#" target="_blank">Forgot Password?</a></div>
-       </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
-<!-- Javascript -->
-<script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
 </body>
-
 </html>
-

@@ -132,11 +132,11 @@ input[type="number"] {
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src="../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src="../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -184,10 +184,10 @@ input[type="number"] {
                                             </div>
                                             <hr>
                                 
-                                    <div class="form-group"><label for="full-name" class=" form-control-label">Full Name:</label>
+                                    <div class="form-group"><label for="full-name" class=" form-control-label"><span style="color:red;">* </span>Full Name:</label>
                                         <div class="input-group">
                                            
-                                           <div> <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control col col-sm-11" ></div>
+                                           <div><input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control col col-sm-11" ></div>
                                           
                                            <div> <input type="text" id="fname" name="fname" placeholder="First Name" class="form-control col col-sm-11"></div>
                                             
@@ -197,15 +197,14 @@ input[type="number"] {
 
                                      <div class="row">
                                         <div class="col-6">
-                                            <div class="form-group"><label for="sr_code" class=" form-control-label">ID Number:</label><input type="text" name="srcode"  class="form-control "  placeholder="ID Number"  maxlength="20" required > </div>
+                                            <div class="form-group"><label for="sr_code" class=" form-control-label"><span style="color:red;">* </span>ID Number:</label><input type="text" name="srcode"  class="form-control "  placeholder="ID Number"  maxlength="20" required > </div>
                                         </div>
                                                
 
                                   
                                         <div class="col-6">
-                                          <div class="form-group"><label for="year_level" class=" form-control-label">Year Level:</label>
+                                          <div class="form-group"><label for="year_level" class=" form-control-label"><span style="color:red;">* </span>Year Level:</label>
                                                  <select name="yearlevel" id="select" class="form-control">
-                                                    <option>Select Year</option>
                                                     <option value="1st Year">1st Year</option>
                                                     <option value="2nd Year">2nd Year</option>
                                                     <option value="3rd Year">3rd Year</option>
@@ -216,9 +215,9 @@ input[type="number"] {
                                           </div>
                                         </div>    
 
-                                    <div class="form-group"><label for="program" class=" form-control-label">Program:</label><input type="text" name="program" pattern="[A-Za-z ]{1,120}"  class="form-control col-7 " placeholder="Program" required></div>
-                                    <div class="form-group"> <label for="department" class=" form-control-label">Department:</label><input type="text" name="department" pattern="[A-Za-z ]{1,120}"  class="form-control col-7 " placeholder="Department" required></div>
-                                    Insert Image : <input type="file" name="fileToUpload" id="fileToUpload" >
+                                    <div class="form-group"><label for="program" class=" form-control-label"><span style="color:red;">* </span>Program:</label><input type="text" name="program" pattern="[A-Za-z ]{1,120}"  class="form-control col-7 " placeholder="Program" required id="program"></div>
+                                    <div class="form-group"> <label for="department" class=" form-control-label"><span style="color:red;">* </span>Department:</label><input type="text" name="department" pattern="[A-Za-z ]{1,120}"  class="form-control col-7 " placeholder="Department" required id="department"></div>
+                                    <b>Insert Image for Student Profile (optional):</b><br><br> <input type="file" name="fileToUpload" id="fileToUpload" >
                                         </div>
                                     </div>
 
@@ -244,44 +243,44 @@ input[type="number"] {
 
                                    
                                         <div class="row form-group">
-                                            <div class="col-12 col-md-3"><label for="address" class=" form-control-label">Home Address:</label></div>
-                                            <div class="col-12 col-md-9"><input type="text" id="address" name="address"  class="form-control form-control-sm" placeholder="Enter your Address" required></div>
+                                            <div class="col-12 col-md-3"><label for="address" class=" form-control-label"><span style="color:red;">* </span>Home Address:</label></div>
+                                            <div class="col-12 col-md-9"><input type="text" id="address" name="address"  class="form-control form-control-md" placeholder="Enter your Address" required></div>
                                         </div>
 
                                           <div class="row form-group">
                                             <div class="col-12 col-md-3"><label for="phone" class=" form-control-label">Tel. Number:</label></div>
-                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="10" maxlength="10" name="phone" class="form-control  form-control-sm" placeholder="Tel Number" id="phone"></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="7" maxlength="10" name="phone" class="form-control  form-control-md" placeholder="Tel Number" id="phone"></div>
 
                                             <div class="col-12 col-md-3"><label for="mobile" class=" form-control-label">Mobile Number:</label></div>
-                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile"class="form-control form-control-sm "  placeholder="Mobile Number" id="mobile" ></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="mobile"class="form-control form-control-md "  placeholder="Mobile Number" id="mobile"  ></div>
                                          </div>
 
                                         <div class="row form-group">
-                                             <div class="col-12 col-md-3"><label for="email" class=" form-control-label">Email Address:</label></div>
-                                            <div class="col-12 col-md-9"><input type="email" id="email" name="email"  class="form-control form-control-sm" placeholder="Enter your Email Address" required></div>
+                                             <div class="col-12 col-md-3"><label for="email" class=" form-control-label"><span style="color:red;">* </span>Email Address:</label></div>
+                                            <div class="col-12 col-md-9"><input type="email" id="email" name="email"  class="form-control form-control-md" placeholder="Enter your Email Address" required
+                                                 pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"></div>
 
                                           
                                          </div>
                                          <br>
                                         <div class="row form-group"> 
-                                         <div class="col-12 col-md-3"><label for="bday" class=" form-control-label">Birthday:</label></div> 
-                                             <div class="col-12 col-md-3"><input type="date" name="bday" class="form-control form-control-sm disabled" id="bday" required></div>
+                                         <div class="col-12 col-md-3"><label for="bday" class=" form-control-label"><span style="color:red;">* </span>Birthday:</label></div> 
+                                             <div class="col-12 col-md-3"><input type="date" name="bday" class="form-control form-control-sm disabled" id="bday" required min="1900-01-01" max="2999-12-31"></div>
 
-                                           <div class="col-12 col-md-2"><label for="age" class=" form-control-label">Age:</label></div>
-                                            <div class="col-12 col-md-2"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="1" max="200" minlength="2" maxlength="3" name="age" class="form-control form-control-sm  "    placeholder="Age" id="age" ></div> 
+                                           <div class="col-12 col-md-2"><label for="age" class=" form-control-label"><span style="color:red;">* </span>Age:</label></div>
+                                            <div class="col-12 col-md-2"> <input type="number" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="1" max="200" minlength="2" maxlength="3" name="age" class="form-control form-control-sm  " placeholder="Age" id="age" ></div> 
 
                                          
                                           
                                         </div>
                                          <div class="row form-group">
-                                            <div class="col-12 col-md-3"><label for="gender" class=" form-control-label">Sex:</label></div>
-                                             <select id="gender" name="gender" class="form-control form-control-sm col-3" required>
-                                              <option value="None">None</option>
+                                            <div class="col-12 col-md-3"><label for="gender" class=" form-control-label"><span style="color:red;">* </span>Sex:</label></div>
+                                             <select id="gender" name="gender" class="form-control form-control-md col-3" required>
                                               <option value="Male">Male</option>
                                               <option value="Female">Female</option></select>
 
                                                 <div class="col-12 col-md-2"><label for="civilstatus" class=" form-control-label" >Civil Status:</label></div>
-                                             <select id="civilstatus" name="civilstatus" class="form-control form-control-sm col-3" required>
+                                             <select id="civilstatus" name="civilstatus" class="form-control form-control-md col-3" required>
                                               <option value="Single">Single</option>
                                               <option value="Married">Married</option>
                                               <option value="Divorced">Divorced</option>
@@ -294,12 +293,12 @@ input[type="number"] {
                                           <div class="row form-group">
 
                                             <div class="col-12 col-md-4"><label for="spouse" class=" form-control-label">Spouse's Name (if married):</label></div>
-                                            <div class="col-12 col-md-8"><input type="text" id="spouse" name="spouse"  class="form-control form-control-sm" placeholder="Name of Spouse" maxlength="50"></div>
+                                            <div class="col-12 col-md-8"><input type="text" id="spouse" name="spouse"  class="form-control form-control-md" placeholder="Name of Spouse" maxlength="50"></div>
                                         </div>
 
                                         <div class="row form-group">
                                             <div class="col-12 col-md-4"><label for="religion" class=" form-control-label">Religion:</label></div>
-                                            <div class="col-12 col-md-8"><input type="text" id="religion" name="religion"  class="form-control form-control-sm" placeholder="Religion" pattern="[A-Za-z ]{1,15}"></div>
+                                            <div class="col-12 col-md-8"><input type="text" id="religion" name="religion"  class="form-control form-control-md" placeholder="Religion" pattern="[A-Za-z ]{1,15}"></div>
                                         </div>
 
                                     </div>
@@ -321,14 +320,23 @@ input[type="number"] {
                                         <hr><br>
 
 
-                                   
-                                        <div class="row form-group">
-                                            <div class="col-12 col-md-2"><label for="fathername" class=" form-control-label">Name of Father:</label></div>
-                                            <div class="col-12 col-md-4"><input type="text" id="fathername" name="fathername"  class="form-control form-control-sm" placeholder="Father's Name"required></div>
+                                        
+                                     <div class="row">  <style> i{font-size: 12px;}</style>
 
-                                            <div class="col-12 col-md-2"><label for="mothername" class=" form-control-label">Name of Mother:</label></div>
-                                            <div class="col-12 col-md-4"><input type="text" id="mothername" name="mothername"  class="form-control form-control-sm" placeholder="Mother's Name" required></div>
-                                        </div>
+                                         <div class="col-6">
+                                            <div class=" form-group">
+                                                <label for="fathername" class=" form-control-label ">Name of Father <i>(if deceased leave it blank)</i> :</label>
+                                                <div class=""><input type="text" id="fathername" name="fathername"  class="form-control form-control-md " placeholder="Last Name , First Name , Middle Name "></div>
+                                            </div>
+                                         </div>   
+                                          <div class="col-6">
+                                            <div class=" form-group">
+                                               <label for="mothername" class=" form-control-label ">Name of Mother <i>(if deceased leave it blank)</i> :</label>
+                                                <div class=""><input type="text" id="mothername" name="mothername"  class="form-control form-control-md" placeholder="Last Name , First Name , Maiden Name " ></div>
+                                            </div>
+                                          </div>
+                                     </div>     
+
 
                                           <div class="row form-group">
                                               <div class="col-12 col-md-2"><label for="fatherage" class=" form-control-label">Age:</label></div>
@@ -350,7 +358,7 @@ input[type="number"] {
                                          
                                         <div class="row form-group"> 
                                             <div class="col-12 col-md-2"><label for="fathereducation" class=" form-control-label">Educational Attainment: </label></div>
-                                             <select id="fathereducation" name="fathereducation" class="form-control form-control-sm col-12 col-md-4" required>
+                                             <select id="fathereducation" name="fathereducation" class="form-control form-control-sm col-12 col-md-4" >
                                               <option value="None">None</option>
                                               <option value="College Graduate">College Graduate</option>
                                               <option value="Vocational">Vocational</option>
@@ -360,7 +368,7 @@ input[type="number"] {
                                               <option value="High School Underraduate">High School Underraduate</option></select>
 
                                                <div class="col-12 col-md-2"><label for="mothereducation" class=" form-control-label">Educational Attainment: </label></div>
-                                             <select id="mothereducation" name="mothereducation" class="form-control form-control-sm col-12 col-md-4" required>
+                                             <select id="mothereducation" name="mothereducation" class="form-control form-control-sm col-12 col-md-4" >
                                              <option value="None">None</option>
                                               <option value="College Graduate">College Graduate</option>
                                               <option value="Vocational">Vocational</option>
@@ -375,20 +383,19 @@ input[type="number"] {
                                           <div class="row form-group">
 
                                             <div class="col-12 col-md-2"><label for="fatheroccupation" class=" form-control-label">Occupation:</label></div>
-                                            <div class="col-12 col-md-4"><input type="text" id="fatheroccupation" name="fatheroccupation"  class="form-control form-control-sm" placeholder="Occupation" required></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="fatheroccupation" name="fatheroccupation"  class="form-control form-control-sm" placeholder="Occupation" ></div>
 
                                             <div class="col-12 col-md-2"><label for="motheroccupation" class=" form-control-label">Occupation:</label></div>
-                                            <div class="col-12 col-md-4"><input type="text" id="motheroccupation" name="motheroccupation"  class="form-control form-control-sm" placeholder="Occupation" required></div>
+                                            <div class="col-12 col-md-4"><input type="text" id="motheroccupation" name="motheroccupation"  class="form-control form-control-sm" placeholder="Occupation" ></div>
                                         </div><br><br>
 
                                          <div class="row form-group">
 
-                                            <div class="col-12 col-md-2"><label for="guardiansname" class=" form-control-label">Guardian's Name:</label></div>
+                                            <div class="col-12 col-md-2"><label for="guardiansname" class=" form-control-label"><span style="color:red;">* </span>Guardian's Name:</label></div>
                                             <div class="col-12 col-md-4"><input type="text" id="guardiansname" name="guardiansname"  class="form-control form-control-sm" placeholder="Guardian's Name" required></div>
 
-                                            <div class="col-12 col-md-2"><label for="guardiansrelationship" class=" form-control-label">Relationship:</label></div>
-                                             <select id="guardiansrelationship" name="guardiansrelationship" class="form-control form-control-sm col-4" required>
-                                              <option value="None">None</option>
+                                            <div class="col-12 col-md-2"><label for="guardiansrelationship" class=" form-control-label"><span style="color:red;">* </span>Relationship:</label></div>
+                                             <select id="guardiansrelationship" name="guardiansrelationship" class="form-control form-control-sm col-2" required>
                                               <option value="mother">Mother</option>
                                               <option value="father">Father</option>
                                               <option value="gmother">Grandmother</option>
@@ -400,13 +407,13 @@ input[type="number"] {
                                         </div>
 
                                         <div class="row form-group">
-                                            <div class="col-12 col-md-2"><label for="guardiansaddress" class=" form-control-label">Guardian Address:</label></div>
+                                            <div class="col-12 col-md-2"><label for="guardiansaddress" class=" form-control-label"><span style="color:red;">* </span>Guardian Address:</label></div>
                                             <div class="col-12 col-md-8"><input type="text" id="guardiansaddress" name="guardiansaddress"  class="form-control form-control-sm" placeholder="Enter your Guardian Address" required></div>
                                         </div>
 
                                          <div class="row form-group">
-                                           <div class="col-12 col-md-2"><label for="guardiansmobilenumber" class=" form-control-label"> Guardian Mobile Number:</label></div>
-                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="guardiansmobilenumber"class="form-control form-control-sm "  placeholder="Guardian Mobile Number" id="guardiansmobilenumber" ></div>
+                                           <div class="col-12 col-md-2"><label for="guardiansmobilenumber" class=" form-control-label"><span style="color:red;">* </span> Guardian Mobile Number:</label></div>
+                                            <div class="col-12 col-md-3"> <input type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11" name="guardiansmobilenumber"class="form-control form-control-sm "  placeholder="Guardian Mobile Number" id="guardiansmobilenumber" required></div>
                                             </div><br><br><br>
 
 
@@ -428,29 +435,29 @@ input[type="number"] {
                                                         <tr>
                                                           <td><input type="text" name="siblingname" style=" border:0;outline:0;background:transparent; min-width:100%"></td>
                                                           <td><input type="text" name="siblingschool" style=" border:0;outline:0;background:transparent;min-width:100%"></td>
-                                                          <td><input type="text" name="siblingage" style=" border:0;outline:0;background:transparent;min-width:100% " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"min="0" minlength="2" maxlength="3"></td>
-                                                          <td><input type="text" name="siblingcontact" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                          <td><input type="number" name="siblingage" style=" border:0;outline:0;background:transparent;min-width:100% " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"min="0" minlength="2" maxlength="3"></td>
+                                                          <td><input type="number" name="siblingcontact" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
 
                                                         </tr>
                                                         <div></div>
                                                         <tr>
                                                         <td><input type="text" name="siblingname1" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
                                                           <td><input type="text" name="siblingschool1" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
-                                                          <td><input type="text" name="siblingage1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
-                                                          <td><input type="text" name="siblingcontact1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                          <td><input type="number" name="siblingage1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
+                                                          <td><input type="number" name="siblingcontact1" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
                                                         </tr>
                                                         <tr>
                                                         <td><input type="text" name="siblingname2" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
                                                           <td><input type="text" name="siblingschool2" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
-                                                          <td><input type="text" name="siblingage2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
-                                                          <td><input type="text" name="siblingcontact2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                          <td><input type="number" name="siblingage2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
+                                                          <td><input type="number" name="siblingcontact2" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
                                                         </tr>
 
                                                         <tr>
                                                         <td><input type="text" name="siblingname3" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
                                                           <td><input type="text" name="siblingschool3" style=" border:0;outline:0;background:transparent;min-width:100% "></td>
-                                                          <td><input type="text" name="siblingage3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
-                                                          <td><input type="text" name="siblingcontact3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
+                                                          <td><input type="number" name="siblingage3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="2" maxlength="3"></td>
+                                                          <td><input type="number" name="siblingcontact3" style=" border:0;outline:0;background:transparent;min-width:100% "oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" minlength="11" maxlength="11"></td>
                                                         </tr>
                                           
                                                       </tbody>
@@ -470,28 +477,28 @@ input[type="number"] {
                                                           </thead>
                                                           <tbody>
                                                             <tr>
-                                                              <td><b>Elementary</b></td>
+                                                              <td><b><span style="color:red;">* </span>Elementary</b></td>
                                                               <td><input type="text"  name="elemschool" style=" border:0;outline:0;background:transparent; min-width:100%"  required></td>
-                                                              <td><input type="text" name="elemyeargraduated" style=" border:0;outline:0;background:transparent; min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4" required></td>
-                                                              <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;min-width:100%" maxlength="50" required></td>
+                                                              <td><input type="number" name="elemyeargraduated" style=" border:0;outline:0;background:transparent; min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4" required></td>
+                                                              <td><input type="text" name="elemhonor" style=" border:0;outline:0;background:transparent;min-width:100%" maxlength="50"></td>
                                                             </tr>
                                                             <tr>
-                                                              <td><b>High School</b></td>
+                                                              <td><b><span style="color:red;">* </span>High School</b></td>
                                                               <td><input type="text" name="hsschool" style=" border:0;outline:0;background:transparent;min-width:100%" ></td>
-                                                              <td><input type="text" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
+                                                              <td><input type="number" name="hsyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
                                                               <td><input type="text" name="hshonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"></td>
                                                             </tr>
                                                             <tr>
-                                                              <td><b>College</b></td>
+                                                              <td><b><span style="color:red;">* </span>College</b></td>
                                                               <td><input type="text" name="collegeschool" style=" border:0;outline:0;background:transparent;min-width:100%"></td>
-                                                              <td><input type="text" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
+                                                              <td><input type="number" name="collegeyeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
                                                               <td><input type="text" name="collegehonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"  ></td>
                                                             </tr>
 
                                                             <tr>
                                                               <td><b>Others (please specify)</b></td>
                                                               <td><input type="text" name="otherschool" style=" border:0;outline:0;background:transparent;min-width:100%" ></td>
-                                                              <td><input type="text" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
+                                                              <td><input type="number" name="otheryeargraduated" style=" border:0;outline:0;background:transparent;min-width:100%"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" min="0" minlength="4" maxlength="4"></td>
                                                               <td><input type="text" name="otherhonor" style=" border:0;outline:0;background:transparent;min-width:100%"maxlength="50"></td>
                                                             </tr>
                                                            
@@ -499,7 +506,7 @@ input[type="number"] {
                                                         </table>
                                                       </div>                             
 
-                                                     <button  type="submit" style="padding:15px;" class="btn btn-outline-success offset-md-5 col-md-2"><i class="fa fa-check-circle-o"></i>&nbsp; Create</button>
+                                                     <button  type="submit" style="padding:15px;" class="btn btn-outline-success offset-md-5 col-md-2"><i class="fa fa-check-circle-o"></i>&nbsp; Add</button>
 
 
 
@@ -597,6 +604,42 @@ jQuery(document).ready( function($) {
 
 
 
+</script>
+
+<!-- Uppercase Textbox -->
+
+<script type="text/javascript">
+
+  function forceKeyPressUppercase(e)
+  {
+    var charInput = e.keyCode;
+    if((charInput >= 97) && (charInput <= 122)) { // lowercase
+      if(!e.ctrlKey && !e.metaKey && !e.altKEY) { // no modifier key
+        var newChar = charInput - 32;
+        var start = e.target.selectionStart;
+        var end = e.target.selectionEnd;
+        e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+        e.target.setSelectionRange(start+1, start+1);
+        e.preventDefault();
+      }
+    }
+  }
+
+  document.getElementById("fname").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("mname").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("lname").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("program").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("department").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("mothername").addEventListener("keypress", forceKeyPressUppercase, false);
+  document.getElementById("fathername").addEventListener("keypress", forceKeyPressUppercase, false);
+
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $(".required").after("<span class='red'>*</span>");;
+});
 </script>
 
 

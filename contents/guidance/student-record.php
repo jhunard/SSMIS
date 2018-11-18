@@ -27,6 +27,7 @@ if ($result->num_rows > 0) {
        $db_year_level = $row["year_level"];
        $db_program = $row["program"];
        $db_department = $row["department"];
+       $db_gender = $row["gender"];
 
        if(empty($row["SIS_date_filled"])){
         $db_SIS_date_filled = "- - - - -";
@@ -87,6 +88,7 @@ if ($result2->num_rows > 0) {
       $db_year_level = $row2["year_level"];
       $db_program = $row2["program"];
       $db_department = $row2["department"];
+      $db_gender = $row2["gender"];
       $db_SIS_date_filled = "- - - - -";
       $db_SIS_date_updated = "- - - - -";
       $db_RGM_date_filled = "- - - - -";
@@ -207,11 +209,11 @@ if (empty($user)){
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>

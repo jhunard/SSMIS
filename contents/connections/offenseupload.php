@@ -8,6 +8,7 @@ $lname = $_POST["lname"];
 $yearlevel = $_POST["yearlevel"];
 $program = $_POST["program"];
 $department = $_POST["department"];
+$gender = $_POST["gender"];
 $status = $_POST["status"];
 $offense = $_POST["offense"];
 $offensetype = $_POST["offensetype"];
@@ -16,6 +17,7 @@ $lastyear= date("y") + 1;
 $school_year= date("y")."-".$lastyear;
 $now_year = date("Y");
 $now_month = date("F");
+
 $month_list = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 if($now_month == $month_list[0]){
     $quarter="second";
@@ -54,8 +56,8 @@ if($now_month == $month_list[11]){
     $quarter="first";
 }
 
-$sql = "INSERT INTO student_offenses (month,year,sr_code,fname,mname,lname,year_level,program,department,date_started,type_of_violation,violation,status,annual,quarter)
-VALUES ('$now_month','$now_year','$srcode', '$fname', '$mname','$lname','$yearlevel','$program','$department','$datestarted','$offensetype','$offense','$status','$school_year','$quarter')";
+$sql = "INSERT INTO student_offenses (month,year,sr_code,fname,mname,lname,year_level,program,department,gender,date_started,type_of_violation,violation,status,annual,quarter)
+VALUES ('$now_month','$now_year','$srcode', '$fname', '$mname','$lname','$yearlevel','$program','$department','$gender','$datestarted','$offensetype','$offense','$status','$school_year','$quarter')";
 
 if ($conn->query($sql) === TRUE) {
     echo "<script type='text/javascript'>

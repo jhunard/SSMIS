@@ -6,10 +6,12 @@ $sr_code= $_POST["sr_code"];
 $year_level=$_POST["year_level"];
 $department=$_POST["department"];
 $program=$_POST["program"];
+$gender=$_POST["gender"];
+
 $id=$_POST["id"];
 
 
-$sql = "UPDATE student_record SET name ='$db_name' ,year_level ='$year_level',department='$department',program='$program'  WHERE id='$id'";
+$sql = "UPDATE student_record SET name ='$db_name' ,year_level ='$year_level',department='$department',program='$program' ,gender ='$gender'  WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "<script type='text/javascript'>
@@ -21,7 +23,7 @@ if ($conn->query($sql) === TRUE) {
     window.location.href='../guidance/student-information.php';</script>";
 }
 
-$sql2 = "UPDATE guidance_log SET name ='$db_name' ,year_level ='$year_level',department='$department',program='$program'  WHERE sr_code='$sr_code'";
+$sql2 = "UPDATE guidance_log SET name ='$db_name' ,year_level ='$year_level',department='$department',program='$program' ,gender ='$gender'  WHERE sr_code='$sr_code'";
 
 if ($conn->query($sql2) === TRUE) {
     

@@ -111,11 +111,11 @@
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
-        <!-- Header-->
+        <!-- Header--><style>.navbar-brand { max-height: 50px; width: 100%;}.navbar-brand img{ max-height: 45px; max-width:150px;} </style>
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo" width="150px"></a>
+                    <a class="navbar-brand" href=""><img src=  "../../images/<?php echo $system_img;?>" alt="Logo"></a>
                     
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -155,53 +155,60 @@
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                		 <div class="float-right">
-								       <div class="" style="margin-right:20px">
-								       <a href="add-services-record.php"> <button type="button" class="btn btn-sm btn-success" style="">Add</button></a>
-								       </div>   
-								   		 </div>
+                								       <div class="" style="margin-right:20px">
+                								       <a href="add-services-record.php"> <button type="button" class="btn btn-sm btn-success" style="">Add</button></a>
+                								       </div>   
+                								   		 </div>
                                    <thead>
-      <tr>
-      <th>No.</th>
-        <th>Services</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      include '../connections/conn.php';
+                                      <tr>
+                                      <th>No.</th>
+                                        <th>Services</th>
+                                        <th>Status</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                      include '../connections/conn.php';
 
-            $sql = "SELECT * FROM services ORDER BY id ASC";
-            $result = $conn->query($sql);
+                                            $sql = "SELECT * FROM services ORDER BY id ASC";
+                                            $result = $conn->query($sql);
 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        if ($row["status"] = 0){
-                            $status = "Disabled";
-                        }else{
-                            $status = "Enabled";
-                        }
-                        $count += 1;
-                        echo "<tr>
-                        <td>".$count."</td>
-                        <td>".$row["services"]."</td>
-                        <td>".$status."</td>
-                      </tr>";
-                      }
-                    } else {
-                      echo "<tr>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      <td style='text-align:center;'>-</td>
-                      </tr>";
-                    }
-$conn->close();
-?>
-    </tbody>
-  </table>
-</div>
+                                                if ($result->num_rows > 0) {
+                                                    // output data of each row
+                                                    while($row = $result->fetch_assoc()) {
 
-
+                                                        switch ($row["status"]) {
+                                                            case "1":
+                                                            $status = "Disabled";
+                                                                break;
+                                                            case "0":
+                                                            $status = "Enabled";
+                                                                break;
+                                                            default:
+                                                            $status = "Unknown";
+                                                        }
+                                                        
+                                                        $count += 1;
+                                                        echo "<tr>
+                                                        <td>".$count."</td>
+                                                        <td>".$row["services"]."</td>
+                                                        <td>".$status."</td>
+                                                      </tr>";
+                                                      }
+                                                    } else {
+                                                      echo "<tr>
+                                                      <td style='text-align:center;'>-</td>
+                                                      <td style='text-align:center;'>-</td>
+                                                      <td style='text-align:center;'>-</td>
+                                                      </tr>";
+                                                    }
+                                $conn->close();
+                                ?>
+                                    </tbody>
+                                  </table>
+                                </div>
+                    </div>
+                  </div>            
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
