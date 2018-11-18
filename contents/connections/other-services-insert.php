@@ -13,7 +13,7 @@ $date=$_POST["otherdate"];
 $reason=$_POST["otherreason"];
 $month = date("F");
 $year = date("Y");
-$day = date("d");
+$day = $date[8].$date[9];
 $services = $_POST["services"];
 
 $sql = "SELECT * FROM student_record WHERE sr_code='$srcode' && fname='$fname'";

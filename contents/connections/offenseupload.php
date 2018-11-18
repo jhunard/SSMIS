@@ -17,7 +17,7 @@ $lastyear= date("y") + 1;
 $school_year= date("y")."-".$lastyear;
 $now_year = date("Y");
 $now_month = date("F");
-$day = date("d");
+$day = $datestarted[8].$datestarted[9];
 
 $month_list = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 if($now_month == $month_list[0]){
