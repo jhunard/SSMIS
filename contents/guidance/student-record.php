@@ -196,7 +196,7 @@ if (empty($user)){
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-plus-circle"></i><a href="services.php">Add Services</a></li>
                             <li><i class="menu-icon fa fa-user"></i><a href="user-account.php">User Account</a></li>
-                            <li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>
+                            <!--<!--<li><i class="menu-icon fa fa-sign-in"></i><a href="register.php">Register</a></li>-->-->
                         </ul>
                     </li>
                      <li> <a href=" ../connections/logout.php"> <i class="menu-icon fa fa-sign-out"></i>Log Out</a>  </li>
