@@ -4,6 +4,8 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $image = basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $position = $_POST["position"];
+$department = $_POST["department"];
+$program = $_POST["program"];
 $user = $_POST["name"];
 $pass = md5($_POST["password"]);
 $repass =md5( $_POST["re-type"]);
@@ -34,17 +36,17 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
        include 'conn.php';
-        $sql = "INSERT INTO user_info (username, password, position,img)
-        VALUES ('$user', '$pass', '$position','$image')";
+        $sql = "INSERT INTO user_info (username, password, position,img,department,program)
+        VALUES ('$user', '$pass', '$position','$image','$department','$program')";
 
                 if ($conn->query($sql) === TRUE) {
                     echo "<script type='text/javascript'>
                     alert ('Account Succesfully Registered!'); 
-                    window.location.href='../guidance/register.php';</script>";
+                    window.location.href='../admin/register.php';</script>";
                     } else {
                         echo "<script type='text/javascript'>
                         alert ('Account Failed to Register!'); 
-                        window.location.href='../guidance/register.php';</script>";
+                        window.location.href='../admin/register.php';</script>";
                     }
 
     } else {

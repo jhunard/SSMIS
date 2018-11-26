@@ -19,6 +19,12 @@ if ($result->num_rows > 0) {
             $position = $db_position;
 
             switch ($position) {
+                case "administrator":
+                echo "<script type='text/javascript'>
+                alert ('Welcome ". $db_username ." were so happy to see you!'); 
+                window.location.href='../admin/index.php';</script>";
+                $_SESSION["user"]=$user;
+            break;
                 case "guidance":
                     echo "<script type='text/javascript'>
                     alert ('Welcome ". $db_username ." were so happy to see you!'); 

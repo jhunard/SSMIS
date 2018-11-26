@@ -7,11 +7,11 @@
             if ($conn->query($sql) === TRUE) {
                 echo "<script type='text/javascript'>
                 alert ('Services Status Updated!'); 
-                window.location.href='../guidance/add-services-record.php';</script>";
+                window.location.href='../admin/add-services-record.php';</script>";
                 } else {
                     echo "<script type='text/javascript'>
                     alert ('Services Status Update Failed!'); 
-                    window.location.href='../guidance/add-services-record.php';</script>";
+                    window.location.href='../admin/add-services-record.php';</script>";
                         }
 
           
